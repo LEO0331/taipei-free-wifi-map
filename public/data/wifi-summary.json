@@ -1,0 +1,642 @@
+{
+  "total": 3297,
+  "validCoordinateCount": 3297,
+  "taipeiCityCount": 3285,
+  "outsideTaipeiCount": 12,
+  "byArea": [
+    {
+      "area": "信義區",
+      "count": 482
+    },
+    {
+      "area": "中正區",
+      "count": 431
+    },
+    {
+      "area": "大安區",
+      "count": 343
+    },
+    {
+      "area": "士林區",
+      "count": 332
+    },
+    {
+      "area": "文山區",
+      "count": 290
+    },
+    {
+      "area": "中山區",
+      "count": 269
+    },
+    {
+      "area": "萬華區",
+      "count": 230
+    },
+    {
+      "area": "大同區",
+      "count": 206
+    },
+    {
+      "area": "南港區",
+      "count": 198
+    },
+    {
+      "area": "內湖區",
+      "count": 192
+    },
+    {
+      "area": "北投區",
+      "count": 187
+    },
+    {
+      "area": "松山區",
+      "count": 125
+    },
+    {
+      "area": "新店區",
+      "count": 12
+    }
+  ],
+  "byType": [
+    {
+      "hotspotType": "公車站",
+      "count": 887
+    },
+    {
+      "hotspotType": "行政機關",
+      "count": 691
+    },
+    {
+      "hotspotType": "醫院",
+      "count": 402
+    },
+    {
+      "hotspotType": "商圈市集",
+      "count": 309
+    },
+    {
+      "hotspotType": "圖書館",
+      "count": 261
+    },
+    {
+      "hotspotType": "社區中心",
+      "count": 204
+    },
+    {
+      "hotspotType": "藝文場館",
+      "count": 186
+    },
+    {
+      "hotspotType": "公眾服務",
+      "count": 146
+    },
+    {
+      "hotspotType": "運動場館",
+      "count": 96
+    },
+    {
+      "hotspotType": "公園",
+      "count": 89
+    },
+    {
+      "hotspotType": "大眾運輸",
+      "count": 12
+    },
+    {
+      "hotspotType": "觀光名勝",
+      "count": 12
+    },
+    {
+      "hotspotType": "遊客中心",
+      "count": 2
+    }
+  ],
+  "byCategory": [
+    {
+      "category": "bus_station",
+      "count": 887
+    },
+    {
+      "category": "government_office",
+      "count": 691
+    },
+    {
+      "category": "hospital",
+      "count": 402
+    },
+    {
+      "category": "market_shopping",
+      "count": 309
+    },
+    {
+      "category": "library",
+      "count": 261
+    },
+    {
+      "category": "community_center",
+      "count": 204
+    },
+    {
+      "category": "arts_culture",
+      "count": 186
+    },
+    {
+      "category": "public_service",
+      "count": 146
+    },
+    {
+      "category": "sports_venue",
+      "count": 96
+    },
+    {
+      "category": "park",
+      "count": 89
+    },
+    {
+      "category": "public_transport",
+      "count": 12
+    },
+    {
+      "category": "tourist_attraction",
+      "count": 12
+    },
+    {
+      "category": "visitor_center",
+      "count": 2
+    }
+  ],
+  "byAgency": [
+    {
+      "agency": "臺北市公共運輸處",
+      "count": 899
+    },
+    {
+      "agency": "臺北市市場處",
+      "count": 314
+    },
+    {
+      "agency": "臺北市立圖書館",
+      "count": 262
+    },
+    {
+      "agency": "臺北市政府工務局公園路燈工程管理處",
+      "count": 160
+    },
+    {
+      "agency": "臺北市政府體育局",
+      "count": 96
+    },
+    {
+      "agency": "臺北市政府文化局",
+      "count": 85
+    },
+    {
+      "agency": "臺北市立聯合醫院仁愛院區",
+      "count": 84
+    },
+    {
+      "agency": "臺北市政府秘書處",
+      "count": 80
+    },
+    {
+      "agency": "臺北市立聯合醫院中興院區",
+      "count": 63
+    },
+    {
+      "agency": "臺北市政府社會局",
+      "count": 60
+    },
+    {
+      "agency": "臺北市立動物園",
+      "count": 56
+    },
+    {
+      "agency": "臺北市立聯合醫院忠孝院區",
+      "count": 51
+    },
+    {
+      "agency": "臺北市立聯合醫院和平院區",
+      "count": 50
+    },
+    {
+      "agency": "臺北市政府都市發展局",
+      "count": 38
+    },
+    {
+      "agency": "臺北市稅捐稽徵處",
+      "count": 34
+    },
+    {
+      "agency": "臺北市立聯合醫院松德院區",
+      "count": 34
+    },
+    {
+      "agency": "臺北市立聯合醫院陽明院區",
+      "count": 32
+    },
+    {
+      "agency": "臺北市政府警察局",
+      "count": 28
+    },
+    {
+      "agency": "臺北市中山區公所",
+      "count": 28
+    },
+    {
+      "agency": "臺北市立聯合醫院婦幼院區",
+      "count": 27
+    },
+    {
+      "agency": "臺北市政府消防局",
+      "count": 27
+    },
+    {
+      "agency": "臺北市內湖區公所",
+      "count": 26
+    },
+    {
+      "agency": "臺北市信義區公所",
+      "count": 25
+    },
+    {
+      "agency": "臺北市政府民政局",
+      "count": 25
+    },
+    {
+      "agency": "臺北市士林區公所",
+      "count": 25
+    },
+    {
+      "agency": "臺北市政府衛生局",
+      "count": 25
+    },
+    {
+      "agency": "臺北市文山區公所",
+      "count": 25
+    },
+    {
+      "agency": "臺北市藝文推廣處",
+      "count": 22
+    },
+    {
+      "agency": "臺北市萬華區公所",
+      "count": 22
+    },
+    {
+      "agency": "臺北市松山區公所",
+      "count": 21
+    },
+    {
+      "agency": "臺北市大安區公所",
+      "count": 18
+    },
+    {
+      "agency": "臺北市北投區公所",
+      "count": 18
+    },
+    {
+      "agency": "臺北市政府公務人員訓練中心",
+      "count": 18
+    },
+    {
+      "agency": "臺北市立聯合醫院昆明院區",
+      "count": 17
+    },
+    {
+      "agency": "臺北市政府資訊局",
+      "count": 16
+    },
+    {
+      "agency": "臺北市中正區公所",
+      "count": 16
+    },
+    {
+      "agency": "臺北市大同區公所",
+      "count": 16
+    },
+    {
+      "agency": "臺北市政府環境保護局",
+      "count": 15
+    },
+    {
+      "agency": "臺北市立聯合醫院林森院區",
+      "count": 15
+    },
+    {
+      "agency": "臺北市政府產業發展局",
+      "count": 14
+    },
+    {
+      "agency": "臺北市政府觀光傳播局",
+      "count": 14
+    },
+    {
+      "agency": "臺北市南港區公所",
+      "count": 14
+    },
+    {
+      "agency": "臺北市立聯合醫院",
+      "count": 13
+    },
+    {
+      "agency": "臺北翡翠水庫管理局",
+      "count": 12
+    },
+    {
+      "agency": "臺北市政府工務局",
+      "count": 12
+    },
+    {
+      "agency": "臺北市議會",
+      "count": 12
+    },
+    {
+      "agency": "臺北市政府警察局交通警察大隊",
+      "count": 12
+    },
+    {
+      "agency": "臺北市政府工務局衛生下水道工程處",
+      "count": 12
+    },
+    {
+      "agency": "臺北市政府工務局水利工程處",
+      "count": 10
+    },
+    {
+      "agency": "臺北市中山地政事務所",
+      "count": 10
+    },
+    {
+      "agency": "臺北市政府工務局建築管理工程處",
+      "count": 9
+    },
+    {
+      "agency": "臺北市政府工務局新建工程處",
+      "count": 9
+    },
+    {
+      "agency": "臺北市政府地政局",
+      "count": 8
+    },
+    {
+      "agency": "臺北市政府交通局",
+      "count": 8
+    },
+    {
+      "agency": "臺北市殯葬管理處",
+      "count": 8
+    },
+    {
+      "agency": "臺北市青少年發展暨家庭教育中心",
+      "count": 8
+    },
+    {
+      "agency": "臺北市中山堂管理所",
+      "count": 8
+    },
+    {
+      "agency": "臺北市政府教育局",
+      "count": 7
+    },
+    {
+      "agency": "臺北市政府勞動局",
+      "count": 7
+    },
+    {
+      "agency": "臺北市建成地政事務所",
+      "count": 7
+    },
+    {
+      "agency": "臺北市松山地政事務所",
+      "count": 7
+    },
+    {
+      "agency": "臺北市停車管理工程處",
+      "count": 7
+    },
+    {
+      "agency": "臺北市大安地政事務所",
+      "count": 7
+    },
+    {
+      "agency": "臺北市住宅及都市更新中心",
+      "count": 7
+    },
+    {
+      "agency": "臺北自來水事業處",
+      "count": 6
+    },
+    {
+      "agency": "臺北市政府財政局",
+      "count": 6
+    },
+    {
+      "agency": "臺北市交通管制工程處",
+      "count": 6
+    },
+    {
+      "agency": "臺北市動產質借處",
+      "count": 6
+    },
+    {
+      "agency": "臺北市文山區戶政事務所",
+      "count": 6
+    },
+    {
+      "agency": "臺北市立天文科學教育館",
+      "count": 6
+    },
+    {
+      "agency": "臺北市萬華區健康服務中心",
+      "count": 6
+    },
+    {
+      "agency": "臺北市政府地政局土地開發總隊",
+      "count": 6
+    },
+    {
+      "agency": "臺北市政府法務局",
+      "count": 5
+    },
+    {
+      "agency": "臺北市政府主計處",
+      "count": 5
+    },
+    {
+      "agency": "臺北市松山區戶政事務所",
+      "count": 5
+    },
+    {
+      "agency": "臺北市士林地政事務所",
+      "count": 5
+    },
+    {
+      "agency": "臺北市立浩然敬老院",
+      "count": 5
+    },
+    {
+      "agency": "臺北市古亭地政事務所",
+      "count": 5
+    },
+    {
+      "agency": "臺北市大同區健康服務中心",
+      "count": 5
+    },
+    {
+      "agency": "臺北市政府客家事務委員會",
+      "count": 4
+    },
+    {
+      "agency": "臺北市大安區戶政事務所",
+      "count": 4
+    },
+    {
+      "agency": "臺北市中正區戶政事務所",
+      "count": 4
+    },
+    {
+      "agency": "臺北市南港區健康服務中心",
+      "count": 4
+    },
+    {
+      "agency": "臺北市士林區健康服務中心",
+      "count": 4
+    },
+    {
+      "agency": "臺北市士林區戶政事務所",
+      "count": 4
+    },
+    {
+      "agency": "臺北市中正區健康服務中心",
+      "count": 4
+    },
+    {
+      "agency": "臺北市立文獻館",
+      "count": 4
+    },
+    {
+      "agency": "臺北市政府人事處",
+      "count": 3
+    },
+    {
+      "agency": "臺北市政府研究發展考核委員會",
+      "count": 3
+    },
+    {
+      "agency": "臺北市信義區健康服務中心",
+      "count": 3
+    },
+    {
+      "agency": "臺北市政府警察局少年警察隊",
+      "count": 3
+    },
+    {
+      "agency": "臺北市內湖區戶政事務所",
+      "count": 3
+    },
+    {
+      "agency": "臺北市松山區健康服務中心",
+      "count": 3
+    },
+    {
+      "agency": "臺北市萬華區戶政事務所",
+      "count": 3
+    },
+    {
+      "agency": "臺北市政府工務局大地工程處",
+      "count": 3
+    },
+    {
+      "agency": "臺北市交通事件裁決所",
+      "count": 3
+    },
+    {
+      "agency": "臺北市立陽明教養院",
+      "count": 3
+    },
+    {
+      "agency": "臺北市大安區健康服務中心",
+      "count": 3
+    },
+    {
+      "agency": "臺北市教師研習中心",
+      "count": 3
+    },
+    {
+      "agency": "臺北市政府產業發展局商業處",
+      "count": 2
+    },
+    {
+      "agency": "臺北市政府原住民族事務委員會",
+      "count": 2
+    },
+    {
+      "agency": "臺北市政府政風處",
+      "count": 2
+    },
+    {
+      "agency": "臺北市中山區戶政事務所",
+      "count": 2
+    },
+    {
+      "agency": "臺北市中山區健康服務中心",
+      "count": 2
+    },
+    {
+      "agency": "臺北市大同區戶政事務所",
+      "count": 2
+    },
+    {
+      "agency": "臺北市就業服務處",
+      "count": 2
+    },
+    {
+      "agency": "臺北市政府捷運工程局",
+      "count": 2
+    },
+    {
+      "agency": "臺北市政府環境保護局北投垃圾焚化廠",
+      "count": 2
+    },
+    {
+      "agency": "臺北市北投區健康服務中心",
+      "count": 2
+    },
+    {
+      "agency": "臺北市家庭暴力暨性侵害防治中心",
+      "count": 2
+    },
+    {
+      "agency": "臺北市孔廟管理委員會",
+      "count": 2
+    },
+    {
+      "agency": "臺北市信義區戶政事務所",
+      "count": 1
+    },
+    {
+      "agency": "臺北市內湖區健康服務中心",
+      "count": 1
+    },
+    {
+      "agency": "臺北市北投區戶政事務所",
+      "count": 1
+    },
+    {
+      "agency": "臺北市文山區健康服務中心",
+      "count": 1
+    },
+    {
+      "agency": "臺北市南港區戶政事務所",
+      "count": 1
+    },
+    {
+      "agency": "臺北市政府兵役局",
+      "count": 1
+    },
+    {
+      "agency": "臺北市勞動力重建運用處",
+      "count": 1
+    }
+  ]
+}

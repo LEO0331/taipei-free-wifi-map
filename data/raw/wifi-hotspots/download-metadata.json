@@ -1,0 +1,10 @@
+{
+  "sourceUrl": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=549b3a9b-eb6c-4cb1-848b-8c238735e2db",
+  "downloadedAt": "2026-06-18T00:30:17.859Z",
+  "file": "data/raw/wifi-hotspots/Taipei_Free_AP_總表1141218.csv",
+  "fileSize": 1626772,
+  "reusedExistingFile": true,
+  "notes": [
+    "Existing CSV retained. Pass --force to download the official resource again."
+  ]
+}

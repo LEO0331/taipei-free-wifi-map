@@ -1,0 +1,18 @@
+{
+  "sourceFile": "data/raw/wifi-hotspots/Taipei_Free_AP_總表1141218.csv",
+  "convertedAt": "2026-06-18T00:42:09.639Z",
+  "source": "臺北市公眾區免費無線上網熱點資料(新版)",
+  "inputCount": 3297,
+  "outputCount": 3297,
+  "validCoordinateCount": 3297,
+  "missingCoordinateCount": 0,
+  "outlierCoordinateCount": 0,
+  "taipeiCityCount": 3285,
+  "outsideTaipeiCount": 12,
+  "notes": [
+    "UTF-8 BOM is removed during parsing.",
+    "Empty optional fields are omitted from JSON.",
+    "Outside-Taipei records are retained with isTaipeiCity=false.",
+    "Missing and outlier coordinates are excluded from map markers by the client."
+  ]
+}

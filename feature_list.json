@@ -1,0 +1,36 @@
+{
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Static data pipeline",
+      "description": "Fetch or accept CSV, normalize records, validate coordinates, and generate static hotspot, summary, and report JSON",
+      "dependencies": [],
+      "status": "done",
+      "evidence": "npm run data:convert: 3297 records, 3297 valid coordinates, 12 outside Taipei"
+    },
+    {
+      "id": "feat-002",
+      "name": "Bilingual hotspot explorer",
+      "description": "Clustered map, nearby search, directory, filters, Chinese default, English fallback, and Google Maps links",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "Browser QA passed map, filters, language toggle, 48-card directory page, and outside-Taipei filtering"
+    },
+    {
+      "id": "feat-003",
+      "name": "Overview and PWA",
+      "description": "Dataset dashboard, data notes, manifest, scoped service-worker cache, and GitHub Pages deployment",
+      "dependencies": ["feat-002"],
+      "status": "done",
+      "evidence": "Production build succeeds; dashboard shows filtered totals; PWA assets are emitted to dist"
+    },
+    {
+      "id": "feat-004",
+      "name": "Quality and handoff",
+      "description": "Tests, code review fixes, documentation, agent harness, and reproducible verification",
+      "dependencies": ["feat-003"],
+      "status": "done",
+      "evidence": "14 tests pass, TypeScript/Vite build passes, npm audit reports 0 vulnerabilities, harness validates 100/100"
+    }
+  ]
+}

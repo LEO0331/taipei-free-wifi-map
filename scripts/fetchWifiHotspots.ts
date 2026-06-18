@@ -32,12 +32,15 @@ if (existingFiles.length && !force) {
   process.exit(0);
 }
 
-const response = await fetch(SOURCE_URL);
+const response = await fetch(SOURCE_URL, { signal: AbortSignal.timeout(30_000) });
 if (!response.ok) {
   throw new Error(`Failed to download CSV: ${response.status} ${response.statusText}`);
 }
 
 const bytes = Buffer.from(await response.arrayBuffer());
+if (!bytes.subarray(0, 200).toString('utf8').replace(/^\uFEFF/, '').startsWith('SITE_ID,')) {
+  throw new Error('Downloaded resource is not the expected Taipei Free Wi-Fi CSV.');
+}
 const date = new Date().toISOString().slice(0, 10);
 const outputPath = path.join(rawDirectory, `taipei-free-wifi-${date}.csv`);
 await writeFile(outputPath, bytes);

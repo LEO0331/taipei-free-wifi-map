@@ -2,4 +2,11 @@ node_modules/
 dist/
 *.tsbuildinfo
 .DS_Store
+scripts/*.js
+scripts/*.d.ts
+src/**/*.js
+src/**/*.d.ts
+!src/vite-env.d.ts
+tests/*.js
+tests/*.d.ts
 .omx

@@ -12,3 +12,7 @@ test('parseCsv handles escaped quotes and line breaks inside fields', () => {
   assert.equal(rows[0]?.NAME, 'Wi-Fi "A"');
   assert.equal(rows[0]?.ADDR, 'First line\nSecond line');
 });
+
+test('parseCsv rejects an unclosed quoted field', () => {
+  assert.throws(() => parseCsv('NAME,ADDR\n"Broken,Address\n'), /unclosed quoted field/i);
+});

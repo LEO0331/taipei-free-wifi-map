@@ -3,7 +3,7 @@ import L from 'leaflet';
 import 'leaflet.markercluster';
 import type { Language, WifiHotspot, WifiHotspotCategory } from '../types';
 import type { Translation } from '../translations';
-import { getGoogleMapsUrl } from '../lib/wifi';
+import { getGoogleMapsUrl, hasValidCoordinates } from '../lib/wifi';
 import { getHotspotText } from '../lib/view';
 
 const markerEmoji: Record<WifiHotspotCategory, string> = {
@@ -96,7 +96,7 @@ export function WifiMap({
     if (!layer) return;
     layer.clearLayers();
     hotspots
-      .filter((hotspot) => hotspot.coordinateStatus === 'valid' && hotspot.latitude !== undefined && hotspot.longitude !== undefined)
+      .filter(hasValidCoordinates)
       .forEach((hotspot) => {
         const icon = L.divIcon({
           className: 'wifi-marker',
@@ -104,7 +104,7 @@ export function WifiMap({
           iconSize: [34, 40],
           iconAnchor: [17, 38],
         });
-        L.marker([hotspot.latitude!, hotspot.longitude!], { icon })
+        L.marker([hotspot.latitude, hotspot.longitude], { icon })
           .bindPopup(popupContent(hotspot, language, copy), { maxWidth: 290 })
           .addTo(layer);
       });

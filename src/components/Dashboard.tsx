@@ -1,4 +1,4 @@
-import type { WifiHotspot, WifiSummary } from '../types';
+import type { Language, WifiHotspot, WifiSummary } from '../types';
 import type { Translation } from '../translations';
 
 function BarChart({
@@ -28,21 +28,28 @@ function BarChart({
 export function DataOverviewDashboard({
   summary,
   hotspots,
+  language,
   copy,
 }: {
   summary: WifiSummary;
   hotspots: WifiHotspot[];
+  language: Language;
   copy: Translation;
 }) {
+  const labels = {
+    area: new Map(hotspots.map((item) => [item.areaZh, language === 'en' ? item.areaEn || item.areaZh : item.areaZh])),
+    type: new Map(hotspots.map((item) => [item.hotspotTypeZh, language === 'en' ? item.hotspotTypeEn || item.hotspotTypeZh : item.hotspotTypeZh])),
+    agency: new Map(hotspots.filter((item) => item.agencyZh).map((item) => [item.agencyZh!, language === 'en' ? item.agencyEn || item.agencyZh! : item.agencyZh!])),
+  };
   const cards = [
     [copy.totalHotspots, summary.total],
     [copy.taipeiCityHotspots, summary.taipeiCityCount],
     [copy.outsideTaipeiRecords, summary.outsideTaipeiCount],
     [copy.hotspotTypes, summary.byType.length],
     [copy.areasCovered, summary.byArea.length],
-    [copy.topArea, summary.byArea[0]?.area ?? '—'],
-    [copy.topHotspotType, summary.byType[0]?.hotspotType ?? '—'],
-    [copy.topAgency, summary.byAgency[0]?.agency ?? '—'],
+    [copy.topArea, labels.area.get(summary.byArea[0]?.area ?? '') ?? '—'],
+    [copy.topHotspotType, labels.type.get(summary.byType[0]?.hotspotType ?? '') ?? '—'],
+    [copy.topAgency, labels.agency.get(summary.byAgency[0]?.agency ?? '') ?? '—'],
   ];
   const topAreas = summary.byArea.slice(0, 10).map(({ area }) => area);
   const topCategories = summary.byCategory.slice(0, 6);
@@ -65,9 +72,9 @@ export function DataOverviewDashboard({
         ))}
       </div>
       <div className="chart-grid">
-        <BarChart title={copy.hotspotsByArea} values={summary.byArea.map(({ area, count }) => ({ label: area, count }))} />
-        <BarChart title={copy.hotspotsByType} values={summary.byType.map(({ hotspotType, count }) => ({ label: hotspotType, count }))} />
-        <BarChart title={copy.hotspotsByAgency} values={summary.byAgency.map(({ agency, count }) => ({ label: agency, count }))} />
+        <BarChart title={copy.hotspotsByArea} values={summary.byArea.map(({ area, count }) => ({ label: labels.area.get(area) || area, count }))} />
+        <BarChart title={copy.hotspotsByType} values={summary.byType.map(({ hotspotType, count }) => ({ label: labels.type.get(hotspotType) || hotspotType, count }))} />
+        <BarChart title={copy.hotspotsByAgency} values={summary.byAgency.map(({ agency, count }) => ({ label: labels.agency.get(agency) || agency, count }))} />
         <article className="chart-card">
           <h3>{copy.taipeiVsOutside}</h3>
           <div className="donut-wrap">
@@ -81,7 +88,7 @@ export function DataOverviewDashboard({
           <h3>{copy.hotspotCategoriesByDistrict}</h3>
           <div className="matrix">
             {matrix.map((row) => (
-              <div key={row.area}><b>{row.area}</b>{row.values.map((value, index) => <span key={topCategories[index]?.category} title={`${topCategories[index]?.category}: ${value}`} style={{ opacity: value ? Math.min(.2 + value / 80, 1) : .05 }}>{value || ''}</span>)}</div>
+              <div key={row.area}><b>{labels.area.get(row.area) || row.area}</b>{row.values.map((value, index) => <span key={topCategories[index]?.category} title={`${topCategories[index]?.category}: ${value}`} style={{ opacity: value ? Math.min(.2 + value / 80, 1) : .05 }}>{value || ''}</span>)}</div>
             ))}
           </div>
         </article>

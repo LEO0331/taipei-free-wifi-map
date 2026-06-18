@@ -8,6 +8,7 @@ import {
   filterWifiHotspots,
   formatDistance,
   getGoogleMapsUrl,
+  hasValidCoordinates,
   normalizeArea,
   normalizeColumnName,
   parseCoordinate,
@@ -45,6 +46,8 @@ test('coordinate validation distinguishes valid, missing, and outlier values', (
   assert.equal(validateWifiCoordinate(121.56, 25.04), 'valid');
   assert.equal(validateWifiCoordinate(undefined, 25.04), 'missing');
   assert.equal(validateWifiCoordinate(120, 25.04), 'outlier');
+  assert.equal(hasValidCoordinates(hotspot()), true);
+  assert.equal(hasValidCoordinates(hotspot({ latitude: undefined, coordinateStatus: 'missing' })), false);
 });
 
 test('category mapping follows the requested Chinese hotspot types', () => {

@@ -30,6 +30,8 @@ export function parseCsv(input: string): Array<Record<string, string>> {
     }
   }
 
+  if (quoted) throw new Error('CSV contains an unclosed quoted field.');
+
   if (field || row.length) {
     row.push(field);
     rows.push(row);

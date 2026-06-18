@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import type { WifiHotspot } from '../src/types.js';
-import { getHotspotText, getNearbyHotspots } from '../src/lib/view.js';
+import {
+  buildFilterOptions,
+  getHotspotText,
+  getNearbyHotspots,
+} from '../src/lib/view.js';
 
 const item = (overrides: Partial<WifiHotspot> = {}): WifiHotspot => ({
   id: '1',
@@ -40,4 +44,20 @@ test('getNearbyHotspots excludes invalid coordinates and sorts within radius', (
     500,
   );
   assert.deepEqual(results.map(({ hotspot }) => hotspot.id), ['near', 'far']);
+});
+
+test('buildFilterOptions shows English labels while preserving Chinese filter values', () => {
+  const options = buildFilterOptions([
+    item({
+      areaEn: 'Xinyi District',
+      hotspotTypeEn: 'Park',
+      agencyZh: '公園處',
+      agencyEn: 'Parks Office',
+      vendorId: 'TAIFO',
+    }),
+  ], 'en');
+
+  assert.deepEqual(options.areas, [{ value: '信義區', label: 'Xinyi District' }]);
+  assert.deepEqual(options.types, [{ value: '公園', label: 'Park' }]);
+  assert.deepEqual(options.agencies, [{ value: '公園處', label: 'Parks Office' }]);
 });

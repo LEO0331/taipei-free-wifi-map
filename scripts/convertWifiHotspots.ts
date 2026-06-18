@@ -26,17 +26,25 @@ const inputPath = await findInput();
 const csv = await readFile(inputPath, 'utf8');
 const rows = parseCsv(csv);
 const hotspots = rows.map(convertWifiRow);
+const counts = hotspots.reduce(
+  (total, hotspot) => {
+    total[hotspot.coordinateStatus] += 1;
+    total[hotspot.isTaipeiCity ? 'taipei' : 'outside'] += 1;
+    return total;
+  },
+  { valid: 0, missing: 0, outlier: 0, taipei: 0, outside: 0 },
+);
 const report: ConversionReport = {
   sourceFile: path.relative(process.cwd(), inputPath),
   convertedAt: new Date().toISOString(),
   source: WIFI_SOURCE,
   inputCount: rows.length,
   outputCount: hotspots.length,
-  validCoordinateCount: hotspots.filter((item) => item.coordinateStatus === 'valid').length,
-  missingCoordinateCount: hotspots.filter((item) => item.coordinateStatus === 'missing').length,
-  outlierCoordinateCount: hotspots.filter((item) => item.coordinateStatus === 'outlier').length,
-  taipeiCityCount: hotspots.filter((item) => item.isTaipeiCity).length,
-  outsideTaipeiCount: hotspots.filter((item) => !item.isTaipeiCity).length,
+  validCoordinateCount: counts.valid,
+  missingCoordinateCount: counts.missing,
+  outlierCoordinateCount: counts.outlier,
+  taipeiCityCount: counts.taipei,
+  outsideTaipeiCount: counts.outside,
   notes: [
     'UTF-8 BOM is removed during parsing.',
     'Empty optional fields are omitted from JSON.',

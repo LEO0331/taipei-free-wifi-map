@@ -53,6 +53,20 @@ export function validateWifiCoordinate(
     : 'outlier';
 }
 
+export function hasValidCoordinates(
+  hotspot: WifiHotspot,
+): hotspot is WifiHotspot & {
+  latitude: number;
+  longitude: number;
+  coordinateStatus: 'valid';
+} {
+  return (
+    hotspot.coordinateStatus === 'valid' &&
+    hotspot.latitude !== undefined &&
+    hotspot.longitude !== undefined
+  );
+}
+
 export function normalizeArea(raw: string): string {
   const area = raw.trim().replace(/^(?:臺北市|台北市)\s*/, '').replace(/\s+/g, '');
   return area && !area.endsWith('區') ? `${area}區` : area;

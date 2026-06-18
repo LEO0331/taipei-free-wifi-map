@@ -1,5 +1,6 @@
 import type { Filters, Language } from '../types';
 import type { Translation } from '../translations';
+import type { FilterOption } from '../lib/view';
 
 export type Tab = 'map' | 'nearby' | 'directory' | 'overview' | 'notes';
 
@@ -59,7 +60,12 @@ export function FilterPanel({
 }: {
   filters: Filters;
   onChange: (filters: Filters) => void;
-  options: { areas: string[]; types: string[]; agencies: string[]; vendors: string[] };
+  options: {
+    areas: FilterOption[];
+    types: FilterOption[];
+    agencies: FilterOption[];
+    vendors: FilterOption[];
+  };
   copy: Translation;
 }) {
   const select = (key: keyof Filters, value: string | boolean) =>
@@ -78,19 +84,19 @@ export function FilterPanel({
       </label>
       <select aria-label={copy.area} value={filters.area} onChange={(event) => select('area', event.target.value)}>
         <option value="">{copy.allAreas}</option>
-        {options.areas.map((value) => <option key={value}>{value}</option>)}
+        {options.areas.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
       </select>
       <select aria-label={copy.hotspotType} value={filters.hotspotType} onChange={(event) => select('hotspotType', event.target.value)}>
         <option value="">{copy.allTypes}</option>
-        {options.types.map((value) => <option key={value}>{value}</option>)}
+        {options.types.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
       </select>
       <select aria-label={copy.agency} value={filters.agency} onChange={(event) => select('agency', event.target.value)}>
         <option value="">{copy.allAgencies}</option>
-        {options.agencies.map((value) => <option key={value}>{value}</option>)}
+        {options.agencies.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
       </select>
       <select aria-label={copy.vendor} value={filters.vendor} onChange={(event) => select('vendor', event.target.value)}>
         <option value="">{copy.allVendors}</option>
-        {options.vendors.map((value) => <option key={value}>{value}</option>)}
+        {options.vendors.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
       </select>
       <label className="checkbox-field">
         <input

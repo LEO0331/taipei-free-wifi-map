@@ -1,4 +1,6 @@
-# Taipei Free Wi-Fi Map / 台北免費 Wi-Fi 熱點地圖
+# Taipei Free Wi-Fi Map
+
+[繁體中文](README-zh.md)
 
 A mobile-first bilingual map, nearby finder, directory, and dataset overview for Taipei Free public Wi-Fi hotspot locations.
 
@@ -6,7 +8,7 @@ The site is a static public-data directory. It does **not** show real-time avail
 
 ## Data source
 
-- Dataset: [臺北市公眾區免費無線上網熱點資料(新版)](https://data.taipei/dataset/detail?id=6aa6532d-652f-4c1b-814a-4646b75407af)
+- Dataset: [Taipei City Public Free Wi-Fi Hotspot Data (new version)](https://data.taipei/dataset/detail?id=6aa6532d-652f-4c1b-814a-4646b75407af)
 - Provider: Taipei City Government Department of Information Technology
 - Published update frequency: every six months
 - Included sample: `data/raw/wifi-hotspots/Taipei_Free_AP_總表1141218.csv`

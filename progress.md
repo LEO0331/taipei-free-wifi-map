@@ -2,13 +2,14 @@
 
 ## Current State
 
-**Last Updated:** 2026-06-18
+**Last Updated:** 2026-09-01
 **Active Feature:** None — initial product scope complete
 
 ## Status
 
 ### What's Done
 
+- [x] Split the project documentation into English (`README.md`) and Traditional Chinese (`README-zh.md`) versions
 - [x] Converted the provided 3,297-record CSV into static JSON
 - [x] Built the bilingual map, nearby finder, directory, dashboard, notes, and PWA assets
 - [x] Fixed code-review findings and removed generated JavaScript/declaration artifacts

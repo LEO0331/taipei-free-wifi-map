@@ -1,10 +1,23 @@
 {
   "features": [
     {
+      "id": "feat-007",
+      "name": "Policy #8 v1.1 geographic evidence and experimental allocation",
+      "description": "Offline official boundary validation, explicit facility coordinate assumptions and bilingual experimental Mode B with auditable capacity and sensitivity scenarios",
+      "dependencies": [
+        "feat-005",
+        "feat-006"
+      ],
+      "status": "in_progress",
+      "evidence": "2026-10-22: Full init.sh passes 37 Node tests, 8 Python GIS tests, byte-identical GIS/scenario rebuild and TypeScript/Vite build. Official polygons12; facility tiers0/87/4; all288 scenarios, bilingual desktop/mobile, real exports and provenance verified. No non-self modeled gain; optimization explicitly unavailable. Review PR pending creation; see docs/wifi-allocation-v1.1-delivery.md."
+    },
+    {
       "id": "feat-006",
       "name": "Consistent policy-tab localization",
       "description": "Localize all policy UI explanations and source status text; use edition-matched official English candidate labels while preserving traceable source identifiers",
-      "dependencies": ["feat-005"],
+      "dependencies": [
+        "feat-005"
+      ],
       "status": "done",
       "evidence": "2026-10-22: init.sh passes 27 tests and TypeScript/Vite build. All current policy prose/source statuses have zh/en coverage; all 3316 candidate labels match their own source edition. Production desktop/mobile checked both languages, expanded diagnostics, B/C gates and filter retention (206 Datong candidates in either language). 24 scenario configurations preserve selections. Review PR https://github.com/LEO0331/taipei-free-wifi-map/pull/5 open, not merged. See docs/wifi-policy-localization.md."
     },
@@ -12,7 +25,12 @@
       "id": "feat-005",
       "name": "Policy #8 evidence-aware Wi-Fi decision support",
       "description": "Independent reproducible official-source audit, inventory reconciliation, investigation scenarios, bilingual lazy dashboard and provenance-rich exports; geographic and operational modes gated by evidence",
-      "dependencies": ["feat-001", "feat-002", "feat-003", "feat-004"],
+      "dependencies": [
+        "feat-001",
+        "feat-002",
+        "feat-003",
+        "feat-004"
+      ],
       "status": "done",
       "evidence": "2026-10-22: init.sh passed npm ci, retained 3297-row conversion, 23 tests and TypeScript/Vite build. Source audit current3305/legacy3297; deterministic snapshot wifi-policy-c250791e7736ed5bca2882ea. Production desktop/mobile, bilingual, scenarios, actual exports and zero initial policy requests verified. Mode B/C explicitly gated. Review PR https://github.com/LEO0331/taipei-free-wifi-map/pull/4 open, not merged. See docs/wifi-allocation-delivery.md."
     },
@@ -28,7 +46,9 @@
       "id": "feat-002",
       "name": "Bilingual hotspot explorer",
       "description": "Clustered map, nearby search, directory, filters, Chinese default, English fallback, and Google Maps links",
-      "dependencies": ["feat-001"],
+      "dependencies": [
+        "feat-001"
+      ],
       "status": "done",
       "evidence": "Browser QA passed map, filters, language toggle, 48-card directory page, and outside-Taipei filtering"
     },
@@ -36,7 +56,9 @@
       "id": "feat-003",
       "name": "Overview and PWA",
       "description": "Dataset dashboard, data notes, manifest, scoped service-worker cache, and GitHub Pages deployment",
-      "dependencies": ["feat-002"],
+      "dependencies": [
+        "feat-002"
+      ],
       "status": "done",
       "evidence": "Production build succeeds; dashboard shows filtered totals; PWA assets are emitted to dist"
     },
@@ -44,7 +66,9 @@
       "id": "feat-004",
       "name": "Quality and handoff",
       "description": "Tests, code review fixes, documentation, agent harness, and reproducible verification",
-      "dependencies": ["feat-003"],
+      "dependencies": [
+        "feat-003"
+      ],
       "status": "done",
       "evidence": "14 tests pass, TypeScript/Vite build passes, npm audit reports 0 vulnerabilities, harness validates 100/100"
     }

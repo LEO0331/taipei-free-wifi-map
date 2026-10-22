@@ -103,7 +103,7 @@ This site shows public Wi-Fi hotspot locations from open data and does not repre
 
 The independent, bilingual decision-support tab assigns limited **source-verification investigation slots**. Mode A reviews official inventory evidence and compares capacities 5/10/all, Evidence Gaps First and Balanced Facility Review, with explicit identity/scope and stale-source sensitivity. JSON/CSV exports preserve selected source identities, source editions and hashes, assumptions and unavailable metrics.
 
-Mode B geographic facility allocation is unavailable until facility identity, coordinate CRS/precision and geographic evidence pass their admission contract. Mode C requires operational, usage and population/demand evidence. Neither official directory presence nor geographic distance demonstrates working Wi-Fi, actual radio coverage, resident demand or digital inclusion.
+Mode B now offers **experimental geographic facility proximity review** with historical official district geometry, explicit facility CRS hypotheses, verified-only/assumption-tested cohorts, capacities 5/10/all and source-backed sensitivity/export outputs. This edition admits 87 assumption-tested facility composites and no verified facilities; its actual results have no non-self incremental gain, so optimization conclusions remain unavailable. Mode C requires operational, usage and population/demand evidence. Neither official directory presence nor geographic distance demonstrates working Wi-Fi, actual radio coverage, resident demand or digital inclusion.
 
 The policy pipeline retains original official bytes separately from the explorer:
 
@@ -114,3 +114,9 @@ npm run data:build:wifi-policy
 ```
 
 Fetching, auditing and building policy data do not migrate the original explorer's retained source edition. Refresh downloads require explicit audit/acceptance before a new edition is used. See the [source audit](docs/wifi-allocation-source-audit.md), [methodology and explicit explorer migration](docs/wifi-allocation-methodology.md), [Traditional Chinese MVP](docs/wifi-allocation-decision-mvp.zh-TW.md), and [delivery evidence](docs/wifi-allocation-delivery.md) for actual results, reproducibility and remaining evidence gaps.
+
+## Policy #8 v1.1 geographic research
+
+Python 3.14 is required for the offline GIS audit (no browser GIS dependency). Run `npm run data:setup:geographic`, `npm run data:audit:geographic`, `npm run data:build:geographic` and `npm run data:verify:geographic`. `./init.sh` includes setup, audit and byte-for-byte reproducibility checks. Live source fetching is separate from Pages builds.
+
+See the [source validation](docs/wifi-allocation-v1.1-source-validation.md), [coordinate contracts](docs/wifi-allocation-v1.1-coordinate-contract.md), [methodology and reproduction](docs/wifi-allocation-v1.1-methodology.md), [Traditional Chinese MVP](docs/wifi-allocation-v1.1-decision-mvp.zh-TW.md), [actual source-derived results](docs/evidence/geographic-v1.1/results.md) and [delivery evidence](docs/wifi-allocation-v1.1-delivery.md). v1.0 documents remain historical evidence.

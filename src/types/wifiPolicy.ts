@@ -6,6 +6,7 @@ export type PolicySourceEdition = {
 };
 export type PolicyCandidate = {
   id: string; siteId: string; hotspotId: string; name: string; district: string; category: string;
+  nameEn?: string; districtEn?: string; categoryEn?: string;
   latitude: number | null; longitude: number | null; tier: 'A' | 'B' | 'C'; issues: string[];
   identityVerified: boolean; stale: boolean; sourceEdition: string;
   scope: 'taipei-source' | 'outside-source' | 'unresolved';

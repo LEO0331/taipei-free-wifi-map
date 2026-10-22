@@ -1,5 +1,15 @@
 # Session Progress Log
 
+## 2026-10-22 — Policy tab language consistency
+
+- Completed `feat-006` on the existing Policy #8 branch/PR #4. Chinese explanations, source metadata, gates, exclusions, assumptions and limitations now stay in Chinese; English candidate names/districts/categories use the publisher's same-edition English columns.
+- Raw issue codes are behind a localized disclosure. IDs, hashes and standard file/coordinate notation remain original; missing official translations fall back transparently. One official English name contains `(一)` and is preserved as published.
+- Added a focused locale helper and coverage tests instead of duplicating source snapshots per language. Display-label enrichment leaves all candidate IDs, counts, tiers and 24 scenario selections unchanged.
+- Active snapshot `wifi-policy-e08d28277549c88787dea209`, SHA-256 `cd675db75af4b65220692dc59916c7e5b88920b42613d4b82c7affcb43e0dfaa`, 2,154,132 bytes (227,849 gzip). Raw source hashes remain unchanged; previous snapshot retained for audit.
+- Final `./init.sh`: npm ci (0 vulnerabilities), original 3,297-row conversion, **27/27 tests**, TypeScript/Vite build pass. Repeated policy rebuilds are byte-identical. PWA cache version advanced for the updated UI.
+- Production browser: both languages inspected through source metadata and expanded diagnostics, B/C gates checked, Datong filter remains 206 eligible across switching, no unexpected Chinese in the default English panel, no mobile page overflow or console warnings/errors. Evidence and screenshots: `docs/evidence/localization/`; follow-up report: `docs/wifi-policy-localization.md`.
+
+
 ## 2026-10-22 — Policy #8 verified delivery
 
 - Feature `feat-005`: completed as the permitted Mode A MVP. Review PR [#4](https://github.com/LEO0331/taipei-free-wifi-map/pull/4) is open and not merged.

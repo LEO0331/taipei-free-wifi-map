@@ -50,6 +50,7 @@ export function buildSnapshot(current: Row[], legacy: Row[], editions: PolicySou
     const valid=validWgs84(row.LONGITUDE,row.LATITUDE);
     candidates.push({id:`A:${edition}:${encodeURIComponent(row.SITE_ID||'_')}:${encodeURIComponent(row.HOTSPOT_ID||'_')}:${sha256(canonical(row)).slice(0,16)}`,
       siteId:row.SITE_ID,hotspotId:row.HOTSPOT_ID,name:row.NAME,district:normalizeArea(row.AREA),category:row.STYPE||'(missing)',
+      nameEn:row.E_NAME||undefined,districtEn:row.E_AREA||undefined,categoryEn:row.E_STYPE||undefined,
       latitude:valid?Number(row.LATITUDE):null,longitude:valid?Number(row.LONGITUDE):null,tier,issues,identityVerified,stale,sourceEdition:edition,scope:sourceScope(row)});
   };
   const currentEdition=editions.find(e=>e.id==='A')!.sha256!;

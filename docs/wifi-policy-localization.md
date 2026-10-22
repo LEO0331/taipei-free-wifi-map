@@ -1,0 +1,17 @@
+# Policy tab localization follow-up
+
+This follow-up fixes language mixing in the Policy #8 UI. It updates the same review PR [#4](https://github.com/LEO0331/taipei-free-wifi-map/pull/4).
+
+Chinese and English now each cover source statuses, evidence eligibility, publishers, licence display, retrieval precision, candidate grain, reconciliation rules, exclusions, issue summaries, assumptions, limitations and Mode B/C requirements. Sensitivity booleans show 是／否 or Yes／No. Raw issue codes are available through a localized disclosure rather than displayed as untranslated prose.
+
+Candidate names, district options and categories use the publisher's **same source edition** English fields (`E_NAME`, `E_AREA`, `E_STYPE`). Display fields are optional additions to the policy schema; original names, canonical filter values, exports, candidate IDs and decision logic remain traceable to their original values. Tests compare all candidates against their own current or legacy source rows and compare all 24 capacity/strategy/eligibility/stale configurations with the previous snapshot: selected IDs are unchanged.
+
+Necessary notation remains intact: Wi-Fi, JSON/CSV, SITE_ID/HOTSPOT_ID, SHA-256, coordinate/file-format names, hashes and source IDs. Publisher-supplied wording is preserved where no translation exists. One official English `E_NAME` includes `(一)` (`TPEE003314`); this is retained publisher wording rather than an invented translation. The language-toggle control intentionally names the other language.
+
+The active snapshot is now `wifi-policy-e08d28277549c88787dea209`, SHA-256 `cd675db75af4b65220692dc59916c7e5b88920b42613d4b82c7affcb43e0dfaa`, **2,154,132 bytes** (**227,849 gzip**), because it includes official English display fields. Raw source editions and hashes are unchanged. The previous immutable snapshot is retained for audit and regression comparison. The [initial delivery report](wifi-allocation-delivery.md) and its measurements describe the initial snapshot; this follow-up identifies the new display-enriched snapshot.
+
+Verification on 2026-10-22: baseline `./init.sh` passed; after changes **27 tests pass**, TypeScript/Vite build passes, and repeated policy builds return identical bytes. Production browser inspection checked Chinese/English metadata and expanded diagnostics, both unavailable modes, official English names and dropdown labels, and language switching with a Datong filter (206 eligible in each language). The default English view had zero visible Chinese text within the policy panel. Both mobile language views at 390×844 had document width 375px (scrollbar excluded), and the browser reported no warnings/errors.
+
+Screenshots and visible-text transcripts are retained in [localization evidence](evidence/localization/). The [visual verdict](evidence/localization/visual-verdict.json) passes at 95/100 against the existing dashboard style. New translation-coverage tests fail if future accepted source prose lacks the required display translation. PWA cache version was advanced so existing installations can receive the localized UI.
+
+Changed implementation files: `WifiPolicyDashboard.tsx`, new `wifiPolicyLocale.ts`, policy candidate type/validator/builder (official display fields only), generated policy snapshot and `public/sw.js`. Added `wifiPolicyLocale.test.ts`. No dependencies, unrelated explorer changes or new scoring rules were introduced.

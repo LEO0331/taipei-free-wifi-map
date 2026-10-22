@@ -1,5 +1,14 @@
 # Session Handoff
 
+## Latest follow-up — policy localization
+
+- `feat-006` completes the user's Chinese/English consistency request on the same branch and PR #4; do not merge automatically.
+- Both languages cover all policy prose and source metadata. Candidate names/districts/categories now use edition-matched official English fields; original identifiers and optional raw codes remain traceable.
+- Current snapshot `wifi-policy-e08d28277549c88787dea209`; hash `cd675db75af4b65220692dc59916c7e5b88920b42613d4b82c7affcb43e0dfaa`. This adds display fields without changing source editions, candidate IDs or selections. Earlier delivery records below describe the original snapshot.
+- Full `./init.sh` passes **27 tests**, TypeScript/Vite build and original converter. Browser desktop/mobile Chinese/English checks pass, no console errors; 24 scenario regression configurations preserve selected IDs. See `docs/wifi-policy-localization.md` for evidence and the explicit publisher-wording exception.
+- PWA cache now `taipei-wifi-v4-policy-locale-1`. No dependencies added; original explorer data preserved.
+
+
 ## Policy #8 handoff — 2026-10-22
 
 - Goal: complete the explicitly permitted Mode A evidence-readiness MVP, preserve original explorer and open one review PR; do not merge.

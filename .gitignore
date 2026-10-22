@@ -10,3 +10,5 @@ src/**/*.d.ts
 tests/*.js
 tests/*.d.ts
 .omx
+.venv-*/
+__pycache__/

@@ -1,0 +1,5 @@
+pyproj==3.7.2
+shapely==2.1.2
+pyshp==3.0.3
+numpy==2.5.4
+certifi==2026.10.19

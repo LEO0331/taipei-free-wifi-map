@@ -1,0 +1,45 @@
+{
+  "status": "pending-schema-and-catalogue-audit",
+  "sources": [
+    {
+      "id": "A",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=549b3a9b-eb6c-4cb1-848b-8c238735e2db",
+      "bytes": 1630629,
+      "sha256": "09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55",
+      "path": "data\\raw\\wifi-policy\\refresh\\A-09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55.bin",
+      "retrievedAt": "2026-10-22T06:23:02.841Z"
+    },
+    {
+      "id": "B",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=fb6cc268-e2b8-43a7-86f2-e79702291a2b",
+      "bytes": 7185,
+      "sha256": "82f4e1aedafd3b68a9b6adc619fdd5e00e4871c3c94100201eefdb12070e0847",
+      "path": "data\\raw\\wifi-policy\\refresh\\B-82f4e1aedafd3b68a9b6adc619fdd5e00e4871c3c94100201eefdb12070e0847.bin",
+      "retrievedAt": "2026-10-22T06:23:03.090Z"
+    },
+    {
+      "id": "C",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=5ae02e14-50fc-4906-86a7-96e0231780e1",
+      "bytes": 6466,
+      "sha256": "368778b0c649f24b05cc0383172afb0e1b804c332541e2d33a2117d7d83834a0",
+      "path": "data\\raw\\wifi-policy\\refresh\\C-368778b0c649f24b05cc0383172afb0e1b804c332541e2d33a2117d7d83834a0.bin",
+      "retrievedAt": "2026-10-22T06:23:03.388Z"
+    },
+    {
+      "id": "D",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=e7c46724-3517-4ce5-844f-5a4404897b7d",
+      "bytes": 1527,
+      "sha256": "23c5ce0906358d8f95b2f1a8e1b019487cd7fa564b2cf188681648d23c89b11c",
+      "path": "data\\raw\\wifi-policy\\refresh\\D-23c5ce0906358d8f95b2f1a8e1b019487cd7fa564b2cf188681648d23c89b11c.bin",
+      "retrievedAt": "2026-10-22T06:23:03.625Z"
+    },
+    {
+      "id": "E",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=d8b7eb29-136f-49fc-b14b-3489d3656122",
+      "bytes": 174449,
+      "sha256": "77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9",
+      "path": "data\\raw\\wifi-policy\\refresh\\E-77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9.bin",
+      "retrievedAt": "2026-10-22T06:23:03.858Z"
+    }
+  ]
+}

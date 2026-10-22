@@ -1,5 +1,5 @@
 const BASE = '/taipei-free-wifi-map/';
-const CACHE = 'taipei-wifi-v2';
+const CACHE = 'taipei-wifi-v3-policy-1';
 const ASSETS = [BASE, `${BASE}data/wifi-hotspots.json`, `${BASE}data/wifi-summary.json`];
 
 self.addEventListener('install', (event) => {
@@ -8,7 +8,7 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))),
+    caches.keys().then((keys) => Promise.all(keys.filter((key) => key.startsWith('taipei-wifi-') && key !== CACHE).map((key) => caches.delete(key)))),
   );
 });
 
@@ -16,6 +16,9 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+  // Policy editions are fetched only on tab entry. A failed refresh must never
+  // silently substitute an incompatible snapshot from an older application.
+  if (url.pathname.startsWith(`${BASE}data/wifi-policy/`)) return;
   const fetchAndCache = () => fetch(event.request).then((response) => {
     if (response.ok) {
       const copy = response.clone();

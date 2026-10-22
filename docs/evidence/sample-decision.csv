@@ -1,0 +1,224 @@
+﻿"snapshot_id","candidate_id","site_id","hotspot_id","name","district","category","tier","issues","source_edition","decision_metadata_json"
+"wifi-policy-c250791e7736ed5bca2882ea","A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1","TPEE002338","TPEE002338","北市聯醫中興院區8F民眾休息區中央","大同區","醫院","A","changed-coordinates","09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55","{
+  ""snapshotId"": ""wifi-policy-c250791e7736ed5bca2882ea"",
+  ""sourceEditions"": [
+    {
+      ""id"": ""A"",
+      ""datasetId"": ""6aa6532d-652f-4c1b-814a-4646b75407af"",
+      ""resourceId"": ""549b3a9b-eb6c-4cb1-848b-8c238735e2db"",
+      ""catalogueUrl"": ""https://data.taipei/dataset/detail?id=6aa6532d-652f-4c1b-814a-4646b75407af"",
+      ""url"": ""https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=549b3a9b-eb6c-4cb1-848b-8c238735e2db"",
+      ""publishedAt"": ""2026-07-01 15:32:22"",
+      ""retrievedAt"": null,
+      ""retrievalDate"": ""2026-10-22"",
+      ""retrievalPrecision"": ""day"",
+      ""publisher"": ""臺北市政府資訊局"",
+      ""license"": ""Government Data Open License, Version 1.0 (catalogue: 公開)"",
+      ""eligibility"": ""inventory-evidence-review"",
+      ""status"": ""acquired"",
+      ""sha256"": ""09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55"",
+      ""bytes"": 1630629
+    },
+    {
+      ""id"": ""B"",
+      ""datasetId"": ""43772803-6504-469c-894d-35904342a53b"",
+      ""resourceId"": ""fb6cc268-e2b8-43a7-86f2-e79702291a2b"",
+      ""catalogueUrl"": ""https://data.taipei/dataset/detail?id=43772803-6504-469c-894d-35904342a53b"",
+      ""url"": ""https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=fb6cc268-e2b8-43a7-86f2-e79702291a2b"",
+      ""publishedAt"": ""2026-06-10 11:19:35"",
+      ""retrievedAt"": null,
+      ""retrievalDate"": ""2026-10-22"",
+      ""retrievalPrecision"": ""day"",
+      ""publisher"": ""臺北市政府教育局"",
+      ""license"": ""Government Data Open License, Version 1.0 (catalogue: 公開)"",
+      ""eligibility"": ""reference-facility-contract-incomplete"",
+      ""exclusionReasons"": [
+        ""Official coordinate datum/positional accuracy not independently established"",
+        ""No stable publisher facility identifier; composite uniqueness is snapshot-specific"",
+        ""Facility operating status, public access and accessibility unknown""
+      ],
+      ""status"": ""acquired"",
+      ""sha256"": ""82f4e1aedafd3b68a9b6adc619fdd5e00e4871c3c94100201eefdb12070e0847"",
+      ""bytes"": 7185
+    },
+    {
+      ""id"": ""C"",
+      ""datasetId"": ""5ed70753-73a4-4fc1-b78c-df09f7499594"",
+      ""resourceId"": ""5ae02e14-50fc-4906-86a7-96e0231780e1"",
+      ""catalogueUrl"": ""https://data.taipei/dataset/detail?id=5ed70753-73a4-4fc1-b78c-df09f7499594"",
+      ""url"": ""https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=5ae02e14-50fc-4906-86a7-96e0231780e1"",
+      ""publishedAt"": ""2025-12-18 09:53:42"",
+      ""retrievedAt"": null,
+      ""retrievalDate"": ""2026-10-22"",
+      ""retrievalPrecision"": ""day"",
+      ""publisher"": ""臺北市政府民政局"",
+      ""license"": ""Government Data Open License, Version 1.0 (catalogue: 公開)"",
+      ""eligibility"": ""excluded-projected-crs-unresolved"",
+      ""exclusionReasons"": [
+        ""Projected CRS unresolved"",
+        ""ODS has repeated-cell structures; no production ODS converter accepted""
+      ],
+      ""status"": ""acquired"",
+      ""sha256"": ""368778b0c649f24b05cc0383172afb0e1b804c332541e2d33a2117d7d83834a0"",
+      ""bytes"": 6466
+    },
+    {
+      ""id"": ""D"",
+      ""datasetId"": ""80be7612-593f-4795-9935-a10ce0f7b75b"",
+      ""resourceId"": ""e7c46724-3517-4ce5-844f-5a4404897b7d"",
+      ""catalogueUrl"": ""https://data.taipei/dataset/detail?id=80be7612-593f-4795-9935-a10ce0f7b75b"",
+      ""url"": ""https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=e7c46724-3517-4ce5-844f-5a4404897b7d"",
+      ""publishedAt"": ""2026-03-02 16:48:05"",
+      ""retrievedAt"": null,
+      ""retrievalDate"": ""2026-10-22"",
+      ""retrievalPrecision"": ""day"",
+      ""publisher"": ""臺北市政府體育局"",
+      ""license"": ""Government Data Open License, Version 1.0 (catalogue: 公開)"",
+      ""eligibility"": ""reference-facility-contract-incomplete"",
+      ""exclusionReasons"": [
+        ""Official coordinate datum/positional accuracy not independently established"",
+        ""No stable publisher facility identifier; composite uniqueness is snapshot-specific"",
+        ""Facility operating status, public access and accessibility unknown""
+      ],
+      ""status"": ""acquired"",
+      ""sha256"": ""23c5ce0906358d8f95b2f1a8e1b019487cd7fa564b2cf188681648d23c89b11c"",
+      ""bytes"": 1527
+    },
+    {
+      ""id"": ""E"",
+      ""datasetId"": ""1601ef3a-c253-4988-b047-943d9e786143"",
+      ""resourceId"": ""d8b7eb29-136f-49fc-b14b-3489d3656122"",
+      ""catalogueUrl"": ""https://data.taipei/dataset/detail?id=1601ef3a-c253-4988-b047-943d9e786143"",
+      ""url"": ""https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=d8b7eb29-136f-49fc-b14b-3489d3656122"",
+      ""publishedAt"": ""2024-09-16 15:17:18"",
+      ""retrievedAt"": null,
+      ""retrievalDate"": ""2026-10-22"",
+      ""retrievalPrecision"": ""day"",
+      ""publisher"": ""臺北市政府民政局"",
+      ""license"": ""Government Data Open License, Version 1.0 (catalogue: 公開)"",
+      ""eligibility"": ""retained-offline-boundary-reference"",
+      ""exclusionReasons"": [
+        ""SHP/DBF/projected polygon ingestion is not implemented in v1; source administrative fields are not polygon verification""
+      ],
+      ""status"": ""acquired"",
+      ""sha256"": ""77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9"",
+      ""bytes"": 174449
+    },
+    {
+      ""id"": ""F"",
+      ""datasetId"": ""b5925972-67f6-45da-a2ff-3208bbe64f14"",
+      ""resourceId"": null,
+      ""catalogueUrl"": ""https://data.taipei/dataset/detail?id=b5925972-67f6-45da-a2ff-3208bbe64f14"",
+      ""url"": ""https://tsis.dbas.gov.taipei/statis/webMain.aspx?compmode=0&cycle=4&deflst=2&funid=A05035801&kind=21&nzo=1&outkind=1&outmode=12&sys=220&type=0&ymf=8700"",
+      ""publishedAt"": null,
+      ""retrievedAt"": null,
+      ""retrievalDate"": ""2026-10-22"",
+      ""retrievalPrecision"": ""day"",
+      ""publisher"": ""臺北市政府主計處"",
+      ""license"": ""Government Data Open License, Version 1.0 (catalogue: 公開)"",
+      ""eligibility"": ""citywide-context-only"",
+      ""exclusionReasons"": [
+        ""No hotspot/facility identity"",
+        ""No local demand denominator"",
+        ""No operational quality time series""
+      ],
+      ""status"": ""acquired"",
+      ""sha256"": ""35abcf8bf6c068d512ebb854028b59635a6defd8404afd1c84970ee1f9137100"",
+      ""bytes"": 2760
+    },
+    {
+      ""id"": ""A-legacy"",
+      ""datasetId"": ""6aa6532d-652f-4c1b-814a-4646b75407af"",
+      ""resourceId"": ""549b3a9b-eb6c-4cb1-848b-8c238735e2db"",
+      ""catalogueUrl"": ""https://data.taipei/dataset/detail?id=6aa6532d-652f-4c1b-814a-4646b75407af"",
+      ""url"": ""https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=549b3a9b-eb6c-4cb1-848b-8c238735e2db"",
+      ""publishedAt"": null,
+      ""retrievedAt"": null,
+      ""status"": ""retained-legacy"",
+      ""sha256"": ""c230610998a33309677fa235ec11b05d047bf3c9379dc6a7683ff3645a422c15"",
+      ""bytes"": 1626772,
+      ""notes"": [
+        ""Filename contains 1141218; this is not independently validated publication or retrieval evidence.""
+      ]
+    }
+  ],
+  ""methodVersion"": ""wifi-allocation-evidence-review-v1"",
+  ""candidateGrain"": ""Source edition + SITE_ID + HOTSPOT_ID + canonical row SHA-256 prefix + duplicate occurrence"",
+  ""objective"": ""Mode A — source evidence investigation slots"",
+  ""eligibilityRules"": ""Strict: unique site+hotspot pair and published Taipei scope; broader: inspectable composite source-row identity. Stale sources require explicit inclusion."",
+  ""filters"": {
+    ""district"": null,
+    ""category"": null
+  },
+  ""assumptions"": [
+    ""Published Taipei county/district fields establish source administrative labels only; they do not establish polygon membership."",
+    ""Tier precedence: A primary identity/version/coordinate verification, then B documentation, then C monitoring."",
+    ""Investigation slots are not equipment allocation approvals."",
+    ""Balanced review round-robins published facility categories while preserving tier/ID order within each category."",
+    ""Broader eligibility admits ambiguous rows for investigation only; it does not validate their identity or location.""
+  ],
+  ""limitations"": [
+    ""No RF coverage, uptime, speed, demand or digital exclusion is measured."",
+    ""Acquisition time for the legacy source is unknown; filesystem timestamps are not retrieval evidence."",
+    ""Source edition changes are not proof of installations or removals."",
+    ""All rows are retained; broader scope admits records for investigation without certifying their coordinates.""
+  ],
+  ""disclaimer"": ""Independent research POC. Investigation priority is not connectivity harm, RF coverage, digital exclusion, or approval to install, remove or relocate equipment."",
+  ""scenario"": {
+    ""snapshotId"": ""wifi-policy-c250791e7736ed5bca2882ea"",
+    ""objective"": ""Mode A — source evidence investigation slots"",
+    ""settings"": {
+      ""capacity"": 5,
+      ""strategy"": ""evidence"",
+      ""eligibility"": ""strict"",
+      ""includeStale"": false
+    },
+    ""eligibleCount"": 3293,
+    ""excludedCount"": 23,
+    ""exclusionReasons"": {
+      ""unverified-taipei-scope"": 12,
+      ""stale-source"": 11
+    },
+    ""capacityUsed"": 5,
+    ""selectedIds"": [
+      ""A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1"",
+      ""A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1"",
+      ""A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1"",
+      ""A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1"",
+      ""A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1""
+    ],
+    ""selected"": [],
+    ""districts"": [
+      ""中正區"",
+      ""大同區""
+    ],
+    ""categories"": [
+      ""公眾服務"",
+      ""行政機關"",
+      ""醫院""
+    ],
+    ""verifiedMetrics"": [
+      ""Published record counts"",
+      ""Source evidence issue counts"",
+      ""Selected source-row identities""
+    ],
+    ""unavailableMetrics"": [
+      ""Actual Wi-Fi coverage"",
+      ""Operational availability"",
+      ""Digital inclusion"",
+      ""Resident demand"",
+      ""Geographic proximity gain""
+    ],
+    ""assumptions"": [
+      ""Published Taipei county/district fields establish source administrative labels only; they do not establish polygon membership."",
+      ""Tier precedence: A primary identity/version/coordinate verification, then B documentation, then C monitoring."",
+      ""Investigation slots are not equipment allocation approvals."",
+      ""Balanced review round-robins published facility categories while preserving tier/ID order within each category."",
+      ""Broader eligibility admits ambiguous rows for investigation only; it does not validate their identity or location.""
+    ]
+  }
+}"
+"wifi-policy-c250791e7736ed5bca2882ea","A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1","TPEE002354","TPEE002354","北市聯醫中興院區10F1055病房門口","大同區","醫院","A","changed-coordinates","09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55",""
+"wifi-policy-c250791e7736ed5bca2882ea","A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1","TPEE002595","TPEE002595","中正區戶政事務所5F民眾洽公等候區","中正區","行政機關","A","changed-coordinates|source-metadata-changed","09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55",""
+"wifi-policy-c250791e7736ed5bca2882ea","A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1","TPEE002596","TPEE002596","中正區戶政事務所5F行政庶務課","中正區","公眾服務","A","changed-coordinates|source-metadata-changed","09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55",""
+"wifi-policy-c250791e7736ed5bca2882ea","A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1","TPEE002597","TPEE002597","中正區戶政事務所5F秘書室門口","中正區","行政機關","A","changed-coordinates|source-metadata-changed","09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55",""

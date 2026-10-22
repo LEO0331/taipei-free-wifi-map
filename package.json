@@ -10,6 +10,10 @@
     "preview": "vite preview",
     "test": "node --import tsx --test tests/*.test.ts",
     "data:fetch": "node --import tsx scripts/fetchWifiHotspots.ts",
+    "data:fetch:wifi-policy": "node --import tsx scripts/fetchWifiPolicySources.ts",
+    "data:audit:wifi-policy": "node --import tsx scripts/auditWifiPolicySources.ts",
+    "data:build:wifi-policy": "node --import tsx scripts/buildWifiPolicySnapshot.ts",
+    "data:measure:wifi-policy": "node --import tsx scripts/measureWifiPolicy.ts",
     "data:convert": "node --import tsx scripts/convertWifiHotspots.ts && node --import tsx scripts/buildWifiSummary.ts"
   },
   "repository": {

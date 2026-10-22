@@ -98,3 +98,19 @@ https://LEO0331.github.io/taipei-free-wifi-map/
 ## 免責聲明
 
 本網站依開放資料呈現公共 Wi-Fi 熱點位置，並不代表即時可用性、連線速度或訊號品質。實際服務狀態應以現場情況及官方公告為準。
+
+## 政策 #8：Wi-Fi 資源配置與數位近用
+
+獨立雙語決策頁以有限的**來源查核調查名額**檢視官方清冊證據。模式 A 提供 5／10／全部名額、證據缺口優先／設施類別平衡策略，以及身分／範圍資格與舊版紀錄的敏感度比較。JSON／CSV 匯出保留實際選取的來源身分、來源版本與雜湊、假設及不可用指標。
+
+模式 B 必須通過設施身分、座標 CRS／精度與地理證據門檻後才能啟用；目前不可用。模式 C 仍缺營運、使用量及人口／需求證據。官方清冊列名或地理距離，均不能證明 Wi-Fi 正常運作、實際無線電涵蓋、居民需求或數位近用成效。
+
+政策流程與原地圖的資料版本分開保留：
+
+```bash
+npm run data:fetch:wifi-policy
+npm run data:audit:wifi-policy
+npm run data:build:wifi-policy
+```
+
+政策下載、稽核及建置不會自動遷移原地圖的保留來源版本。明確要求重新下載的資料，仍須經稽核及接受程序才能成為新版本。實際結果、重現方式與未解證據請見[來源稽核](docs/wifi-allocation-source-audit.md)、[方法與明確版本遷移](docs/wifi-allocation-methodology.md)、[繁體中文 MVP](docs/wifi-allocation-decision-mvp.zh-TW.md)及[交付驗證](docs/wifi-allocation-delivery.md)。

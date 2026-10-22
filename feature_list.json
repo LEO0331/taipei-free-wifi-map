@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "feat-005",
+      "name": "Policy #8 evidence-aware Wi-Fi decision support",
+      "description": "Independent reproducible official-source audit, inventory reconciliation, investigation scenarios, bilingual lazy dashboard and provenance-rich exports; geographic and operational modes gated by evidence",
+      "dependencies": ["feat-001", "feat-002", "feat-003", "feat-004"],
+      "status": "in_progress",
+      "evidence": "2026-10-22: init.sh passed npm ci, retained 3297-row conversion, 23 tests and TypeScript/Vite build. Source audit current3305/legacy3297; deterministic snapshot wifi-policy-c250791e7736ed5bca2882ea. Production desktop/mobile, bilingual, scenarios, actual exports and zero initial policy requests verified. Mode B/C explicitly gated. PR creation remains. See docs/wifi-allocation-delivery.md."
+    },
+    {
       "id": "feat-001",
       "name": "Static data pipeline",
       "description": "Fetch or accept CSV, normalize records, validate coordinates, and generate static hotspot, summary, and report JSON",

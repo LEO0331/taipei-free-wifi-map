@@ -1,0 +1,73 @@
+{
+  "checked": "Git index original-byte hashes before commit",
+  "verifiedFiles": [
+    {
+      "path": "data/raw/wifi-policy/A-2026-07-01.csv",
+      "sha256": "09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55"
+    },
+    {
+      "path": "data/raw/wifi-policy/B-2026-06-10.csv",
+      "sha256": "82f4e1aedafd3b68a9b6adc619fdd5e00e4871c3c94100201eefdb12070e0847"
+    },
+    {
+      "path": "data/raw/wifi-policy/C-2025-12-18.ods",
+      "sha256": "368778b0c649f24b05cc0383172afb0e1b804c332541e2d33a2117d7d83834a0"
+    },
+    {
+      "path": "data/raw/wifi-policy/D-2026-03-02.csv",
+      "sha256": "23c5ce0906358d8f95b2f1a8e1b019487cd7fa564b2cf188681648d23c89b11c"
+    },
+    {
+      "path": "data/raw/wifi-policy/E-2024-09-16.zip",
+      "sha256": "77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9"
+    },
+    {
+      "path": "data/raw/wifi-policy/F-time-series.csv",
+      "sha256": "35abcf8bf6c068d512ebb854028b59635a6defd8404afd1c84970ee1f9137100"
+    },
+    {
+      "path": "data/raw/wifi-policy/G1.html",
+      "sha256": "f0a81b7e6762c3e847cd5fc53e1a726e8d9ff8c5e36d830216538dfe307de895"
+    },
+    {
+      "path": "data/raw/wifi-policy/G2.html",
+      "sha256": "8faea8f27d1b6bf9a6333f95e3f220238627c7e62c17aeff37465a10600d6c8b"
+    },
+    {
+      "path": "data/raw/wifi-policy/G3.html",
+      "sha256": "cd336c06c62ae62794ce97755025c7c29b1d7f47783883bdab1c914db3d22d02"
+    },
+    {
+      "path": "data/raw/wifi-policy/catalogue-A.html",
+      "sha256": "473ae019d173abc70cba704e069d67ac39754d73b46ea31f1fd3b7110c16c0da"
+    },
+    {
+      "path": "data/raw/wifi-policy/catalogue-B.html",
+      "sha256": "8cad012cc5e5d7a5add1f61fe8b779fd851013e8852382629c950dc48a4c4814"
+    },
+    {
+      "path": "data/raw/wifi-policy/catalogue-C.html",
+      "sha256": "5e0d356b17d50614c23d241c5c997388b1f970695d0f32db6bf942ddd2a73126"
+    },
+    {
+      "path": "data/raw/wifi-policy/catalogue-D.html",
+      "sha256": "259acaf03af0edba1335966d0b6e7b62adf85b505be706b2acf2d9e398bbeab3"
+    },
+    {
+      "path": "data/raw/wifi-policy/catalogue-E.html",
+      "sha256": "c336b7be7323aa9536ea1d505671209385c8f2cec521a68437cb3fad1e596a31"
+    },
+    {
+      "path": "data/raw/wifi-policy/catalogue-F.html",
+      "sha256": "b58bb15da9ddfe63cb44996b6cb88e59875199a25e659cf4e5e351190bc7e6d8"
+    },
+    {
+      "path": "data/raw/wifi-hotspots/Taipei_Free_AP_總表1141218.csv",
+      "sha256": "c230610998a33309677fa235ec11b05d047bf3c9379dc6a7683ff3645a422c15"
+    },
+    {
+      "path": "public/data/wifi-policy/snapshot.json",
+      "sha256": "91b28d7b375e7fb14ee42bfbe179d792c9e0ed0992f273582dd1e03e6bac8a82"
+    }
+  ]
+}

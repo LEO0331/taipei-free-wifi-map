@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-22",
+  "timezone": "Asia/Taipei",
+  "versionId": "wifi-geo-da9f69f501af4d6e1d3f9122",
+  "desktop": [
+    1280,
+    900
+  ],
+  "mobile": [
+    390,
+    844
+  ],
+  "languages": [
+    "zh-Hant",
+    "en"
+  ],
+  "pageOverflow": false,
+  "tables": "local horizontal scrolling; no document overflow",
+  "checks": [
+    "original explorer map and Mode A entry",
+    "Mode B lazy entry and separate payloads",
+    "historical boundaries and hypothetical radius labels",
+    "actual candidate marker selection with circles enabled",
+    "table selection and source detail",
+    "verified-only empty state in both languages",
+    "B/C/D/combined cohort controls",
+    "5/10/all capacity and both strategies",
+    "100/250/500 distance sensitivity",
+    "Mode C remains gated",
+    "Mode A preserved on returning",
+    "actual JSON/CSV download, all87 representation250m",
+    "optional boundary404 retains scenario; restore and retry recovers",
+    "final service-worker navigation reload",
+    "source and audit links inspected"
+  ],
+  "unexpectedConsoleWarnings": 0,
+  "unexpectedConsoleErrors": 0,
+  "theme": "existing light-only design; no product dark theme is supported",
+  "limits": [
+    "local measurements only",
+    "geolocation permission not granted",
+    "no RF/operation/usage/people-served measurements"
+  ]
+}

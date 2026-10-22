@@ -1,0 +1,13 @@
+.geographic-dashboard { display: grid; gap: 1.25rem; min-width: 0; }
+.geographic-dashboard .policy-card { margin: 0; }
+.geographic-intro { border-left: 4px solid #b97945; }
+.geographic-dashboard code { display: block; overflow-wrap: anywhere; font-size: .75rem; }
+.geographic-dashboard pre { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 24rem; overflow: auto; font-size: .75rem; }
+.geographic-map { height: 400px; border-radius: 8px; isolation: isolate; }
+.geographic-options { display: flex; flex-wrap: wrap; gap: 1rem; }
+.geographic-options label { display: flex; align-items: center; gap: .4rem; }
+.geographic-metrics { display: grid; grid-template-columns: minmax(9rem,1fr) 2fr; gap: .5rem 1rem; }
+.geographic-metrics dd { margin: 0; overflow-wrap: anywhere; }
+.geographic-facility { border: 0; background: transparent; color: var(--text); padding: .25rem 0; text-align: left; text-decoration: underline; font: inherit; cursor: pointer; }
+.geographic-notice { padding: 1rem; border-left: 3px solid #b97945; background: rgba(185,121,69,.08); }
+@media (max-width: 600px) { .geographic-map { height: 300px; } .geographic-metrics { grid-template-columns: 1fr; gap: .25rem; } .geographic-metrics dd { margin-bottom: .6rem; } }

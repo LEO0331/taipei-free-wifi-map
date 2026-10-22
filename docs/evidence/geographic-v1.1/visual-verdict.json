@@ -1,0 +1,11 @@
+{
+  "score": 95,
+  "verdict": "pass",
+  "category_match": true,
+  "differences": [
+    "Experimental amber border identifies the new Mode B within existing policy cards"
+  ],
+  "suggestions": [],
+  "reasoning": "Final desktop/mobile Chinese/English views preserve the existing visual system, readable uncertainty labels and local table overflow. Map alignment, circle labels and click behavior verified.",
+  "next_actions": []
+}

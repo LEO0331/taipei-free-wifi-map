@@ -1,0 +1,52 @@
+{
+  "localOnly": true,
+  "node": "v24.14.1",
+  "platform": "win32",
+  "versionId": "wifi-geo-da9f69f501af4d6e1d3f9122",
+  "scenarioCount": 288,
+  "scenarioPayload": {
+    "bytes": 3154696,
+    "gzipBytes": 55597,
+    "sha256": "b3b7a6fb2f1b5d1067bb4eae10f3beb12ecf250b48e02cb0e4e42f6f004d22a0"
+  },
+  "defaultScenarioMedianMs": 0.0946999999999889,
+  "defaultScenarioP95Ms": 0.14939999999998577,
+  "artifacts": [
+    {
+      "name": "boundaries.geojson",
+      "bytes": 437741,
+      "gzipBytes": 140735,
+      "sha256": "de9fcacdd831d0d5c608bf3f8e5de2559c0a03cffa2014faf94bf92617899a1c"
+    },
+    {
+      "name": "coordinate-audit.json",
+      "bytes": 153937,
+      "gzipBytes": 16264,
+      "sha256": "df804c49ee6d086261b235ae82ea05d2390e65abc041d5284af36a73e022a113"
+    },
+    {
+      "name": "excluded.json",
+      "bytes": 6434,
+      "gzipBytes": 1637,
+      "sha256": "674f26e06a7bbf1d38c0826f08f9859e3388741bce06eb8c42cabef1a79fab0b"
+    },
+    {
+      "name": "hotspot-audit.json",
+      "bytes": 1626904,
+      "gzipBytes": 94613,
+      "sha256": "61dcfd21c402ee7d21c7da4cc5443b561d2f24e012292c0cef58a92552236515"
+    },
+    {
+      "name": "references.json",
+      "bytes": 4004,
+      "gzipBytes": 1319,
+      "sha256": "2e3407d846692a80befb65b67857090bbddfa7c81ed00f9eb482d9a5ce3227ff"
+    },
+    {
+      "name": "snapshot.json",
+      "bytes": 158672,
+      "gzipBytes": 17567,
+      "sha256": "0f6a44f9df4139b060fa2b6d906380c0600e1d95aaa72cd4da03aed2926b3d8f"
+    }
+  ]
+}

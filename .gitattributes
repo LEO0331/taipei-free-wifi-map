@@ -2,4 +2,8 @@
 data/raw/** -text -whitespace
 data/raw/wifi-policy/refresh/*.bin binary
 public/data/wifi-policy/*.json -text
+public/data/wifi-policy/geographic-v1.1/** -text
+docs/evidence/geographic-v1.1/*.json -text
+docs/evidence/geographic-v1.1/*.jsonl -text
+docs/evidence/geographic-v1.1/*.csv -text -whitespace
 docs/evidence/sample-decision.csv -text -whitespace

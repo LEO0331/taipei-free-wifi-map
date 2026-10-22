@@ -1,5 +1,5 @@
 const BASE = '/taipei-free-wifi-map/';
-const CACHE = 'taipei-wifi-v4-policy-locale-1';
+const CACHE = 'taipei-wifi-v5-geographic-2';
 const ASSETS = [BASE, `${BASE}data/wifi-hotspots.json`, `${BASE}data/wifi-summary.json`];
 
 self.addEventListener('install', (event) => {
@@ -26,7 +26,7 @@ self.addEventListener('fetch', (event) => {
     }
     return response;
   });
-  if (url.pathname.startsWith(`${BASE}data/`)) {
+  if (event.request.mode === 'navigate' || url.pathname.startsWith(`${BASE}data/`)) {
     event.respondWith(
       fetchAndCache().catch(async () => (await caches.match(event.request)) || Response.error()),
     );

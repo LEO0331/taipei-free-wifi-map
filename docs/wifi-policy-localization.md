@@ -1,6 +1,6 @@
 # Policy tab localization follow-up
 
-This follow-up fixes language mixing in the Policy #8 UI. It updates the same review PR [#4](https://github.com/LEO0331/taipei-free-wifi-map/pull/4).
+This follow-up fixes language mixing in the Policy #8 UI on branch `codex/wifi-policy-localization`, based on `fc3fe9340c460418b4255d04cf8a0150dbcf669b`. The original Policy #8 PR [#4](https://github.com/LEO0331/taipei-free-wifi-map/pull/4) was already merged before this follow-up, so localization is delivered as a separate review PR.
 
 Chinese and English now each cover source statuses, evidence eligibility, publishers, licence display, retrieval precision, candidate grain, reconciliation rules, exclusions, issue summaries, assumptions, limitations and Mode B/C requirements. Sensitivity booleans show 是／否 or Yes／No. Raw issue codes are available through a localized disclosure rather than displayed as untranslated prose.
 

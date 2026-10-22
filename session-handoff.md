@@ -2,6 +2,8 @@
 
 ## Latest follow-up — policy localization
 
+- Review PR [#5](https://github.com/LEO0331/taipei-free-wifi-map/pull/5) is open and not merged. Implementation commit `ac22822`.
+
 - `feat-006` completes the user's Chinese/English consistency request on `codex/wifi-policy-localization`, based on main `fc3fe9340c460418b4255d04cf8a0150dbcf669b`. Original PR #4 was already merged; this follow-up uses a separate review PR. Do not merge automatically.
 - Both languages cover all policy prose and source metadata. Candidate names/districts/categories now use edition-matched official English fields; original identifiers and optional raw codes remain traceable.
 - Current snapshot `wifi-policy-e08d28277549c88787dea209`; hash `cd675db75af4b65220692dc59916c7e5b88920b42613d4b82c7affcb43e0dfaa`. This adds display fields without changing source editions, candidate IDs or selections. Earlier delivery records below describe the original snapshot.

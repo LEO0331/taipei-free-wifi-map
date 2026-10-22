@@ -2,6 +2,8 @@
 
 ## 2026-10-22 — Policy tab language consistency
 
+- Review PR [#5](https://github.com/LEO0331/taipei-free-wifi-map/pull/5) is open and not merged; localization implementation commit `ac22822`.
+
 - Completed `feat-006` on branch `codex/wifi-policy-localization`, based on main `fc3fe9340c460418b4255d04cf8a0150dbcf669b`. PR #4 was already merged before this follow-up, so a separate localization review PR is used. Chinese explanations, source metadata, gates, exclusions, assumptions and limitations now stay in Chinese; English candidate names/districts/categories use the publisher's same-edition English columns.
 - Raw issue codes are behind a localized disclosure. IDs, hashes and standard file/coordinate notation remain original; missing official translations fall back transparently. One official English name contains `(一)` and is preserved as published.
 - Added a focused locale helper and coverage tests instead of duplicating source snapshots per language. Display-label enrichment leaves all candidate IDs, counts, tiers and 24 scenario selections unchanged.

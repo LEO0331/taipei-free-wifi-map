@@ -1,0 +1,369 @@
+08
+Taipei Public Wi-Fi Allocation & Digital Inclusion Decision Support
+
+Policy #8 · Evidence-review POC
+
+Which published records should limited investigation resources verify first?
+
+This research allocates source-verification and field-investigation slots. Published location records establish neither operation, signal reach, quality, resident demand nor digital exclusion.
+
+wifi-policy-e08d28277549c88787dea209 · wifi-allocation-evidence-review-v1 · Source edition + SITE_ID + HOTSPOT_ID + canonical row SHA-256 prefix + duplicate occurrence
+
+Investigation scenario
+Analytical objective
+A · Inventory and evidence-quality review
+B · Public-facility geometric proximity
+C · Operations and digital-inclusion outcomes
+Investigation slots
+5
+10
+All eligible
+Selection strategy
+Evidence gaps first
+Facility-category round-robin review
+Identity eligibility
+Strict: verified identity
+Broader: inspectable ambiguity
+Source district
+All
+Beitou District
+Da’an District
+Datong District
+Nangang District
+Neihu District
+Shilin District
+Songshan District
+Wanhua District
+Wenshan District
+Xindian District
+Xinyi District
+Zhongshan District
+Zhongzheng District
+Source category
+All
+Art and Culture Facilities
+Bus Station
+Commercial District and Market
+Community Center
+Government Agency
+Hospital
+Library
+Mass Transportation
+Park
+Public Services
+Scenic Spots
+Sports Venue
+Visitor Center
+Include retained records without a current counterpart
+Investigation slots used
+5
+Eligible candidates
+3293
+Excluded records
+23
+Districts / categories
+2 / 3
+Actual source-derived investigation shortlist
+
+Names, districts and categories use the same edition’s official language fields, with original wording retained when no translation is supplied. Identifiers and hashes remain unchanged for traceability.
+
+#	Source identity and name	Source district / category	Tier and review questions	Traceability
+1	In the middle of waiting area on 8F, Taipei City Hospital, Zhongxing Branch
+A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1
+	Datong District
+Hospital	A
+Compare original coordinates and location evidence across editions to explain the change.
+Original issue code
+
+SITE_ID: TPEE002338
+HOTSPOT_ID: TPEE002338
+09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55
+25.0513616, 121.509127326
+2	The entrance of1055 ward on 10F, Taipei City Hospital, Zhongxing Branch
+A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1
+	Datong District
+Hospital	A
+Compare original coordinates and location evidence across editions to explain the change.
+Original issue code
+
+SITE_ID: TPEE002354
+HOTSPOT_ID: TPEE002354
+09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55
+25.051095195, 121.5093521
+3	Zhongzheng District Household Registration Office 5F Public Consultation Waiting Area
+A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1
+	Zhongzheng District
+Government Agency	A
+Compare original coordinates and location evidence across editions to explain the change.
+Original issue code
+Verify edition differences in names, agencies or other metadata and the reason for publication corrections.
+Original issue code
+
+SITE_ID: TPEE002595
+HOTSPOT_ID: TPEE002595
+09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55
+25.0323065, 121.5179917
+4	Zhongzheng District Household Registration Office 5F Administrative Affairs Section
+A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1
+	Zhongzheng District
+Public Services	A
+Compare original coordinates and location evidence across editions to explain the change.
+Original issue code
+Verify edition differences in names, agencies or other metadata and the reason for publication corrections.
+Original issue code
+
+SITE_ID: TPEE002596
+HOTSPOT_ID: TPEE002596
+09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55
+25.0322682, 121.5247426
+5	Zhongzheng District Household Registration Office 5F Secretary's Office
+A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1
+	Zhongzheng District
+Government Agency	A
+Compare original coordinates and location evidence across editions to explain the change.
+Original issue code
+Verify edition differences in names, agencies or other metadata and the reason for publication corrections.
+Original issue code
+
+SITE_ID: TPEE002597
+HOTSPOT_ID: TPEE002597
+09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55
+25.0325073, 121.5180745
+Previous
+Page 1 / 1
+Next
+Inspect complete ordered IDs
+Strategy comparison and sensitivity
+Scenario	Eligible candidates	Investigation slots used	Districts / categories	IDs differing from current shortlist
+Investigation slots: 5	3293	5	2 / 3	Equivalent to current shortlist
+Investigation slots: 10	3293	10	2 / 3	5
+Investigation slots: All eligible	3293	3293	12 / 13	3288
+Facility-category round-robin review	3293	5	3 / 5	8
+Broader: inspectable ambiguity	3305	5	2 / 3	Equivalent to current shortlist
+Include retained records without a current counterpart: Yes	3304	5	2 / 3	Equivalent to current shortlist
+Export the current decision record
+
+Includes the current configuration, actual selected IDs, source editions, hashes, exclusion reasons and limitations. Exports are not installation recommendations.
+
+JSON
+CSV
+Data quality and review tiers
+
+Tier C means lower-priority documentation monitoring. Boundaries and site conditions still require verification; the tier does not establish operation or good service quality.
+
+A · Primary evidence verification
+63
+B · Documentation review
+57
+C · Monitoring
+3196
+Current exclusion reasons
+Published Taipei scope unverified: 12
+Legacy-only records excluded: 11
+Tier and review questions
+Boundary and operation unverified: 3196
+Changed category: 1
+Changed coordinates: 33
+New source relationship: 19
+No current counterpart: 11
+Outside or unresolved source scope: 12
+Changed source metadata: 75
+Retained versus current inventory reconciliation
+
+Inventory differences do not prove equipment installation or removal. Source district fields do not constitute official boundary validation.
+
+Audit measure	Retained edition	Current validated edition
+Raw rows	3,297	3,305
+Unique SITE_ID	3,297	3,305
+Unique HOTSPOT_ID	3,297	3,305
+Duplicated SITE_ID values	0	0
+Duplicated HOTSPOT_ID values	0	0
+Invalid-coordinate rows	0	0
+Source-labelled Taipei rows	3,285	3,293
+Source-labelled outside rows	12	12
+Added records: 19
+No longer listed: 11
+Coordinate changes: 33
+Category changes: 1
+Other metadata changes: 75
+Ambiguous identities: 0
+
+Exact unique SITE_ID + HOTSPOT_ID pairs only; no name joins. Changes describe published records, not physical events.
+
+Official source health and editions
+A
+Acquisition status
+Acquired
+Publisher / licence
+Department of Information Technology, Taipei City Government
+Government Data Open License, Version 1.0 (catalogue: public)
+Evidence eligibility
+Eligible for inventory evidence review
+Publisher date
+2026-07-01 15:32:22
+Actual retrieval date
+2026-10-22
+Day precision
+Dataset / resource ID
+6aa6532d-652f-4c1b-814a-4646b75407af / 549b3a9b-eb6c-4cb1-848b-8c238735e2db
+Bytes / SHA-256
+1630629
+09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55
+Source edition · Official resource
+B
+Acquisition status
+Acquired
+Publisher / licence
+Department of Education, Taipei City Government
+Government Data Open License, Version 1.0 (catalogue: public)
+Evidence eligibility
+Reference-facility contract incomplete
+
+Official coordinate datum/positional accuracy not independently established
+
+No stable publisher facility identifier; composite uniqueness is snapshot-specific
+
+Facility operating status, public access and accessibility unknown
+
+Publisher date
+2026-06-10 11:19:35
+Actual retrieval date
+2026-10-22
+Day precision
+Dataset / resource ID
+43772803-6504-469c-894d-35904342a53b / fb6cc268-e2b8-43a7-86f2-e79702291a2b
+Bytes / SHA-256
+7185
+82f4e1aedafd3b68a9b6adc619fdd5e00e4871c3c94100201eefdb12070e0847
+Source edition · Official resource
+C
+Acquisition status
+Acquired
+Publisher / licence
+Department of Civil Affairs, Taipei City Government
+Government Data Open License, Version 1.0 (catalogue: public)
+Evidence eligibility
+Excluded: projected CRS unresolved
+
+Projected CRS unresolved
+
+ODS has repeated-cell structures; no production ODS converter accepted
+
+Publisher date
+2025-12-18 09:53:42
+Actual retrieval date
+2026-10-22
+Day precision
+Dataset / resource ID
+5ed70753-73a4-4fc1-b78c-df09f7499594 / 5ae02e14-50fc-4906-86a7-96e0231780e1
+Bytes / SHA-256
+6466
+368778b0c649f24b05cc0383172afb0e1b804c332541e2d33a2117d7d83834a0
+Source edition · Official resource
+D
+Acquisition status
+Acquired
+Publisher / licence
+Department of Sports, Taipei City Government
+Government Data Open License, Version 1.0 (catalogue: public)
+Evidence eligibility
+Reference-facility contract incomplete
+
+Official coordinate datum/positional accuracy not independently established
+
+No stable publisher facility identifier; composite uniqueness is snapshot-specific
+
+Facility operating status, public access and accessibility unknown
+
+Publisher date
+2026-03-02 16:48:05
+Actual retrieval date
+2026-10-22
+Day precision
+Dataset / resource ID
+80be7612-593f-4795-9935-a10ce0f7b75b / e7c46724-3517-4ce5-844f-5a4404897b7d
+Bytes / SHA-256
+1527
+23c5ce0906358d8f95b2f1a8e1b019487cd7fa564b2cf188681648d23c89b11c
+Source edition · Official resource
+E
+Acquisition status
+Acquired
+Publisher / licence
+Department of Civil Affairs, Taipei City Government
+Government Data Open License, Version 1.0 (catalogue: public)
+Evidence eligibility
+Retained offline boundary reference
+
+SHP/DBF/projected polygon ingestion is not implemented in v1; source administrative fields are not polygon verification
+
+Publisher date
+2024-09-16 15:17:18
+Actual retrieval date
+2026-10-22
+Day precision
+Dataset / resource ID
+1601ef3a-c253-4988-b047-943d9e786143 / d8b7eb29-136f-49fc-b14b-3489d3656122
+Bytes / SHA-256
+174449
+77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9
+Source edition · Official resource
+F
+Acquisition status
+Acquired
+Publisher / licence
+Department of Budget, Accounting and Statistics, Taipei City Government
+Government Data Open License, Version 1.0 (catalogue: public)
+Evidence eligibility
+Citywide context only
+
+No hotspot/facility identity
+
+No local demand denominator
+
+No operational quality time series
+
+Publisher date
+Unknown / not established
+Actual retrieval date
+2026-10-22
+Day precision
+Dataset / resource ID
+b5925972-67f6-45da-a2ff-3208bbe64f14 / —
+Bytes / SHA-256
+2760
+35abcf8bf6c068d512ebb854028b59635a6defd8404afd1c84970ee1f9137100
+Source edition · Official resource
+A-legacy
+Acquisition status
+Retained legacy edition
+Publisher / licence
+Unknown / not established
+Unknown / not established
+Evidence eligibility
+Unknown / not established
+Publisher date
+Unknown / not established
+Actual retrieval date
+Unknown / not established
+Dataset / resource ID
+6aa6532d-652f-4c1b-814a-4646b75407af / 549b3a9b-eb6c-4cb1-848b-8c238735e2db
+Bytes / SHA-256
+1626772
+c230610998a33309677fa235ec11b05d047bf3c9379dc6a7683ff3645a422c15
+Source edition · Official resource
+
+Filename contains 1141218; this is not independently validated publication or retrieval evidence.
+
+Assumptions, missing evidence and responsible use
+Model assumptions
+Published Taipei county/district fields establish source administrative labels only; they do not establish polygon membership.
+Tier precedence: A primary identity/version/coordinate verification, then B documentation, then C monitoring.
+Investigation slots are not equipment allocation approvals.
+Known limitations
+No RF coverage, uptime, speed, demand or digital exclusion is measured.
+Acquisition time for the legacy source is unknown; filesystem timestamps are not retrieval evidence.
+Source edition changes are not proof of installations or removals.
+All rows are retained; broader scope admits records for investigation without certifying their coordinates.
+B · Public-facility geometric proximity — Evidence missing · unavailable
+C · Operations and digital-inclusion outcomes — Evidence missing · unavailable

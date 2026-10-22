@@ -25,6 +25,7 @@ export function validateWifiPolicySnapshot(value: unknown): asserts value is Wif
   const ids=new Set<string>();
   for(const c of value.candidates){if(!record(c)||typeof c.id!=='string'||!c.id||ids.has(c.id)||typeof c.sourceEdition!=='string'||!hashes.has(c.sourceEdition)||!['A','B','C'].includes(c.tier as string)||!['taipei-source','outside-source','unresolved'].includes(c.scope as string)||!strings(c.issues)||!c.issues.length||typeof c.identityVerified!=='boolean'||typeof c.stale!=='boolean')return fail();
     if(!['siteId','hotspotId','name','district','category'].every(k=>typeof c[k]==='string'))return fail();
+    if(!['nameEn','districtEn','categoryEn'].every(k=>c[k]===undefined||typeof c[k]==='string'))return fail();
     if(!((c.latitude===null&&c.longitude===null)||(typeof c.latitude==='number'&&Number.isFinite(c.latitude)&&Math.abs(c.latitude)<=90&&typeof c.longitude==='number'&&Number.isFinite(c.longitude)&&Math.abs(c.longitude)<=180)))return fail();ids.add(c.id);}
   if(!record(value.modes))return fail();for(const mode of ['A','B','C']){const gate=value.modes[mode];if(!record(gate)||typeof gate.available!=='boolean'||!strings(gate.reasons)||!strings(gate.requirements))return fail();}
   if(!record(value.reconciliation)||typeof value.reconciliation.identityRule!=='string')return fail();

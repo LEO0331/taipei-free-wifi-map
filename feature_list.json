@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "feat-006",
+      "name": "Consistent policy-tab localization",
+      "description": "Localize all policy UI explanations and source status text; use edition-matched official English candidate labels while preserving traceable source identifiers",
+      "dependencies": ["feat-005"],
+      "status": "done",
+      "evidence": "2026-10-22: init.sh passes 27 tests and TypeScript/Vite build. All current policy prose/source statuses have zh/en coverage; all 3316 candidate labels match their own source edition. Production desktop/mobile checked both languages, expanded diagnostics, B/C gates and filter retention (206 Datong candidates in either language). 24 scenario configurations preserve selections. Review PR https://github.com/LEO0331/taipei-free-wifi-map/pull/5 open, not merged. See docs/wifi-policy-localization.md."
+    },
+    {
       "id": "feat-005",
       "name": "Policy #8 evidence-aware Wi-Fi decision support",
       "description": "Independent reproducible official-source audit, inventory reconciliation, investigation scenarios, bilingual lazy dashboard and provenance-rich exports; geographic and operational modes gated by evidence",

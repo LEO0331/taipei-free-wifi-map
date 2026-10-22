@@ -1,0 +1,22 @@
+{
+  "snapshotId": "wifi-policy-e08d28277549c88787dea209",
+  "payloadBytes": 2154132,
+  "gzipBytes": 227849,
+  "testCount": 27,
+  "englishDefaultUnexpectedChinese": [],
+  "filterPreservation": {
+    "district": "Datong District",
+    "eligibleBefore": 206,
+    "eligibleAfter": 206
+  },
+  "mobile": {
+    "viewport": 390,
+    "documentWidth": 375
+  },
+  "consoleWarningsOrErrors": [],
+  "sourceEnglishLabelException": {
+    "siteId": "TPEE003314",
+    "retainedPublisherText": "(一)"
+  },
+  "selectionRegressionConfigurations": 24
+}

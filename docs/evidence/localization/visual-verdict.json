@@ -1,0 +1,11 @@
+{
+  "score": 95,
+  "verdict": "pass",
+  "category_match": true,
+  "differences": [
+    "Localized English source names are longer than Chinese names and wrap within the existing table cells.",
+    "Raw issue codes now require explicit disclosure; identifiers, file formats and hashes remain unchanged technical notation."
+  ],
+  "suggestions": [],
+  "reasoning": "Compared localized Chinese/English desktop and mobile screenshots against the established policy dashboard. Cards, typography and table scrolling remain consistent; both 390px language views stay within the page width. No external mockup was provided."
+}

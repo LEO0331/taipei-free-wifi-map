@@ -14,6 +14,12 @@
     "data:audit:wifi-policy": "node --import tsx scripts/auditWifiPolicySources.ts",
     "data:build:wifi-policy": "node --import tsx scripts/buildWifiPolicySnapshot.ts",
     "data:measure:wifi-policy": "node --import tsx scripts/measureWifiPolicy.ts",
+    "data:setup:geographic": "node --import tsx scripts/runWifiGeographic.ts setup",
+    "data:audit:geographic": "node --import tsx scripts/runWifiGeographic.ts test",
+    "data:verify:geographic": "node --import tsx scripts/verifyWifiGeographic.ts",
+    "data:measure:geographic": "node --import tsx scripts/buildWifiGeographicScenarios.ts --measure",
+    "data:report:geographic": "node --import tsx scripts/runWifiGeographic.ts report",
+    "data:build:geographic": "node --import tsx scripts/runWifiGeographic.ts build && node --import tsx scripts/buildWifiGeographicScenarios.ts",
     "data:convert": "node --import tsx scripts/convertWifiHotspots.ts && node --import tsx scripts/buildWifiSummary.ts"
   },
   "repository": {

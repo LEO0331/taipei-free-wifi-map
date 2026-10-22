@@ -1,0 +1,76 @@
+=== Harness Initialization ===
+=== npm ci ===
+
+added 33 packages, and audited 34 packages in 3s
+
+8 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+=== npm run data:convert ===
+
+> taipei-free-wifi-map@0.1.0 data:convert
+> node --import tsx scripts/convertWifiHotspots.ts && node --import tsx scripts/buildWifiSummary.ts
+
+Converted 3297 records (3297 valid coordinates, 12 outside Taipei).
+Built summary for 3297 hotspots.
+=== npm test ===
+
+> taipei-free-wifi-map@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ convertWifiRow keeps outside-Taipei records and maps bilingual fields (1.3563ms)
+✔ convertWifiRow reports missing and outlier coordinates without throwing (0.4009ms)
+✔ parseCsv removes a UTF-8 BOM and preserves quoted commas (1.153ms)
+✔ parseCsv handles escaped quotes and line breaks inside fields (0.188ms)
+✔ parseCsv rejects an unclosed quoted field (0.3832ms)
+✔ getHotspotText uses English fields and falls back to Chinese (0.9493ms)
+✔ getNearbyHotspots excludes invalid coordinates and sorts within radius (0.2505ms)
+✔ buildFilterOptions shows English labels while preserving Chinese filter values (0.2754ms)
+✔ normalization trims column names, coordinates, and district suffixes (0.6839ms)
+✔ coordinate validation distinguishes valid, missing, and outlier values (0.1718ms)
+✔ category mapping follows the requested Chinese hotspot types (0.1205ms)
+✔ filters search bilingual fields and respect Taipei City only (0.1882ms)
+✔ distance helpers calculate, format, and link coordinates (0.2145ms)
+✔ summary counts valid, Taipei, outside, area, type, category, and agency totals (0.6668ms)
+✔ strict CSV handles BOM/reordered columns and rejects malformed, empty, missing, duplicate and bad encoding (1.3827ms)
+✔ WGS84 contract rejects projected CRS and nonnumeric values; scope uses published labels, never broad bounds (0.455ms)
+✔ identity collisions preserve rows, tier precedence, numeric coordinate reconciliation and stable reorder (2.2098ms)
+✔ capacity, empty populations, category balance, strict/broader/stale sensitivity and comparisons (1.1523ms)
+✔ removed legacy rows retain duplicate diagnostics from their own edition (0.3053ms)
+✔ exports preserve governance and neutralize formula injection without quadratic metadata (9.7378ms)
+✔ allowlist and bounded failed fetch reject redirects, oversized, empty and failed resources (14.7347ms)
+✔ atomic snapshot validation protects last-good artifacts; immutable hash and nested schema checked (11.719ms)
+✔ production manifest hashes and deterministic real snapshot are independently verified (27.175ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 353.8208
+=== npm run build ===
+
+> taipei-free-wifi-map@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 34 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                 0.82 kB │ gzip:   0.48 kB
+dist/assets/WifiPolicyDashboard-CHle-YTj.css    3.51 kB │ gzip:   1.09 kB
+dist/assets/index-j8Kob2Tu.css                 27.80 kB │ gzip:   9.66 kB
+dist/assets/WifiPolicyDashboard-C9MlsqER.js    28.19 kB │ gzip:   9.69 kB
+dist/assets/index-Cu3YGu6p.js                 399.19 kB │ gzip: 120.44 kB
+
+✓ built in 157ms
+=== Verification Complete ===
+
+Next steps:
+1. Read feature_list.json to see current feature state
+2. Pick ONE unfinished feature to work on
+3. Implement only that feature
+4. Re-run verification before claiming done

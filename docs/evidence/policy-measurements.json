@@ -1,0 +1,1116 @@
+{
+  "measuredAt": "2026-10-22T06:31:56.430Z",
+  "runtime": "v24.14.0",
+  "platform": "win32",
+  "limitation": "Local warmed pure-function timings, 100 runs per configuration. No public-host latency guarantee.",
+  "snapshotId": "wifi-policy-c250791e7736ed5bca2882ea",
+  "snapshotSha256": "91b28d7b375e7fb14ee42bfbe179d792c9e0ed0992f273582dd1e03e6bac8a82",
+  "payloadBytes": 1707558,
+  "gzipBytes": 162570,
+  "assets": [
+    {
+      "name": "index-DoW9_ctE.js",
+      "bytes": 399196
+    },
+    {
+      "name": "index-j8Kob2Tu.css",
+      "bytes": 27807
+    },
+    {
+      "name": "WifiPolicyDashboard-BFbN2X2g.js",
+      "bytes": 28424
+    },
+    {
+      "name": "WifiPolicyDashboard-CHle-YTj.css",
+      "bytes": 3511
+    }
+  ],
+  "reconciliation": {
+    "identityRule": "Exact unique SITE_ID + HOTSPOT_ID pairs only; no name joins. Changes describe published records, not physical events.",
+    "legacy": {
+      "rows": 3297,
+      "uniqueSiteIds": 3297,
+      "uniqueHotspotIds": 3297,
+      "duplicateSiteIds": 0,
+      "duplicateHotspotIds": 0,
+      "missingSiteIds": 0,
+      "missingHotspotIds": 0,
+      "invalidCoordinates": 0,
+      "taipeiSourceRows": 3285,
+      "outsideSourceRows": 12,
+      "byDistrict": {
+        "中山區": 269,
+        "中正區": 431,
+        "信義區": 482,
+        "內湖區": 192,
+        "北投區": 187,
+        "南港區": 198,
+        "士林區": 332,
+        "大同區": 206,
+        "大安區": 343,
+        "文山區": 290,
+        "新店區": 12,
+        "松山區": 125,
+        "萬華區": 230
+      },
+      "byCategory": {
+        "公園": 89,
+        "公眾服務": 146,
+        "公車站": 887,
+        "商圈市集": 309,
+        "圖書館": 261,
+        "大眾運輸": 12,
+        "社區中心": 204,
+        "藝文場館": 186,
+        "行政機關": 691,
+        "觀光名勝": 12,
+        "遊客中心": 2,
+        "運動場館": 96,
+        "醫院": 402
+      },
+      "byAgency": {
+        "臺北市中山區健康服務中心|TAIFO": 2,
+        "臺北市中山區公所|TAIFO": 28,
+        "臺北市中山區戶政事務所|TAIFO": 2,
+        "臺北市中山地政事務所|TAIFO": 10,
+        "臺北市中山堂管理所|TAIFO": 8,
+        "臺北市中正區健康服務中心|TAIFO": 4,
+        "臺北市中正區公所|TAIFO": 16,
+        "臺北市中正區戶政事務所|TAIFO": 4,
+        "臺北市交通事件裁決所|TAIFO": 3,
+        "臺北市交通管制工程處|TAIFO": 6,
+        "臺北市住宅及都市更新中心|TAIFO": 7,
+        "臺北市信義區健康服務中心|TAIFO": 3,
+        "臺北市信義區公所|TAIFO": 25,
+        "臺北市信義區戶政事務所|TAIFO": 1,
+        "臺北市停車管理工程處|TAIFO": 7,
+        "臺北市內湖區健康服務中心|TAIFO": 1,
+        "臺北市內湖區公所|TAIFO": 26,
+        "臺北市內湖區戶政事務所|TAIFO": 3,
+        "臺北市公共運輸處|TAIFO": 899,
+        "臺北市動產質借處|TAIFO": 6,
+        "臺北市勞動力重建運用處|TAIFO": 1,
+        "臺北市北投區健康服務中心|TAIFO": 2,
+        "臺北市北投區公所|TAIFO": 18,
+        "臺北市北投區戶政事務所|TAIFO": 1,
+        "臺北市南港區健康服務中心|TAIFO": 4,
+        "臺北市南港區公所|TAIFO": 14,
+        "臺北市南港區戶政事務所|TAIFO": 1,
+        "臺北市古亭地政事務所|TAIFO": 5,
+        "臺北市士林區健康服務中心|TAIFO": 4,
+        "臺北市士林區公所|TAIFO": 25,
+        "臺北市士林區戶政事務所|TAIFO": 4,
+        "臺北市士林地政事務所|TAIFO": 5,
+        "臺北市大同區健康服務中心|TAIFO": 5,
+        "臺北市大同區公所|TAIFO": 16,
+        "臺北市大同區戶政事務所|TAIFO": 2,
+        "臺北市大安區健康服務中心|TAIFO": 3,
+        "臺北市大安區公所|TAIFO": 18,
+        "臺北市大安區戶政事務所|TAIFO": 4,
+        "臺北市大安地政事務所|TAIFO": 7,
+        "臺北市孔廟管理委員會|TAIFO": 2,
+        "臺北市家庭暴力暨性侵害防治中心|TAIFO": 2,
+        "臺北市就業服務處|TAIFO": 2,
+        "臺北市市場處|TAIFO": 314,
+        "臺北市建成地政事務所|TAIFO": 7,
+        "臺北市政府主計處|TAIFO": 5,
+        "臺北市政府交通局|TAIFO": 8,
+        "臺北市政府人事處|TAIFO": 3,
+        "臺北市政府公務人員訓練中心|TAIFO": 18,
+        "臺北市政府兵役局|TAIFO": 1,
+        "臺北市政府勞動局|TAIFO": 7,
+        "臺北市政府原住民族事務委員會|TAIFO": 2,
+        "臺北市政府地政局|TAIFO": 8,
+        "臺北市政府地政局土地開發總隊|TAIFO": 6,
+        "臺北市政府客家事務委員會|TAIFO": 4,
+        "臺北市政府工務局|TAIFO": 12,
+        "臺北市政府工務局公園路燈工程管理處|TAIFO": 160,
+        "臺北市政府工務局大地工程處|TAIFO": 3,
+        "臺北市政府工務局建築管理工程處|TAIFO": 9,
+        "臺北市政府工務局新建工程處|TAIFO": 9,
+        "臺北市政府工務局水利工程處|TAIFO": 10,
+        "臺北市政府工務局衛生下水道工程處|TAIFO": 12,
+        "臺北市政府捷運工程局|TAIFO": 2,
+        "臺北市政府政風處|TAIFO": 2,
+        "臺北市政府教育局|TAIFO": 7,
+        "臺北市政府文化局|TAIFO": 85,
+        "臺北市政府民政局|TAIFO": 25,
+        "臺北市政府法務局|TAIFO": 5,
+        "臺北市政府消防局|TAIFO": 27,
+        "臺北市政府環境保護局|TAIFO": 15,
+        "臺北市政府環境保護局北投垃圾焚化廠|TAIFO": 2,
+        "臺北市政府產業發展局|TAIFO": 14,
+        "臺北市政府產業發展局商業處|TAIFO": 2,
+        "臺北市政府研究發展考核委員會|TAIFO": 3,
+        "臺北市政府社會局|TAIFO": 60,
+        "臺北市政府秘書處|TAIFO": 80,
+        "臺北市政府衛生局|TAIFO": 25,
+        "臺北市政府觀光傳播局|TAIFO": 14,
+        "臺北市政府警察局|TAIFO": 28,
+        "臺北市政府警察局交通警察大隊|TAIFO": 12,
+        "臺北市政府警察局少年警察隊|TAIFO": 3,
+        "臺北市政府財政局|TAIFO": 6,
+        "臺北市政府資訊局|TAIFO": 16,
+        "臺北市政府都市發展局|TAIFO": 38,
+        "臺北市政府體育局|TAIFO": 96,
+        "臺北市教師研習中心|TAIFO": 3,
+        "臺北市文山區健康服務中心|TAIFO": 1,
+        "臺北市文山區公所|TAIFO": 25,
+        "臺北市文山區戶政事務所|TAIFO": 6,
+        "臺北市松山區健康服務中心|TAIFO": 3,
+        "臺北市松山區公所|TAIFO": 21,
+        "臺北市松山區戶政事務所|TAIFO": 5,
+        "臺北市松山地政事務所|TAIFO": 7,
+        "臺北市殯葬管理處|TAIFO": 8,
+        "臺北市稅捐稽徵處|TAIFO": 34,
+        "臺北市立動物園|TAIFO": 56,
+        "臺北市立圖書館|TAIFO": 262,
+        "臺北市立天文科學教育館|TAIFO": 6,
+        "臺北市立文獻館|TAIFO": 4,
+        "臺北市立浩然敬老院|TAIFO": 5,
+        "臺北市立聯合醫院|TAIFO": 13,
+        "臺北市立聯合醫院中興院區|TAIFO": 63,
+        "臺北市立聯合醫院仁愛院區|TAIFO": 84,
+        "臺北市立聯合醫院和平院區|TAIFO": 50,
+        "臺北市立聯合醫院婦幼院區|TAIFO": 27,
+        "臺北市立聯合醫院忠孝院區|TAIFO": 51,
+        "臺北市立聯合醫院昆明院區|TAIFO": 17,
+        "臺北市立聯合醫院松德院區|TAIFO": 34,
+        "臺北市立聯合醫院林森院區|TAIFO": 15,
+        "臺北市立聯合醫院陽明院區|TAIFO": 32,
+        "臺北市立陽明教養院|TAIFO": 3,
+        "臺北市萬華區健康服務中心|TAIFO": 6,
+        "臺北市萬華區公所|TAIFO": 22,
+        "臺北市萬華區戶政事務所|TAIFO": 3,
+        "臺北市藝文推廣處|TAIFO": 22,
+        "臺北市議會|TAIFO": 12,
+        "臺北市青少年發展暨家庭教育中心|TAIFO": 8,
+        "臺北翡翠水庫管理局|TAIFO": 12,
+        "臺北自來水事業處|TAIFO": 6
+      }
+    },
+    "current": {
+      "rows": 3305,
+      "uniqueSiteIds": 3305,
+      "uniqueHotspotIds": 3305,
+      "duplicateSiteIds": 0,
+      "duplicateHotspotIds": 0,
+      "missingSiteIds": 0,
+      "missingHotspotIds": 0,
+      "invalidCoordinates": 0,
+      "taipeiSourceRows": 3293,
+      "outsideSourceRows": 12,
+      "byDistrict": {
+        "中山區": 271,
+        "中正區": 428,
+        "信義區": 482,
+        "內湖區": 192,
+        "北投區": 186,
+        "南港區": 198,
+        "士林區": 340,
+        "大同區": 206,
+        "大安區": 343,
+        "文山區": 295,
+        "新店區": 12,
+        "松山區": 126,
+        "萬華區": 226
+      },
+      "byCategory": {
+        "公園": 88,
+        "公眾服務": 148,
+        "公車站": 887,
+        "商圈市集": 309,
+        "圖書館": 268,
+        "大眾運輸": 12,
+        "社區中心": 203,
+        "藝文場館": 181,
+        "行政機關": 696,
+        "觀光名勝": 12,
+        "遊客中心": 2,
+        "運動場館": 96,
+        "醫院": 403
+      },
+      "byAgency": {
+        "臺北市中山區健康服務中心|TAIFO": 2,
+        "臺北市中山區公所|TAIFO": 28,
+        "臺北市中山區戶政事務所|TAIFO": 2,
+        "臺北市中山地政事務所|TAIFO": 10,
+        "臺北市中山堂管理所|TAIFO": 8,
+        "臺北市中正區健康服務中心|TAIFO": 4,
+        "臺北市中正區公所|TAIFO": 16,
+        "臺北市中正區戶政事務所|TAIFO": 4,
+        "臺北市交通事件裁決所|TAIFO": 3,
+        "臺北市交通管制工程處|TAIFO": 6,
+        "臺北市住宅及都市更新中心|TAIFO": 7,
+        "臺北市信義區健康服務中心|TAIFO": 3,
+        "臺北市信義區公所|TAIFO": 25,
+        "臺北市信義區戶政事務所|TAIFO": 1,
+        "臺北市停車管理工程處|TAIFO": 7,
+        "臺北市內湖區健康服務中心|TAIFO": 1,
+        "臺北市內湖區公所|TAIFO": 26,
+        "臺北市內湖區戶政事務所|TAIFO": 3,
+        "臺北市公共運輸處|TAIFO": 899,
+        "臺北市動產質借處|TAIFO": 6,
+        "臺北市勞動力重建運用處|TAIFO": 1,
+        "臺北市北投區健康服務中心|TAIFO": 2,
+        "臺北市北投區公所|TAIFO": 18,
+        "臺北市北投區戶政事務所|TAIFO": 1,
+        "臺北市南港區健康服務中心|TAIFO": 4,
+        "臺北市南港區公所|TAIFO": 14,
+        "臺北市南港區戶政事務所|TAIFO": 1,
+        "臺北市古亭地政事務所|TAIFO": 5,
+        "臺北市士林區健康服務中心|TAIFO": 4,
+        "臺北市士林區公所|TAIFO": 25,
+        "臺北市士林區戶政事務所|TAIFO": 4,
+        "臺北市士林地政事務所|TAIFO": 5,
+        "臺北市大同區健康服務中心|TAIFO": 5,
+        "臺北市大同區公所|TAIFO": 16,
+        "臺北市大同區戶政事務所|TAIFO": 2,
+        "臺北市大安區健康服務中心|TAIFO": 3,
+        "臺北市大安區公所|TAIFO": 18,
+        "臺北市大安區戶政事務所|TAIFO": 4,
+        "臺北市大安地政事務所|TAIFO": 7,
+        "臺北市孔廟管理委員會|TAIFO": 2,
+        "臺北市家庭暴力暨性侵害防治中心|TAIFO": 2,
+        "臺北市就業服務處|TAIFO": 2,
+        "臺北市市場處|TAIFO": 314,
+        "臺北市建成地政事務所|TAIFO": 7,
+        "臺北市政府主計處|TAIFO": 5,
+        "臺北市政府交通局|TAIFO": 8,
+        "臺北市政府人事處|TAIFO": 3,
+        "臺北市政府公務人員訓練中心|TAIFO": 18,
+        "臺北市政府兵役局|TAIFO": 1,
+        "臺北市政府勞動局|TAIFO": 7,
+        "臺北市政府原住民族事務委員會|TAIFO": 2,
+        "臺北市政府地政局|TAIFO": 8,
+        "臺北市政府地政局土地開發總隊|TAIFO": 6,
+        "臺北市政府客家事務委員會|TAIFO": 4,
+        "臺北市政府工務局|TAIFO": 12,
+        "臺北市政府工務局公園路燈工程管理處|TAIFO": 159,
+        "臺北市政府工務局大地工程處|TAIFO": 3,
+        "臺北市政府工務局建築管理工程處|TAIFO": 9,
+        "臺北市政府工務局新建工程處|TAIFO": 9,
+        "臺北市政府工務局水利工程處|TAIFO": 10,
+        "臺北市政府工務局衛生下水道工程處|TAIFO": 12,
+        "臺北市政府捷運工程局|TAIFO": 2,
+        "臺北市政府政風處|TAIFO": 2,
+        "臺北市政府教育局|TAIFO": 7,
+        "臺北市政府文化局|TAIFO": 80,
+        "臺北市政府民政局|TAIFO": 25,
+        "臺北市政府法務局|TAIFO": 5,
+        "臺北市政府消防局|TAIFO": 27,
+        "臺北市政府環境保護局|TAIFO": 15,
+        "臺北市政府環境保護局北投垃圾焚化廠|TAIFO": 2,
+        "臺北市政府產業發展局|TAIFO": 14,
+        "臺北市政府產業發展局商業處|TAIFO": 2,
+        "臺北市政府研究發展考核委員會|TAIFO": 3,
+        "臺北市政府社會局|TAIFO": 61,
+        "臺北市政府秘書處|TAIFO": 80,
+        "臺北市政府衛生局|TAIFO": 25,
+        "臺北市政府觀光傳播局|TAIFO": 14,
+        "臺北市政府警察局|TAIFO": 28,
+        "臺北市政府警察局交通警察大隊|TAIFO": 12,
+        "臺北市政府警察局少年警察隊|TAIFO": 3,
+        "臺北市政府財政局|TAIFO": 6,
+        "臺北市政府資訊局|TAIFO": 16,
+        "臺北市政府都市發展局|TAIFO": 43,
+        "臺北市政府青年局|TAIFO": 7,
+        "臺北市政府體育局|TAIFO": 96,
+        "臺北市教師研習中心|TAIFO": 3,
+        "臺北市文山區健康服務中心|TAIFO": 1,
+        "臺北市文山區公所|TAIFO": 26,
+        "臺北市文山區戶政事務所|TAIFO": 6,
+        "臺北市松山區健康服務中心|TAIFO": 3,
+        "臺北市松山區公所|TAIFO": 21,
+        "臺北市松山區戶政事務所|TAIFO": 5,
+        "臺北市松山地政事務所|TAIFO": 7,
+        "臺北市殯葬管理處|TAIFO": 8,
+        "臺北市稅捐稽徵處|TAIFO": 34,
+        "臺北市立動物園|TAIFO": 56,
+        "臺北市立圖書館|TAIFO": 269,
+        "臺北市立天文科學教育館|TAIFO": 6,
+        "臺北市立文獻館|TAIFO": 4,
+        "臺北市立浩然敬老院|TAIFO": 5,
+        "臺北市立聯合醫院|TAIFO": 14,
+        "臺北市立聯合醫院中興院區|TAIFO": 63,
+        "臺北市立聯合醫院仁愛院區|TAIFO": 84,
+        "臺北市立聯合醫院和平院區|TAIFO": 50,
+        "臺北市立聯合醫院婦幼院區|TAIFO": 27,
+        "臺北市立聯合醫院忠孝院區|TAIFO": 51,
+        "臺北市立聯合醫院昆明院區|TAIFO": 17,
+        "臺北市立聯合醫院松德院區|TAIFO": 34,
+        "臺北市立聯合醫院林森院區|TAIFO": 15,
+        "臺北市立聯合醫院陽明院區|TAIFO": 32,
+        "臺北市立陽明教養院|TAIFO": 3,
+        "臺北市萬華區健康服務中心|TAIFO": 6,
+        "臺北市萬華區公所|TAIFO": 22,
+        "臺北市萬華區戶政事務所|TAIFO": 3,
+        "臺北市藝文推廣處|TAIFO": 22,
+        "臺北市議會|TAIFO": 12,
+        "臺北翡翠水庫管理局|TAIFO": 12,
+        "臺北自來水事業處|TAIFO": 6
+      }
+    },
+    "added": 19,
+    "removed": 11,
+    "changedCoordinates": 33,
+    "changedCategories": 1,
+    "changedMetadata": 75,
+    "ambiguous": 0
+  },
+  "tiers": {
+    "A": 63,
+    "B": 57,
+    "C": 3196
+  },
+  "issues": {
+    "boundary-and-operation-unverified": 3196,
+    "changed-category": 1,
+    "changed-coordinates": 33,
+    "new-source-relationship": 19,
+    "no-current-counterpart": 11,
+    "outside-or-unresolved-source-scope": 12,
+    "source-metadata-changed": 75
+  },
+  "sources": [
+    {
+      "id": "A",
+      "datasetId": "6aa6532d-652f-4c1b-814a-4646b75407af",
+      "resourceId": "549b3a9b-eb6c-4cb1-848b-8c238735e2db",
+      "catalogueUrl": "https://data.taipei/dataset/detail?id=6aa6532d-652f-4c1b-814a-4646b75407af",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=549b3a9b-eb6c-4cb1-848b-8c238735e2db",
+      "publishedAt": "2026-07-01 15:32:22",
+      "retrievedAt": null,
+      "retrievalDate": "2026-10-22",
+      "retrievalPrecision": "day",
+      "publisher": "臺北市政府資訊局",
+      "license": "Government Data Open License, Version 1.0 (catalogue: 公開)",
+      "eligibility": "inventory-evidence-review",
+      "status": "acquired",
+      "sha256": "09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55",
+      "bytes": 1630629
+    },
+    {
+      "id": "B",
+      "datasetId": "43772803-6504-469c-894d-35904342a53b",
+      "resourceId": "fb6cc268-e2b8-43a7-86f2-e79702291a2b",
+      "catalogueUrl": "https://data.taipei/dataset/detail?id=43772803-6504-469c-894d-35904342a53b",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=fb6cc268-e2b8-43a7-86f2-e79702291a2b",
+      "publishedAt": "2026-06-10 11:19:35",
+      "retrievedAt": null,
+      "retrievalDate": "2026-10-22",
+      "retrievalPrecision": "day",
+      "publisher": "臺北市政府教育局",
+      "license": "Government Data Open License, Version 1.0 (catalogue: 公開)",
+      "eligibility": "reference-facility-contract-incomplete",
+      "exclusionReasons": [
+        "Official coordinate datum/positional accuracy not independently established",
+        "No stable publisher facility identifier; composite uniqueness is snapshot-specific",
+        "Facility operating status, public access and accessibility unknown"
+      ],
+      "status": "acquired",
+      "sha256": "82f4e1aedafd3b68a9b6adc619fdd5e00e4871c3c94100201eefdb12070e0847",
+      "bytes": 7185
+    },
+    {
+      "id": "C",
+      "datasetId": "5ed70753-73a4-4fc1-b78c-df09f7499594",
+      "resourceId": "5ae02e14-50fc-4906-86a7-96e0231780e1",
+      "catalogueUrl": "https://data.taipei/dataset/detail?id=5ed70753-73a4-4fc1-b78c-df09f7499594",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=5ae02e14-50fc-4906-86a7-96e0231780e1",
+      "publishedAt": "2025-12-18 09:53:42",
+      "retrievedAt": null,
+      "retrievalDate": "2026-10-22",
+      "retrievalPrecision": "day",
+      "publisher": "臺北市政府民政局",
+      "license": "Government Data Open License, Version 1.0 (catalogue: 公開)",
+      "eligibility": "excluded-projected-crs-unresolved",
+      "exclusionReasons": [
+        "Projected CRS unresolved",
+        "ODS has repeated-cell structures; no production ODS converter accepted"
+      ],
+      "status": "acquired",
+      "sha256": "368778b0c649f24b05cc0383172afb0e1b804c332541e2d33a2117d7d83834a0",
+      "bytes": 6466
+    },
+    {
+      "id": "D",
+      "datasetId": "80be7612-593f-4795-9935-a10ce0f7b75b",
+      "resourceId": "e7c46724-3517-4ce5-844f-5a4404897b7d",
+      "catalogueUrl": "https://data.taipei/dataset/detail?id=80be7612-593f-4795-9935-a10ce0f7b75b",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=e7c46724-3517-4ce5-844f-5a4404897b7d",
+      "publishedAt": "2026-03-02 16:48:05",
+      "retrievedAt": null,
+      "retrievalDate": "2026-10-22",
+      "retrievalPrecision": "day",
+      "publisher": "臺北市政府體育局",
+      "license": "Government Data Open License, Version 1.0 (catalogue: 公開)",
+      "eligibility": "reference-facility-contract-incomplete",
+      "exclusionReasons": [
+        "Official coordinate datum/positional accuracy not independently established",
+        "No stable publisher facility identifier; composite uniqueness is snapshot-specific",
+        "Facility operating status, public access and accessibility unknown"
+      ],
+      "status": "acquired",
+      "sha256": "23c5ce0906358d8f95b2f1a8e1b019487cd7fa564b2cf188681648d23c89b11c",
+      "bytes": 1527
+    },
+    {
+      "id": "E",
+      "datasetId": "1601ef3a-c253-4988-b047-943d9e786143",
+      "resourceId": "d8b7eb29-136f-49fc-b14b-3489d3656122",
+      "catalogueUrl": "https://data.taipei/dataset/detail?id=1601ef3a-c253-4988-b047-943d9e786143",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=d8b7eb29-136f-49fc-b14b-3489d3656122",
+      "publishedAt": "2024-09-16 15:17:18",
+      "retrievedAt": null,
+      "retrievalDate": "2026-10-22",
+      "retrievalPrecision": "day",
+      "publisher": "臺北市政府民政局",
+      "license": "Government Data Open License, Version 1.0 (catalogue: 公開)",
+      "eligibility": "retained-offline-boundary-reference",
+      "exclusionReasons": [
+        "SHP/DBF/projected polygon ingestion is not implemented in v1; source administrative fields are not polygon verification"
+      ],
+      "status": "acquired",
+      "sha256": "77bcc347b503b8ff8a43f7e1afaaedb18877a6222282587b145adaba69afd2d9",
+      "bytes": 174449
+    },
+    {
+      "id": "F",
+      "datasetId": "b5925972-67f6-45da-a2ff-3208bbe64f14",
+      "resourceId": null,
+      "catalogueUrl": "https://data.taipei/dataset/detail?id=b5925972-67f6-45da-a2ff-3208bbe64f14",
+      "url": "https://tsis.dbas.gov.taipei/statis/webMain.aspx?compmode=0&cycle=4&deflst=2&funid=A05035801&kind=21&nzo=1&outkind=1&outmode=12&sys=220&type=0&ymf=8700",
+      "publishedAt": null,
+      "retrievedAt": null,
+      "retrievalDate": "2026-10-22",
+      "retrievalPrecision": "day",
+      "publisher": "臺北市政府主計處",
+      "license": "Government Data Open License, Version 1.0 (catalogue: 公開)",
+      "eligibility": "citywide-context-only",
+      "exclusionReasons": [
+        "No hotspot/facility identity",
+        "No local demand denominator",
+        "No operational quality time series"
+      ],
+      "status": "acquired",
+      "sha256": "35abcf8bf6c068d512ebb854028b59635a6defd8404afd1c84970ee1f9137100",
+      "bytes": 2760
+    },
+    {
+      "id": "A-legacy",
+      "datasetId": "6aa6532d-652f-4c1b-814a-4646b75407af",
+      "resourceId": "549b3a9b-eb6c-4cb1-848b-8c238735e2db",
+      "catalogueUrl": "https://data.taipei/dataset/detail?id=6aa6532d-652f-4c1b-814a-4646b75407af",
+      "url": "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=549b3a9b-eb6c-4cb1-848b-8c238735e2db",
+      "publishedAt": null,
+      "retrievedAt": null,
+      "status": "retained-legacy",
+      "sha256": "c230610998a33309677fa235ec11b05d047bf3c9379dc6a7683ff3645a422c15",
+      "bytes": 1626772,
+      "notes": [
+        "Filename contains 1141218; this is not independently validated publication or retrieval evidence."
+      ]
+    }
+  ],
+  "scenarios": [
+    {
+      "settings": {
+        "capacity": 5,
+        "strategy": "evidence",
+        "eligibility": "strict",
+        "includeStale": false
+      },
+      "eligible": 3293,
+      "selected": 5,
+      "excluded": {
+        "unverified-taipei-scope": 12,
+        "stale-source": 11
+      },
+      "districts": [
+        "中正區",
+        "大同區"
+      ],
+      "categories": [
+        "公眾服務",
+        "行政機關",
+        "醫院"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1"
+      ],
+      "differenceFromDefault": {
+        "added": 0,
+        "removed": 0,
+        "equivalent": true
+      },
+      "localMedianMs": 0.18369999999998754,
+      "localP95Ms": 0.2948000000000093
+    },
+    {
+      "settings": {
+        "capacity": 5,
+        "strategy": "evidence",
+        "eligibility": "broader",
+        "includeStale": false
+      },
+      "eligible": 3305,
+      "selected": 5,
+      "excluded": {
+        "stale-source": 11
+      },
+      "districts": [
+        "中正區",
+        "大同區"
+      ],
+      "categories": [
+        "公眾服務",
+        "行政機關",
+        "醫院"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1"
+      ],
+      "differenceFromDefault": {
+        "added": 0,
+        "removed": 0,
+        "equivalent": true
+      },
+      "localMedianMs": 0.18200000000001637,
+      "localP95Ms": 0.2336999999999989
+    },
+    {
+      "settings": {
+        "capacity": 5,
+        "strategy": "balanced",
+        "eligibility": "strict",
+        "includeStale": false
+      },
+      "eligible": 3293,
+      "selected": 5,
+      "excluded": {
+        "unverified-taipei-scope": 12,
+        "stale-source": 11
+      },
+      "districts": [
+        "中正區",
+        "大安區",
+        "文山區"
+      ],
+      "categories": [
+        "公園",
+        "公眾服務",
+        "公車站",
+        "商圈市集",
+        "圖書館"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000752:TPEE000752:5ebbdb0b9e027c9b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000046:TPEE000046:b5fc73bd0136685c:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002887:TPEE002887:80fd32486c16d183:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE004335:TPEE004335:a9bae9d9e979339f:1"
+      ],
+      "differenceFromDefault": {
+        "added": 4,
+        "removed": 4,
+        "equivalent": false
+      },
+      "localMedianMs": 1.3578999999999724,
+      "localP95Ms": 2.535500000000013
+    },
+    {
+      "settings": {
+        "capacity": 5,
+        "strategy": "balanced",
+        "eligibility": "broader",
+        "includeStale": false
+      },
+      "eligible": 3305,
+      "selected": 5,
+      "excluded": {
+        "stale-source": 11
+      },
+      "districts": [
+        "中正區",
+        "大安區",
+        "文山區"
+      ],
+      "categories": [
+        "公園",
+        "公眾服務",
+        "公車站",
+        "商圈市集",
+        "圖書館"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000752:TPEE000752:5ebbdb0b9e027c9b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000046:TPEE000046:b5fc73bd0136685c:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002887:TPEE002887:80fd32486c16d183:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE004335:TPEE004335:a9bae9d9e979339f:1"
+      ],
+      "differenceFromDefault": {
+        "added": 4,
+        "removed": 4,
+        "equivalent": false
+      },
+      "localMedianMs": 1.2948999999999842,
+      "localP95Ms": 2.003600000000006
+    },
+    {
+      "settings": {
+        "capacity": 10,
+        "strategy": "evidence",
+        "eligibility": "strict",
+        "includeStale": false
+      },
+      "eligible": 3293,
+      "selected": 10,
+      "excluded": {
+        "unverified-taipei-scope": 12,
+        "stale-source": 11
+      },
+      "districts": [
+        "中正區",
+        "大同區"
+      ],
+      "categories": [
+        "公眾服務",
+        "行政機關",
+        "醫院"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002598:TPEE002598:4931df15085b4fbe:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002599:TPEE002599:4ae1c3ab4218bb04:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002600:TPEE002600:bd918ed18be450ba:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002601:TPEE002601:8c3f73847a677fb4:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002602:TPEE002602:1263b9ae795ba8d0:1"
+      ],
+      "differenceFromDefault": {
+        "added": 5,
+        "removed": 0,
+        "equivalent": false
+      },
+      "localMedianMs": 0.16300000000001091,
+      "localP95Ms": 0.19390000000009877
+    },
+    {
+      "settings": {
+        "capacity": 10,
+        "strategy": "evidence",
+        "eligibility": "broader",
+        "includeStale": false
+      },
+      "eligible": 3305,
+      "selected": 10,
+      "excluded": {
+        "stale-source": 11
+      },
+      "districts": [
+        "中正區",
+        "大同區"
+      ],
+      "categories": [
+        "公眾服務",
+        "行政機關",
+        "醫院"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002598:TPEE002598:4931df15085b4fbe:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002599:TPEE002599:4ae1c3ab4218bb04:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002600:TPEE002600:bd918ed18be450ba:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002601:TPEE002601:8c3f73847a677fb4:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002602:TPEE002602:1263b9ae795ba8d0:1"
+      ],
+      "differenceFromDefault": {
+        "added": 5,
+        "removed": 0,
+        "equivalent": false
+      },
+      "localMedianMs": 0.16269999999997253,
+      "localP95Ms": 0.17819999999994707
+    },
+    {
+      "settings": {
+        "capacity": 10,
+        "strategy": "balanced",
+        "eligibility": "strict",
+        "includeStale": false
+      },
+      "eligible": 3293,
+      "selected": 10,
+      "excluded": {
+        "unverified-taipei-scope": 12,
+        "stale-source": 11
+      },
+      "districts": [
+        "中正區",
+        "信義區",
+        "北投區",
+        "士林區",
+        "大安區",
+        "文山區"
+      ],
+      "categories": [
+        "公園",
+        "公眾服務",
+        "公車站",
+        "商圈市集",
+        "圖書館",
+        "大眾運輸",
+        "社區中心",
+        "藝文場館",
+        "行政機關",
+        "觀光名勝"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000752:TPEE000752:5ebbdb0b9e027c9b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000046:TPEE000046:b5fc73bd0136685c:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002887:TPEE002887:80fd32486c16d183:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE004335:TPEE004335:a9bae9d9e979339f:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000657:TPEE000657:98b6cd8fd4af7390:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE001121:TPEE001121:f79b2609ac8ee4d6:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000775:TPEE000775:4cd12cc4850f72b7:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000795:TPEE000795:e77cb0443cdebd6e:1"
+      ],
+      "differenceFromDefault": {
+        "added": 8,
+        "removed": 3,
+        "equivalent": false
+      },
+      "localMedianMs": 1.336999999999989,
+      "localP95Ms": 2.303299999999922
+    },
+    {
+      "settings": {
+        "capacity": 10,
+        "strategy": "balanced",
+        "eligibility": "broader",
+        "includeStale": false
+      },
+      "eligible": 3305,
+      "selected": 10,
+      "excluded": {
+        "stale-source": 11
+      },
+      "districts": [
+        "中正區",
+        "北投區",
+        "士林區",
+        "大安區",
+        "文山區",
+        "新店區"
+      ],
+      "categories": [
+        "公園",
+        "公眾服務",
+        "公車站",
+        "商圈市集",
+        "圖書館",
+        "大眾運輸",
+        "社區中心",
+        "藝文場館",
+        "行政機關",
+        "觀光名勝"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000752:TPEE000752:5ebbdb0b9e027c9b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000046:TPEE000046:b5fc73bd0136685c:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002887:TPEE002887:80fd32486c16d183:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE004335:TPEE004335:a9bae9d9e979339f:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000657:TPEE000657:98b6cd8fd4af7390:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE001121:TPEE001121:f79b2609ac8ee4d6:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000775:TPEE000775:4cd12cc4850f72b7:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000778:TPEE000778:7ea2415b5ab23fae:1"
+      ],
+      "differenceFromDefault": {
+        "added": 8,
+        "removed": 3,
+        "equivalent": false
+      },
+      "localMedianMs": 1.386600000000044,
+      "localP95Ms": 2.000599999999963
+    },
+    {
+      "settings": {
+        "capacity": "all",
+        "strategy": "evidence",
+        "eligibility": "strict",
+        "includeStale": false
+      },
+      "eligible": 3293,
+      "selected": 3293,
+      "excluded": {
+        "unverified-taipei-scope": 12,
+        "stale-source": 11
+      },
+      "districts": [
+        "中山區",
+        "中正區",
+        "信義區",
+        "內湖區",
+        "北投區",
+        "南港區",
+        "士林區",
+        "大同區",
+        "大安區",
+        "文山區",
+        "松山區",
+        "萬華區"
+      ],
+      "categories": [
+        "公園",
+        "公眾服務",
+        "公車站",
+        "商圈市集",
+        "圖書館",
+        "大眾運輸",
+        "社區中心",
+        "藝文場館",
+        "行政機關",
+        "觀光名勝",
+        "遊客中心",
+        "運動場館",
+        "醫院"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002598:TPEE002598:4931df15085b4fbe:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002599:TPEE002599:4ae1c3ab4218bb04:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002600:TPEE002600:bd918ed18be450ba:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002601:TPEE002601:8c3f73847a677fb4:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002602:TPEE002602:1263b9ae795ba8d0:1"
+      ],
+      "differenceFromDefault": {
+        "added": 3288,
+        "removed": 0,
+        "equivalent": false
+      },
+      "localMedianMs": 0.33550000000002456,
+      "localP95Ms": 0.4578000000000202
+    },
+    {
+      "settings": {
+        "capacity": "all",
+        "strategy": "evidence",
+        "eligibility": "broader",
+        "includeStale": false
+      },
+      "eligible": 3305,
+      "selected": 3305,
+      "excluded": {
+        "stale-source": 11
+      },
+      "districts": [
+        "中山區",
+        "中正區",
+        "信義區",
+        "內湖區",
+        "北投區",
+        "南港區",
+        "士林區",
+        "大同區",
+        "大安區",
+        "文山區",
+        "新店區",
+        "松山區",
+        "萬華區"
+      ],
+      "categories": [
+        "公園",
+        "公眾服務",
+        "公車站",
+        "商圈市集",
+        "圖書館",
+        "大眾運輸",
+        "社區中心",
+        "藝文場館",
+        "行政機關",
+        "觀光名勝",
+        "遊客中心",
+        "運動場館",
+        "醫院"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002338:TPEE002338:7496992a426ee77b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002354:TPEE002354:725f61bd6e88a5e8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002597:TPEE002597:46e58122c75ca990:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002598:TPEE002598:4931df15085b4fbe:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002599:TPEE002599:4ae1c3ab4218bb04:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002600:TPEE002600:bd918ed18be450ba:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002601:TPEE002601:8c3f73847a677fb4:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002602:TPEE002602:1263b9ae795ba8d0:1"
+      ],
+      "differenceFromDefault": {
+        "added": 3300,
+        "removed": 0,
+        "equivalent": false
+      },
+      "localMedianMs": 0.3410000000000082,
+      "localP95Ms": 0.3689000000000533
+    },
+    {
+      "settings": {
+        "capacity": "all",
+        "strategy": "balanced",
+        "eligibility": "strict",
+        "includeStale": false
+      },
+      "eligible": 3293,
+      "selected": 3293,
+      "excluded": {
+        "unverified-taipei-scope": 12,
+        "stale-source": 11
+      },
+      "districts": [
+        "中山區",
+        "中正區",
+        "信義區",
+        "內湖區",
+        "北投區",
+        "南港區",
+        "士林區",
+        "大同區",
+        "大安區",
+        "文山區",
+        "松山區",
+        "萬華區"
+      ],
+      "categories": [
+        "公園",
+        "公眾服務",
+        "公車站",
+        "商圈市集",
+        "圖書館",
+        "大眾運輸",
+        "社區中心",
+        "藝文場館",
+        "行政機關",
+        "觀光名勝",
+        "遊客中心",
+        "運動場館",
+        "醫院"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000752:TPEE000752:5ebbdb0b9e027c9b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000046:TPEE000046:b5fc73bd0136685c:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002887:TPEE002887:80fd32486c16d183:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE004335:TPEE004335:a9bae9d9e979339f:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000657:TPEE000657:98b6cd8fd4af7390:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE001121:TPEE001121:f79b2609ac8ee4d6:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000775:TPEE000775:4cd12cc4850f72b7:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000795:TPEE000795:e77cb0443cdebd6e:1"
+      ],
+      "differenceFromDefault": {
+        "added": 3288,
+        "removed": 0,
+        "equivalent": false
+      },
+      "localMedianMs": 1.516300000000001,
+      "localP95Ms": 2.122799999999984
+    },
+    {
+      "settings": {
+        "capacity": "all",
+        "strategy": "balanced",
+        "eligibility": "broader",
+        "includeStale": false
+      },
+      "eligible": 3305,
+      "selected": 3305,
+      "excluded": {
+        "stale-source": 11
+      },
+      "districts": [
+        "中山區",
+        "中正區",
+        "信義區",
+        "內湖區",
+        "北投區",
+        "南港區",
+        "士林區",
+        "大同區",
+        "大安區",
+        "文山區",
+        "新店區",
+        "松山區",
+        "萬華區"
+      ],
+      "categories": [
+        "公園",
+        "公眾服務",
+        "公車站",
+        "商圈市集",
+        "圖書館",
+        "大眾運輸",
+        "社區中心",
+        "藝文場館",
+        "行政機關",
+        "觀光名勝",
+        "遊客中心",
+        "運動場館",
+        "醫院"
+      ],
+      "firstTenSelectedIds": [
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000752:TPEE000752:5ebbdb0b9e027c9b:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002596:TPEE002596:81276f912dd41fb8:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000046:TPEE000046:b5fc73bd0136685c:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002887:TPEE002887:80fd32486c16d183:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE004335:TPEE004335:a9bae9d9e979339f:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000657:TPEE000657:98b6cd8fd4af7390:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE001121:TPEE001121:f79b2609ac8ee4d6:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000775:TPEE000775:4cd12cc4850f72b7:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE002595:TPEE002595:ff92a726ee13e529:1",
+        "A:09c150e7b8a75e1477413ddcc37059fe97b3c2353ac9f8799069e65d8f81cc55:TPEE000778:TPEE000778:7ea2415b5ab23fae:1"
+      ],
+      "differenceFromDefault": {
+        "added": 3300,
+        "removed": 0,
+        "equivalent": false
+      },
+      "localMedianMs": 1.54300000000012,
+      "localP95Ms": 1.9873999999999796
+    }
+  ],
+  "staleStrictAll": {
+    "eligible": 3304,
+    "selected": 3304
+  },
+  "allBroaderWithStale": {
+    "eligible": 3316,
+    "selected": 3316,
+    "csvBytes": 1577805,
+    "localCsvMs": 7.587800000000016
+  }
+}

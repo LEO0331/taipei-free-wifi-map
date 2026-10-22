@@ -1,0 +1,5 @@
+# Original-byte provenance must survive Windows/Linux checkouts unchanged.
+data/raw/** -text -whitespace
+data/raw/wifi-policy/refresh/*.bin binary
+public/data/wifi-policy/*.json -text
+docs/evidence/sample-decision.csv -text -whitespace

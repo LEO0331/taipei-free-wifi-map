@@ -1,5 +1,21 @@
 # Session Progress Log
 
+## 2026-10-22 — Policy #8 verified delivery
+
+- Feature `feat-005`: completed as the permitted Mode A MVP. Review PR [#4](https://github.com/LEO0331/taipei-free-wifi-map/pull/4) is open and not merged.
+- Branch `codex/wifi-allocation-decision-support`, freshly fetched base `99f304a017bafda95130052ee3ea1efed4bd5290`.
+- Official A–G audit and original bytes retained. A current 3,305 rows versus legacy 3,297; 19 added, 11 absent, 33 numerical coordinate changes. These are source-publication observations, not equipment events.
+- Mode A: 3,316 inspectable source-row candidates, tiers A63/B57/C3196; strict default 3,293 eligible. Capacities 5/10/all, evidence-first/category balancing, filters, strict/broader and legacy sensitivity, bilingual lazy dashboard and real JSON/CSV exports work.
+- Mode B deliberately unavailable: facility CRS/precision/identity contract incomplete; Mode C unavailable without operations/demand evidence. Downloaded facility files remain auditable.
+- Verification: Git Bash `./init.sh` passed npm ci (0 vulnerabilities), retained 3,297-row conversion, **23/23 tests**, TypeScript/Vite build. Actual new policy `--refresh` downloads succeeded; two retained rebuilds yielded identical snapshot ID/hash/bytes. Final bilingual metadata explanation also passed build.
+- Snapshot `wifi-policy-c250791e7736ed5bca2882ea`, 1,707,558 bytes, SHA-256 `91b28d7b375e7fb14ee42bfbe179d792c9e0ed0992f273582dd1e03e6bac8a82`.
+- Production browser: desktop/mobile no page overflow; zero initial policy requests; all capacity/strategy/gate controls, real export downloads, language switch, pagination, explorer search/filter retention and overview verified. No browser warnings/errors. Geolocation permission was not granted.
+- Windows native build-module lock resolved by stopping development servers before npm ci. Raw-byte Git attributes prevent newline conversion. Timestamp-only explorer verification output restored.
+- Full changed-file inventory, timings, hashes, source IDs, tests, limitations and future Case Study 008 material: `docs/wifi-allocation-delivery.md`. No portfolio modifications or added dependencies.
+- Main implementation commit: `dec5ffabb4d1c8c71f26647e0d69c5f56e7f1896`. The GitHub connector returned 403 for PR creation; the repository's existing Git credential successfully created exactly one PR through GitHub API. No merge performed.
+
+Historical session record follows unchanged.
+
 ## Current State
 
 **Last Updated:** 2026-09-01

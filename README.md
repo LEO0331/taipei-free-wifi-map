@@ -98,3 +98,19 @@ For another host or repository name, update `base` in `vite.config.ts`, the mani
 ## Disclaimer
 
 This site shows public Wi-Fi hotspot locations from open data and does not represent real-time availability, connection speed, or signal quality. Actual service status should be verified on site and with official notices.
+
+## Policy #8: Wi-Fi allocation and digital inclusion
+
+The independent, bilingual decision-support tab assigns limited **source-verification investigation slots**. Mode A reviews official inventory evidence and compares capacities 5/10/all, Evidence Gaps First and Balanced Facility Review, with explicit identity/scope and stale-source sensitivity. JSON/CSV exports preserve selected source identities, source editions and hashes, assumptions and unavailable metrics.
+
+Mode B geographic facility allocation is unavailable until facility identity, coordinate CRS/precision and geographic evidence pass their admission contract. Mode C requires operational, usage and population/demand evidence. Neither official directory presence nor geographic distance demonstrates working Wi-Fi, actual radio coverage, resident demand or digital inclusion.
+
+The policy pipeline retains original official bytes separately from the explorer:
+
+```bash
+npm run data:fetch:wifi-policy
+npm run data:audit:wifi-policy
+npm run data:build:wifi-policy
+```
+
+Fetching, auditing and building policy data do not migrate the original explorer's retained source edition. Refresh downloads require explicit audit/acceptance before a new edition is used. See the [source audit](docs/wifi-allocation-source-audit.md), [methodology and explicit explorer migration](docs/wifi-allocation-methodology.md), [Traditional Chinese MVP](docs/wifi-allocation-decision-mvp.zh-TW.md), and [delivery evidence](docs/wifi-allocation-delivery.md) for actual results, reproducibility and remaining evidence gaps.

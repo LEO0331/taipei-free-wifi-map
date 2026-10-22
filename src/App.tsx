@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from 'react';
+import { lazy, Suspense, useMemo, useState, useEffect } from 'react';
 import type { Filters, Language, WifiHotspot } from './types';
 import { translations } from './translations';
 import { buildWifiSummary, filterWifiHotspots, hasValidCoordinates } from './lib/wifi';
@@ -8,6 +8,8 @@ import { DataOverviewDashboard } from './components/Dashboard';
 import { HotspotDirectory, NearbyWifiHotspots } from './components/Hotspots';
 import { DisclaimerNotice, FilterPanel, Footer, LanguageToggle, MainTabs, type Tab } from './components/Layout';
 import { WifiMap } from './components/WifiMap';
+
+const WifiPolicyDashboard = lazy(() => import('./components/WifiPolicyDashboard'));
 
 const defaultFilters: Filters = {
   search: '',
@@ -78,9 +80,9 @@ export default function App() {
       </header>
       <main>
         <MainTabs active={active} onChange={setActive} copy={copy} />
-        <FilterPanel filters={filters} onChange={setFilters} options={options} copy={copy} />
+        {active !== 'policy' && <FilterPanel filters={filters} onChange={setFilters} options={options} copy={copy} />}
         <DisclaimerNotice copy={copy} />
-        {loadingError ? <p className="error-message">{copy.loadError}</p> : hotspots.length === 0 ? <p className="loading">{copy.loading}</p> : (
+        {active === 'policy' ? <Suspense fallback={<p className="loading">{copy.policyLoading}</p>}><WifiPolicyDashboard language={language} /></Suspense> : loadingError ? <p className="error-message">{copy.loadError}</p> : hotspots.length === 0 ? <p className="loading">{copy.loading}</p> : (
           <>
             {active === 'map' && (
               <section className="map-section">

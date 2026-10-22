@@ -2,7 +2,7 @@ import type { Filters, Language } from '../types';
 import type { Translation } from '../translations';
 import type { FilterOption } from '../lib/view';
 
-export type Tab = 'map' | 'nearby' | 'directory' | 'overview' | 'notes';
+export type Tab = 'map' | 'nearby' | 'directory' | 'overview' | 'notes' | 'policy';
 
 export function LanguageToggle({
   language,
@@ -35,6 +35,7 @@ export function MainTabs({
     ['directory', copy.hotspotDirectory],
     ['overview', copy.dataOverview],
     ['notes', copy.dataNotes],
+    ['policy', copy.wifiPolicy],
   ];
   return (
     <nav className="tabs" aria-label="Main sections">

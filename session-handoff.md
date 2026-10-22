@@ -4,7 +4,7 @@
 
 - Goal: complete the explicitly permitted Mode A evidence-readiness MVP, preserve original explorer and open one review PR; do not merge.
 - Current branch: `codex/wifi-allocation-decision-support`; base `99f304a017bafda95130052ee3ea1efed4bd5290`.
-- Code, source audit, 18-section Chinese MVP, methodology and delivery evidence are complete. PR creation remains the current delivery step.
+- Code, source audit, 18-section Chinese MVP, methodology and delivery evidence are complete. Review PR [#4](https://github.com/LEO0331/taipei-free-wifi-map/pull/4) is open and not merged. Main implementation commit: `dec5ffabb4d1c8c71f26647e0d69c5f56e7f1896`.
 - Run `./init.sh` (on this Windows host use installed Git Bash), then `npm run data:audit:wifi-policy` and `npm run data:build:wifi-policy`. Stop Vite servers before npm ci on Windows to avoid native-module file locks.
 - Latest full verification: 23/23 tests; TypeScript and production Vite build pass; current policy 3,305 rows, legacy 3,297; immutable snapshot `wifi-policy-c250791e7736ed5bca2882ea`, SHA-256 `91b28d7b375e7fb14ee42bfbe179d792c9e0ed0992f273582dd1e03e6bac8a82`.
 - Browser production checks passed Chinese/English, 390px mobile/1280px desktop, capacities, sensitivity, gates, actual downloads and explorer regressions. No console warnings/errors. Nearby geolocation permission remains untested; pure distance tests pass.

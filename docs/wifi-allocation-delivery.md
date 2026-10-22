@@ -2,7 +2,7 @@
 
 Delivered the task's explicitly permitted **Mode A evidence-readiness MVP**. Mode B is unavailable with audited facility/CRS reasons, and Mode C is unavailable without operational and demand evidence. This is an independent investigation-support POC, not a deployment plan. No dependencies were added. The original explorer edition and behavior are preserved.
 
-Branch: `codex/wifi-allocation-decision-support`. Base: `99f304a017bafda95130052ee3ea1efed4bd5290`, confirmed by `git fetch origin main` on 2026-10-22. One PR against `main` is created for human review; its URL is recorded in the final response and continuity log. No merge is requested or performed.
+Branch: `codex/wifi-allocation-decision-support`. Base: `99f304a017bafda95130052ee3ea1efed4bd5290`, confirmed by `git fetch origin main` on 2026-10-22. Exactly one review PR [#4](https://github.com/LEO0331/taipei-free-wifi-map/pull/4) is open against `main`; main implementation commit is `dec5ffabb4d1c8c71f26647e0d69c5f56e7f1896`. The GitHub connector lacked PR-write permission (403); the repository's existing Git authentication successfully created it through GitHub API. No merge is requested or performed.
 
 ## Sources, editions and reconciliation
 

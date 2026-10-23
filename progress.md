@@ -1,3 +1,12 @@
+## 2026-10-23 — Customer-facing policy workflows (feat-008)
+
+- Updated the clean local checkout to already-merged origin/main (8e01a2b); work is on `codex/wifi-policy-customer-guidance`.
+- Removed the stale v1.0 Mode B unavailable panel. Added bilingual question-led A/B/C navigation with explicit availability, output, next step and interpretation limits.
+- B explains live scenario counts in plain language and makes verified-only emptiness actionable. C provides a three-step field-verification plan; outcomes remain unmeasured.
+- Original A assumptions remain in a disclosure. Retained v1.0 source audit is labelled separately from current B evidence; source IDs, review tiers and analytical modes are distinguished.
+- Verification: full init.sh passes 37 Node tests, 8 GIS tests, identical GIS and 288-scenario hashes, TypeScript/Vite build; final text changes also passed build. Browser checked both languages, dynamic 100/250m results, empty verified-only case, C guidance and A capacity retention. Visual review: 94/100 at observed 714px viewport. No new device-emulated mobile run; no lint script is configured.
+- No dependencies, source data, scenario calculations, exports or evidence contracts changed. Remaining evidence gaps are unchanged; this is guidance, not a service-outcome data collection tool. See `docs/wifi-policy-customer-guidance.md`.
+
 # Session Progress Log
 
 ## 2026-10-22 — Policy #8 v1.1 geographic research

@@ -1,6 +1,16 @@
 {
   "features": [
     {
+      "id": "feat-008",
+      "name": "Customer-facing policy workflows and current Mode B status",
+      "description": "Clarify A/B/C user questions, replace obsolete v1.0 B gate, explain live B scenario results and provide an honest C field-verification workflow in both languages",
+      "dependencies": [
+        "feat-007"
+      ],
+      "status": "done",
+      "evidence": "2026-10-23: init.sh passed 37 Node tests, 8 GIS tests, byte-identical 288-scenario rebuild and TypeScript/Vite build; final copy adjustments also passed build. Production browser checked zh/en A/B/C navigation, 100m (69/87) and 250m (85/87) live explanations, verified-only empty state, C fieldwork steps and retained A capacity after mode switches. Visual review passed at observed 714px viewport; no new device-emulated mobile test. See docs/wifi-policy-customer-guidance.md."
+    },
+    {
       "id": "feat-007",
       "name": "Policy #8 v1.1 geographic evidence and experimental allocation",
       "description": "Offline official boundary validation, explicit facility coordinate assumptions and bilingual experimental Mode B with auditable capacity and sensitivity scenarios",

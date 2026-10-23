@@ -9,14 +9,17 @@ import './WifiGeographicDashboard.css';
 
 const copy = {
   zh: {
-    title:'模式 B · 實驗性公共設施幾何近鄰研究', intro:'公共 Wi-Fi 地理證據驗證與實驗性配置研究',
+    title:'模式 B · 公共設施現勘規劃', intro:'距離與名單情境探索',
+    takeaway:'這個情境告訴你什麼？', nextStep:'現勘前先確認',
+    nextStepNote:'核對設施是否仍開放、位置是否正確、是否允許現勘；到場後再驗證連線與使用條件。距離較遠不等於需求較高，距離較近也不等於可以連線。',
+    noVerified:'選擇「僅官方 CRS 已驗證」時，目前沒有合格設施。這表示座標證據尚不足，不代表沒有公共設施或沒有 Wi-Fi。可切換「已驗證＋假設測試」探索假設情境。',
     warning:'這是設施紀錄的幾何研究；不代表 Wi-Fi 訊號、連線、居民服務、數位近用、設置適宜性或設備設置授權。原始座標準確度與現行營運仍未知。',
     loading:'載入獨立地理研究產物…',error:'地理產物載入或完整性驗證失敗。',retry:'重試',
     evidence:'座標證據門檻',verified:'僅官方 CRS 已驗證',assumed:'已驗證＋假設測試',radius:'幾何距離參數',radiusNote:'100／250／500 公尺是分析參數，不是 Wi-Fi 訊號半徑。',
     geography:'多邊形資格',strict:'嚴格內部（距邊界 > 10 公尺）',flagged:'內部＋標示邊界鄰近不確定性',cohort:'設施母體',all:'合併設施',B:'圖書館',C:'活動中心',D:'運動中心',
     strategy:'研究策略',marginal:'邊際參照近鄰',representation:'行政區／設施類別輪替',capacity:'實地查核名額',allSlots:'全部符合資格',
-    eligible:'候選／參照分母',used:'已用查核名額',excluded:'排除紀錄',baseline:'基線幾何近鄰',increment:'新增幾何近鄰',self:'自身參照貢獻',additional:'其他參照貢獻',
-    trivial:'此情境未發現非自身的新增參照差異；最佳化結論不可用。名單僅供描述性查核。',
+    eligible:'符合情境的設施紀錄',used:'名單筆數',excluded:'排除紀錄',baseline:'距離內有公布熱點的設施紀錄',increment:'假設加入候選後的新增近鄰紀錄',self:'其中：候選自身紀錄',additional:'其中：其他設施紀錄',
+    trivial:'此情境沒有足以支持最佳化的新增其他設施近鄰差異。名單供現勘查核；排序不代表增設效益或投資優先順序。',
     selfNote:'候選與參照使用相同母體。自身零距離貢獻分開列示，不能視為投資效益；新增數量只計尚未近鄰的不同設施紀錄。輪替表示行政區／設施類別多樣性，不代表人口公平。',
     geometry:'官方歷史邊界與座標證據',geometryNote:'2024-09-16 邊界版本，不證明現行行政界。轉換操作約 1 公尺精度不等於原始位置精度。10／25／50 公尺邊界敏感度是假設參數。原始細小重疊完整揭露，沒有靜默修補。',
     polygons:'通過幾何檢查的行政區',tiers:'設施證據層級：已驗證／假設測試／未解決',hotspots:'可用發布熱點列／原始列',disagreements:'熱點／設施行政區不一致',
@@ -31,14 +34,17 @@ const copy = {
     fallback:'來源未提供官方英文設施名稱／地址，兩種語言均保留原文供追溯。',
   },
   en: {
-    title:'Mode B · Experimental Geographic Facility Proximity Review',intro:'Geographic Evidence Validation & Experimental Allocation',
+    title:'Mode B · Facility fieldwork planning',intro:'Distance and shortlist exploration',
+    takeaway:'What does this scenario tell you?',nextStep:'Before a site visit',
+    nextStepNote:'Confirm that the facility is still open, its location is correct and a visit is permitted. Verify connectivity and access conditions on site. Greater distance does not establish greater demand; proximity does not establish connectivity.',
+    noVerified:'The publisher-verified CRS setting currently has no eligible facilities. This means coordinate evidence is insufficient, not that facilities or Wi-Fi are absent. Choose verified + assumption-tested to explore hypothetical scenarios.',
     warning:'Geometric research on facility records only. This does not establish Wi-Fi signal, connectivity, resident service, digital inclusion, installation suitability or authorization. Original positional accuracy and current operation remain unknown.',
     loading:'Loading the independent geographic research artifacts…',error:'Geographic artifacts failed loading or integrity validation.',retry:'Retry',
     evidence:'Coordinate evidence threshold',verified:'Publisher CRS verified only',assumed:'Verified + assumption-tested',radius:'Geometric distance parameter',radiusNote:'100 / 250 / 500 metres are analytical parameters, not Wi-Fi signal radii.',
     geography:'Polygon eligibility',strict:'Strict interior (> 10 m from boundary)',flagged:'Interior + flagged boundary-adjacent uncertainty',cohort:'Facility population',all:'Combined facilities',B:'Libraries',C:'Activity centers',D:'Sports centers',
     strategy:'Research strategy',marginal:'Marginal Reference Proximity',representation:'District / facility-category round-robin',capacity:'Field-review slots',allSlots:'All eligible',
-    eligible:'Candidate / reference denominator',used:'Review slots used',excluded:'Excluded records',baseline:'Baseline geometric proximity',increment:'Newly proximate references',self:'Own-reference contribution',additional:'Other-reference contribution',
-    trivial:'No non-self incremental reference differences were found. The optimization conclusion is unavailable; the shortlist is descriptive investigation only.',
+    eligible:'Eligible facility records',used:'Shortlisted records',excluded:'Excluded records',baseline:'Facility records near a published hotspot',increment:'Newly proximate records after hypothetical additions',self:'Of these: candidate itself',additional:'Of these: other facility records',
+    trivial:'No incremental differences for other facility records support optimization in this scenario. Use the shortlist for field verification; its order establishes neither installation benefit nor investment priority.',
     selfNote:'Candidates and references use the same population. Own-reference zero-distance counts are separated and cannot establish investment benefit. Increments count distinct records not already proximate. Round-robin represents district / facility diversity, not demographic equity.',
     geometry:'Official historical boundaries and coordinate evidence',geometryNote:'Boundary edition 2024-09-16 does not establish current administrative boundaries. The operation’s approximate 1 m accuracy does not establish original positional accuracy. Boundary tolerances 10 / 25 / 50 m are research parameters. Tiny original overlaps are disclosed without silent repair.',
     polygons:'Districts passing geometry checks',tiers:'Facility tiers: verified / assumption-tested / unresolved',hotspots:'Eligible published hotspot rows / original rows',disagreements:'Hotspot / facility district disagreements',
@@ -150,6 +156,13 @@ export default function WifiGeographicDashboard({language}:{language:Language}) 
       <label>{t.strategy}<select value={settings.strategy} onChange={e=>update({strategy:e.target.value as GeographicSettings['strategy']})}><option value="marginal">{t.marginal}</option><option value="representation">{t.representation}</option></select></label>
     </div><p>{t.radiusNote}</p></section>
     <div className="summary-grid policy-summary">{[[t.used,scenario.capacityUsed],[t.eligible,scenario.referenceDenominator],[t.excluded,scenario.excludedCount],[t.baseline,scenario.baselineProximate],[t.increment,scenario.newlyProximate],[t.self,scenario.ownContributions],[t.additional,scenario.additionalContributions]].map(([label,value])=><article key={label}><span>{label}</span><strong>{value}</strong></article>)}</div>
+    <section className="policy-card"><h3>{t.takeaway}</h3>
+      <p>{language === 'zh'
+        ? `在目前假設與篩選下，${scenario.referenceDenominator} 筆設施紀錄中有 ${scenario.baselineProximate} 筆，在 ${settings.radius} 公尺直線距離內有已公布熱點；其餘 ${scenario.referenceDenominator - scenario.baselineProximate} 筆在此距離內未找到合格公布熱點。這不是訊號涵蓋或實際服務缺口。`
+        : `Under the current assumptions and filters, ${scenario.baselineProximate} of ${scenario.referenceDenominator} facility records have an eligible published hotspot within ${settings.radius} metres in a straight line. The remaining ${scenario.referenceDenominator - scenario.baselineProximate} have no eligible published hotspot within that distance. This does not measure signal coverage or an actual service gap.`}</p>
+      {settings.evidence === 'verified' && scenario.referenceDenominator === 0 && <p>{t.noVerified}</p>}
+      <h4>{t.nextStep}</h4><p>{t.nextStepNote}</p>
+    </section>
     <p>{t.selfNote}</p>{!scenario.optimizationAvailable&&<p className="geographic-notice" role="status">{t.trivial}</p>}
     <section className="policy-card"><h3>{t.map}</h3><div className="geographic-options"><label><input type="checkbox" checked={showBoundary} onChange={e=>setShowBoundary(e.target.checked)}/>{t.boundaries}</label><label><input type="checkbox" checked={circles} onChange={e=>setCircles(e.target.checked)}/>{t.circles}</label></div><p>{t.mapNote}</p>{boundaryError&&<p role="alert">{t.boundaries}: {t.error} <button onClick={()=>setBoundaryAttempt(boundaryAttempt+1)}>{t.retry}</button></p>}<ResearchMap facilities={selected} geometry={showBoundary?geometry:undefined} radius={settings.radius} circles={circles} language={language} onSelect={setFocus}/></section>
     <section className="policy-card"><h3>{t.shortlist}</h3><p>{t.fallback}</p>{!selected.length?<p>{t.empty}</p>:<div className="policy-table-scroll"><table><thead><tr><th>{t.name}</th><th>{t.district}</th><th>{t.distance}</th><th>{t.contribution}</th></tr></thead><tbody>{selected.map((f,i)=><tr key={f.id}><td><button className="geographic-facility" onClick={()=>setFocus(f.id)}>{f.name}</button><code>{f.id}</code><span>{t[f.source]} · {local(f.tier)}</span></td><td>{district(f.sourceDistrict)} / {district(f.spatial.district)}</td><td>{f.nearestHotspotMeters[settings.geography]?.toFixed(1)??t.unknown} m</td><td>{scenario.selected[i].ownReference} / {scenario.selected[i].additionalReferences} / {scenario.selected[i].marginalReferences}<p>{local(scenario.selected[i].reason)}</p></td></tr>)}</tbody></table></div>}</section>

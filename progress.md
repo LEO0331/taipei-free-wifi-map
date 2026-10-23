@@ -1,3 +1,19 @@
+## 2026-10-23 — Investigation map mouse-wheel zoom (feat-009)
+
+- `src/components/WifiGeographicDashboard.tsx`: removed the explicit wheel-zoom disable, using Leaflet's existing enabled default; added Chinese/English wheel, +/− and drag instructions. No dependencies or map abstractions added.
+- Full init.sh passed 37 Node tests, 8 GIS tests, identical geographic/288-scenario rebuild and TypeScript/Vite build. Preview was stopped before npm ci to resolve its Windows native-module lock.
+- Actual production browser: + zoom 11→12, wheel-up 12→13, wheel-down 13→12, drag changed map-pane translation, − zoom 12→11. Evidence: `docs/evidence/policy-guidance/mouse-wheel-zoom.png`.
+- Updated feature tracker. No analytical/data changes. Mouse wheel now zooms while the pointer is over the map; page scrolling remains available outside it. Touch-device gestures were not re-tested. No lint script is configured.
+
+## 2026-10-23 — Customer-facing policy workflows (feat-008)
+
+- Updated the clean local checkout to already-merged origin/main (8e01a2b); work is on `codex/wifi-policy-customer-guidance`.
+- Removed the stale v1.0 Mode B unavailable panel. Added bilingual question-led A/B/C navigation with explicit availability, output, next step and interpretation limits.
+- B explains live scenario counts in plain language and makes verified-only emptiness actionable. C provides a three-step field-verification plan; outcomes remain unmeasured.
+- Original A assumptions remain in a disclosure. Retained v1.0 source audit is labelled separately from current B evidence; source IDs, review tiers and analytical modes are distinguished.
+- Verification: full init.sh passes 37 Node tests, 8 GIS tests, identical GIS and 288-scenario hashes, TypeScript/Vite build; final text changes also passed build. Browser checked both languages, dynamic 100/250m results, empty verified-only case, C guidance and A capacity retention. Visual review: 94/100 at observed 714px viewport. No new device-emulated mobile run; no lint script is configured.
+- No dependencies, source data, scenario calculations, exports or evidence contracts changed. Remaining evidence gaps are unchanged; this is guidance, not a service-outcome data collection tool. See `docs/wifi-policy-customer-guidance.md`.
+
 # Session Progress Log
 
 ## 2026-10-22 — Policy #8 v1.1 geographic research

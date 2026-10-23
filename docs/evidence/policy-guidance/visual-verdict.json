@@ -1,0 +1,12 @@
+{
+  "score": 94,
+  "verdict": "pass",
+  "category_match": true,
+  "differences": [
+    "Question-led navigation replaces the mode dropdown; the existing paper surfaces, typography and blue selection accent are preserved."
+  ],
+  "suggestions": [],
+  "reasoning": "Both observed language layouts have clear status, purpose and next-step hierarchy without clipping in the guide at the observed 714px viewport. C clearly distinguishes guidance from unmeasured outcomes.",
+  "threshold": 90,
+  "next_actions": []
+}

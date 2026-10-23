@@ -1,6 +1,16 @@
 {
   "features": [
     {
+      "id": "feat-009",
+      "name": "Mouse-wheel zoom on the investigation candidate map",
+      "description": "Enable Leaflet mouse-wheel zoom in Mode B and explain wheel, button and drag gestures in both languages",
+      "dependencies": [
+        "feat-008"
+      ],
+      "status": "done",
+      "evidence": "2026-10-23: Full init.sh passed 37 Node tests, 8 GIS tests, byte-identical geographic/288-scenario rebuild and TypeScript/Vite build. Production browser verified + button 11→12, wheel-up 12→13, wheel-down 13→12, drag pan changed map-pane translation, and − button 12→11. Bilingual map instructions updated; see docs/evidence/policy-guidance/mouse-wheel-zoom.png."
+    },
+    {
       "id": "feat-008",
       "name": "Customer-facing policy workflows and current Mode B status",
       "description": "Clarify A/B/C user questions, replace obsolete v1.0 B gate, explain live B scenario results and provide an honest C field-verification workflow in both languages",

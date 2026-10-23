@@ -23,7 +23,7 @@ const copy = {
     selfNote:'候選與參照使用相同母體。自身零距離貢獻分開列示，不能視為投資效益；新增數量只計尚未近鄰的不同設施紀錄。輪替表示行政區／設施類別多樣性，不代表人口公平。',
     geometry:'官方歷史邊界與座標證據',geometryNote:'2024-09-16 邊界版本，不證明現行行政界。轉換操作約 1 公尺精度不等於原始位置精度。10／25／50 公尺邊界敏感度是假設參數。原始細小重疊完整揭露，沒有靜默修補。',
     polygons:'通過幾何檢查的行政區',tiers:'設施證據層級：已驗證／假設測試／未解決',hotspots:'可用發布熱點列／原始列',disagreements:'熱點／設施行政區不一致',
-    map:'調查候選地圖',boundaries:'顯示歷史官方邊界',circles:'顯示假設性幾何研究半徑',mapNote:'最多顯示 91 筆候選；點選標記或表格可檢視同一筆來源。半徑圓不代表無線電涵蓋。',
+    map:'調查候選地圖',boundaries:'顯示歷史官方邊界',circles:'顯示假設性幾何研究半徑',mapNote:'使用滑鼠滾輪或＋／－縮放，拖曳地圖移動。最多顯示 91 筆候選；點選標記或表格可檢視同一筆來源。半徑圓不代表無線電涵蓋。',
     shortlist:'實際來源衍生名單',name:'來源設施（原文）',district:'來源／多邊形行政區',distance:'最近合格發布熱點距離',contribution:'自身／其他／合計新增',detail:'來源與證據詳情',
     original:'原始座標',transformed:'轉換座標',assumption:'假設 CRS',status:'空間檢查',boundary:'距最近界線',tier:'證據層級',row:'來源列',unknown:'未知／未建立',
     empty:'此設定沒有符合資格的候選。已驗證母體為空是有效研究結果。',selection:'選取原因',
@@ -48,7 +48,7 @@ const copy = {
     selfNote:'Candidates and references use the same population. Own-reference zero-distance counts are separated and cannot establish investment benefit. Increments count distinct records not already proximate. Round-robin represents district / facility diversity, not demographic equity.',
     geometry:'Official historical boundaries and coordinate evidence',geometryNote:'Boundary edition 2024-09-16 does not establish current administrative boundaries. The operation’s approximate 1 m accuracy does not establish original positional accuracy. Boundary tolerances 10 / 25 / 50 m are research parameters. Tiny original overlaps are disclosed without silent repair.',
     polygons:'Districts passing geometry checks',tiers:'Facility tiers: verified / assumption-tested / unresolved',hotspots:'Eligible published hotspot rows / original rows',disagreements:'Hotspot / facility district disagreements',
-    map:'Investigation candidate map',boundaries:'Show historical official boundaries',circles:'Show hypothetical geometric research radius',mapNote:'At most 91 candidate markers. Select a marker or table row to inspect its source record. Circles do not represent radio coverage.',
+    map:'Investigation candidate map',boundaries:'Show historical official boundaries',circles:'Show hypothetical geometric research radius',mapNote:'Use the mouse wheel or + / − to zoom, and drag to pan. At most 91 candidate markers. Select a marker or table row to inspect its source record. Circles do not represent radio coverage.',
     shortlist:'Actual source-derived shortlist',name:'Source facility (original wording)',district:'Source / polygon district',distance:'Nearest eligible published hotspot',contribution:'Own / other / total new references',detail:'Source and evidence details',
     original:'Original coordinates',transformed:'Transformed coordinates',assumption:'Assumed CRS',status:'Spatial check',boundary:'Nearest boundary distance',tier:'Coordinate evidence',row:'Source row',unknown:'Unknown / not established',
     empty:'No candidates qualify. An empty verified-only population is a valid research result.',selection:'Selection reason',
@@ -74,7 +74,7 @@ function ResearchMap({facilities, geometry, radius, circles, language, onSelect}
   const view = useRef<{center:L.LatLng;zoom:number}>(null);
   useEffect(()=>{
     if (!container.current) return;
-    const map=L.map(container.current,{scrollWheelZoom:false}).setView(view.current?.center??[25.065,121.54],view.current?.zoom??11);
+    const map=L.map(container.current).setView(view.current?.center??[25.065,121.54],view.current?.zoom??11);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:19}).addTo(map);
     if (geometry) L.geoJSON(geometry,{style:{color:'#617866',weight:1,fillOpacity:0.025}}).addTo(map);
     for (const f of facilities.slice(0,91)) if (f.latitude!==null && f.longitude!==null) {

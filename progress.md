@@ -1,3 +1,10 @@
+## 2026-10-23 — Investigation map mouse-wheel zoom (feat-009)
+
+- `src/components/WifiGeographicDashboard.tsx`: removed the explicit wheel-zoom disable, using Leaflet's existing enabled default; added Chinese/English wheel, +/− and drag instructions. No dependencies or map abstractions added.
+- Full init.sh passed 37 Node tests, 8 GIS tests, identical geographic/288-scenario rebuild and TypeScript/Vite build. Preview was stopped before npm ci to resolve its Windows native-module lock.
+- Actual production browser: + zoom 11→12, wheel-up 12→13, wheel-down 13→12, drag changed map-pane translation, − zoom 12→11. Evidence: `docs/evidence/policy-guidance/mouse-wheel-zoom.png`.
+- Updated feature tracker. No analytical/data changes. Mouse wheel now zooms while the pointer is over the map; page scrolling remains available outside it. Touch-device gestures were not re-tested. No lint script is configured.
+
 ## 2026-10-23 — Customer-facing policy workflows (feat-008)
 
 - Updated the clean local checkout to already-merged origin/main (8e01a2b); work is on `codex/wifi-policy-customer-guidance`.

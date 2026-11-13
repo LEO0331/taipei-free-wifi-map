@@ -1,5 +1,5 @@
 const BASE = '/taipei-free-wifi-map/';
-const CACHE = 'taipei-wifi-v4-policy-locale-1';
+const CACHE = 'taipei-wifi-v5-geographic-experiment-1';
 const ASSETS = [BASE, `${BASE}data/wifi-hotspots.json`, `${BASE}data/wifi-summary.json`];
 
 self.addEventListener('install', (event) => {

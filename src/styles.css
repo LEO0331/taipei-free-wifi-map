@@ -99,6 +99,7 @@ main { width: min(1480px, 100%); margin: auto; padding: 0 clamp(12px, 3vw, 40px)
 .nearby-controls .primary-button { margin: 0; min-height: 46px; }
 .nearby-controls label { display: grid; gap: 4px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .nearby-controls select { min-height: 46px; min-width: 120px; border: 1px solid var(--line); background: var(--surface); padding: 0 10px; }
+.location-privacy { margin: 0 0 14px; color: var(--muted); font-size: 13px; }
 .location-ready { color: #1f6a45; font-weight: 600; }
 .error-message { margin: 16px 0; padding: 12px; background: #ffe4dc; border-left: 4px solid var(--red); color: #762813; }
 

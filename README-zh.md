@@ -114,3 +114,18 @@ npm run data:build:wifi-policy
 ```
 
 政策下載、稽核及建置不會自動遷移原地圖的保留來源版本。明確要求重新下載的資料，仍須經稽核及接受程序才能成為新版本。實際結果、重現方式與未解證據請見[來源稽核](docs/wifi-allocation-source-audit.md)、[方法與明確版本遷移](docs/wifi-allocation-methodology.md)、[繁體中文 MVP](docs/wifi-allocation-decision-mvp.zh-TW.md)及[交付驗證](docs/wifi-allocation-delivery.md)。
+
+## 政策 #8 v1.1：公共 Wi-Fi 地理證據驗證與實驗性配置研究
+
+前述模式 B 門檻描述保留的 v1.0 基線。v1.1 另增**實驗性公共設施幾何近鄰研究**：驗證歷史官方行政區界、逐列記錄設施座標假設及證據資格，提供 5／10／全部調查名額、可重現情境比較及保留來源追溯的 JSON／CSV 匯出。模式 A 及原探索器 3,297 列版本保留，模式 C 仍不可用。
+
+實際檢查 91 列官方設施紀錄，已驗證 0、假設檢驗通過 87、未解 4；因此只接受已驗證的空結果是合理結果。已公布位置及假設 100／250／500 公尺幾何距離不能證明 Wi-Fi 訊號涵蓋、居民服務、數位近用或建置可行性。候選與參考使用相同群體，自身關聯另行揭示，不能當作最佳化成效。
+
+GIS 使用 Python 3.12 及固定版本工具離線執行，瀏覽器無須 Python：
+
+```bash
+python -m pip install -r requirements-geographic.txt
+npm run data:build:wifi-geographic
+```
+
+完整重現方式、假設、結果及實際驗證請見[v1.1 方法](docs/wifi-allocation-v1.1-methodology.md)、[來源驗證](docs/wifi-allocation-v1.1-source-validation.md)、[座標契約](docs/wifi-allocation-v1.1-coordinate-contract.md)、[繁體中文研究 MVP](docs/wifi-allocation-v1.1-decision-mvp.zh-TW.md)及[交付紀錄](docs/wifi-allocation-v1.1-delivery.md)。原始內容定址 v1.0 快照保持不變；v1.1 產物位於 `public/data/wifi-policy/geographic-v1.1/`。

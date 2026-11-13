@@ -104,7 +104,7 @@ export function NearbyWifiHotspots({
         {hasLocation && <p>{nearby.length.toLocaleString()} {copy.listedHotspots}</p>}
       </div>
       <div className="nearby-controls">
-        <button className="primary-button" onClick={onLocate}>◎ {copy.showNearbyWifi}</button>
+        <button className="primary-button" onClick={onLocate} aria-describedby="location-privacy">◎ {copy.showNearbyWifi}</button>
         <label>{copy.radius}
           <select value={radius} onChange={(event) => onRadiusChange(Number(event.target.value))}>
             <option value={300}>300m</option>
@@ -114,6 +114,7 @@ export function NearbyWifiHotspots({
           </select>
         </label>
       </div>
+      <p id="location-privacy" className="location-privacy">{copy.locationPrivacy}</p>
       {error && <p className="error-message" role="alert">{error}</p>}
       {hasLocation && <p className="location-ready">● {copy.locationReady}</p>}
       <div className="directory-grid">

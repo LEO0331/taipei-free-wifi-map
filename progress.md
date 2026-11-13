@@ -1,5 +1,12 @@
 # Session Progress Log
 
+## 2026-11-13 — Geographic v1.1 security follow-up
+
+- Limited Pages write and OIDC permissions to the deploy job, pinned Actions to official commit SHAs, and disabled checkout credential persistence.
+- Added a bilingual notice beside the location control. Mode A and experimental Mode B share an HTTPS allowlist for official source links. The geographic link validation runs on the lazy policy tab.
+- Baseline `./init.sh` passed. After the fixes, all 41 tests and `npm run build` passed. The explorer conversion retained 3,297 rows. Mode A and geographic artifacts rebuilt byte for byte.
+- Browser timing and GitHub runner verification remain pending. See [v1.1 delivery](docs/wifi-allocation-v1.1-delivery.md) for the artifact and measurement evidence.
+
 ## 2026-10-22 — Policy tab language consistency
 
 - Review PR [#5](https://github.com/LEO0331/taipei-free-wifi-map/pull/5) is open and not merged; localization implementation commit `ac22822`.

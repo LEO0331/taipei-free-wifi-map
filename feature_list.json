@@ -1,6 +1,14 @@
 {
   "features": [
     {
+      "id": "feat-007",
+      "name": "Policy #8 v1.1 geographic evidence and experimental allocation",
+      "description": "Offline official boundary transformation, per-facility coordinate evidence audit, experimental Mode B scenarios and bilingual lazy GIS view with auditable exports; preserve Mode A and gate Mode C",
+      "dependencies": ["feat-005", "feat-006"],
+      "status": "in_progress",
+      "evidence": "2026-11-13: local conversion retains 3,297 explorer rows; 41 tests and TypeScript/Vite build pass. Geographic and Mode A artifacts rebuild byte for byte. Deployment permissions, bilingual location notice, and official source URL validation updated. Browser performance and GitHub CI checks remain pending. See docs/wifi-allocation-v1.1-delivery.md."
+    },
+    {
       "id": "feat-006",
       "name": "Consistent policy-tab localization",
       "description": "Localize all policy UI explanations and source status text; use edition-matched official English candidate labels while preserving traceable source identifiers",

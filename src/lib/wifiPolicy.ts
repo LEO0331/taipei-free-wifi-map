@@ -2,6 +2,17 @@ import type { PolicyScenario, WifiPolicySnapshot } from '../types/wifiPolicy.js'
 
 export const POLICY_DISCLAIMER = 'Independent research POC. Investigation priority is not connectivity harm, RF coverage, digital exclusion, or approval to install, remove or relocate equipment.';
 
+export function isOfficialWifiSourceUrl(value: unknown): boolean {
+  if (typeof value !== 'string') return false;
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && !url.username && !url.password && !url.port
+      && ['data.taipei', 'tsis.dbas.gov.taipei'].includes(url.hostname);
+  } catch {
+    return false;
+  }
+}
+
 export function validateWifiPolicySnapshot(value: unknown): asserts value is WifiPolicySnapshot {
   const fail=()=>{throw new Error('Invalid or incompatible Wi-Fi policy snapshot.');};
   const record=(v:unknown):v is Record<string,unknown>=>!!v&&typeof v==='object'&&!Array.isArray(v);
@@ -12,11 +23,7 @@ export function validateWifiPolicySnapshot(value: unknown): asserts value is Wif
   const hashes=new Set<string>();
   for(const source of value.sourceEditions){
     if(!record(source)||!['id','datasetId','catalogueUrl','url','status'].every(key=>typeof source[key]==='string'&&source[key])||typeof source.sha256!=='string'||!/^[a-f0-9]{64}$/.test(source.sha256)||typeof source.bytes!=='number'||!Number.isSafeInteger(source.bytes)||source.bytes<=0||source.retrievedAt!==null&&typeof source.retrievedAt!=='string'||source.publishedAt!==null&&typeof source.publishedAt!=='string')return fail();
-    for(const key of ['catalogueUrl','url']){
-      let url: URL;
-      try { url=new URL(source[key] as string); } catch { return fail(); }
-      if(url.protocol!=='https:'||!['data.taipei','tsis.dbas.gov.taipei'].includes(url.hostname)||url.username||url.password)return fail();
-    }
+    if (!isOfficialWifiSourceUrl(source.catalogueUrl) || !isOfficialWifiSourceUrl(source.url)) return fail();
     if(source.resourceId!==null&&typeof source.resourceId!=='string')return fail();
     if(source.notes!==undefined&&!strings(source.notes)||source.exclusionReasons!==undefined&&!strings(source.exclusionReasons))return fail();
     hashes.add(source.sha256);

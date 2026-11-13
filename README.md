@@ -114,3 +114,18 @@ npm run data:build:wifi-policy
 ```
 
 Fetching, auditing and building policy data do not migrate the original explorer's retained source edition. Refresh downloads require explicit audit/acceptance before a new edition is used. See the [source audit](docs/wifi-allocation-source-audit.md), [methodology and explicit explorer migration](docs/wifi-allocation-methodology.md), [Traditional Chinese MVP](docs/wifi-allocation-decision-mvp.zh-TW.md), and [delivery evidence](docs/wifi-allocation-delivery.md) for actual results, reproducibility and remaining evidence gaps.
+
+## Policy #8 v1.1: experimental geographic evidence
+
+The preceding Mode B gate describes the preserved v1.0 baseline. v1.1 adds a separate **experimental geographic facility proximity** view with validated historical district geometry, per-record coordinate assumptions and evidence admission, capacity 5/10/all, reproducible scenario comparisons and lineage-rich JSON/CSV exports. Mode A and the 3,297-row explorer edition remain preserved; Mode C remains unavailable.
+
+The actual facility audit examines 91 official records: 0 verified, 87 assumption-tested and 4 unresolved. Verified-only therefore legitimately returns an empty result. Published-location proximity and hypothetical 100/250/500 m distances do not establish Wi-Fi coverage, resident service, digital inclusion or installation suitability. Candidate and reference records use the same cohort; self-association is reported separately and cannot justify optimization claims.
+
+GIS runs offline using Python 3.12 and pinned build-time libraries. No Python runtime is needed in the browser:
+
+```bash
+python -m pip install -r requirements-geographic.txt
+npm run data:build:wifi-geographic
+```
+
+See the [v1.1 methodology and full reproduction commands](docs/wifi-allocation-v1.1-methodology.md), [source validation](docs/wifi-allocation-v1.1-source-validation.md), [coordinate contracts](docs/wifi-allocation-v1.1-coordinate-contract.md), [Traditional Chinese research MVP](docs/wifi-allocation-v1.1-decision-mvp.zh-TW.md), and [actual results and verification](docs/wifi-allocation-v1.1-delivery.md). The original content-addressed v1.0 snapshot remains immutable; v1.1 artifacts live under `public/data/wifi-policy/geographic-v1.1/`.

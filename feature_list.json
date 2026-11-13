@@ -28,8 +28,8 @@
         "feat-005",
         "feat-006"
       ],
-      "status": "in_progress",
-      "evidence": "2026-10-22: Full init.sh passes 37 Node tests, 8 Python GIS tests, byte-identical GIS/scenario rebuild and TypeScript/Vite build. Official polygons12; facility tiers0/87/4; all288 scenarios, bilingual desktop/mobile, real exports and provenance verified. No non-self modeled gain; optimization explicitly unavailable. Review PR pending creation; see docs/wifi-allocation-v1.1-delivery.md."
+      "status": "done",
+      "evidence": "Merged in PR #6. On 2026-11-13, PR #8 retained the released v1.1 data and PR #7 UI. Full init.sh passed 38 Node tests, 8 Python GIS tests, byte-identical GIS and 288-scenario rebuild, and TypeScript/Vite build. See docs/wifi-allocation-v1.1-delivery.md."
     },
     {
       "id": "feat-006",

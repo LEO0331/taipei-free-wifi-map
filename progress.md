@@ -1,3 +1,8 @@
+## 2026-11-13 — PR #8 conflict resolution
+
+- Adopted the geographic v1.1 release already merged in PR #6, with PR #7's bilingual guidance and map wheel zoom. Kept the deployment permissions and SHA pins, bilingual location notice, and official HTTPS link validation from the security follow-up.
+- Full `./init.sh` passed with 38 Node tests, eight GIS tests and the production build. The retained v1.1 data and all 288 scenarios rebuilt byte for byte.
+
 ## 2026-10-23 — Investigation map mouse-wheel zoom (feat-009)
 
 - `src/components/WifiGeographicDashboard.tsx`: removed the explicit wheel-zoom disable, using Leaflet's existing enabled default; added Chinese/English wheel, +/− and drag instructions. No dependencies or map abstractions added.

@@ -39,6 +39,14 @@ test('all actual facility cohorts, empty verified-only, capacities and determini
   assert.equal(snapshot.modeC.available,false);
 });
 
+test('geographic catalogue links require the official HTTPS origin', () => {
+  for (const catalogueUrl of ['http://data.taipei', 'https://example.invalid', 'https://data.taipei:8443']) {
+    const candidate = structuredClone(snapshot);
+    candidate.sourceEditions[0].catalogueUrl = catalogueUrl;
+    assert.throws(() => validateGeographicSnapshot(candidate), /Invalid source lineage/);
+  }
+});
+
 test('marginal recalculation excludes counted references, explicit zero-distance self and exact threshold',()=>{
   const result=run(fixture());assert.equal(result.selectedIds[0],'b');assert.equal(result.selected[0].ownReference,1);
   assert.equal(result.selected[0].additionalReferences,2);assert.equal(result.selected[1].marginalReferences,0);

@@ -1,3 +1,4 @@
+import { isOfficialWifiSourceUrl } from './wifiPolicy.js';
 import type { GeographicManifest, GeographicScenario, GeographicSnapshot } from '../types/wifiGeographicPolicy.js';
 
 export const GEOGRAPHIC_RESPONSIBLE_USE = 'Experimental geometric research only. CRS assumptions and distance parameters do not establish radio coverage, connectivity, resident access, demand, installation suitability or authorization.';
@@ -18,8 +19,7 @@ export function validateGeographicSnapshot(value: unknown): asserts value is Geo
   if(!/^wifi-geo-[a-f0-9]{24}$/.test(s.versionId)) throw new Error('Invalid snapshot version');
   if(s.sourceEditions.length!==5 || new Set(s.sourceEditions.map(source=>source.id)).size!==5 || !['A','B','C','D','E'].every(id=>s.sourceEditions.some(source=>source.id===id))) throw new Error('Invalid source population');
   for(const source of s.sourceEditions) {
-    const url=new URL(source.catalogueUrl);
-    if(url.protocol!=='https:' || url.hostname!=='data.taipei' || url.username || url.password || !/^[a-f0-9]{64}$/.test(source.sha256)) throw new Error('Invalid source lineage');
+    if(!source || !isOfficialWifiSourceUrl(source.catalogueUrl, 'data.taipei') || !/^[a-f0-9]{64}$/.test(source.sha256)) throw new Error('Invalid source lineage');
   }
   for (const f of s.facilities) {
     if (!f || typeof f.id !== 'string' || ids.has(f.id) || !['B','C','D'].includes(f.source) || !['verified','assumption-tested','unresolved'].includes(f.tier) || typeof f.eligible !== 'boolean' || f.tier === 'unresolved' && f.eligible || !s.sourceEditions.some(source=>source.id===f.source && source.sha256===f.sourceHash) || !Array.isArray(f.neighbors) || !Array.isArray(f.issues) || !f.spatial || !['strict','flagged'].every(k=>{const n=f.nearestHotspotMeters?.[k as 'strict'];return n===null || typeof n==='number' && Number.isFinite(n) && n>=0;})) throw new Error('Invalid facility evidence');

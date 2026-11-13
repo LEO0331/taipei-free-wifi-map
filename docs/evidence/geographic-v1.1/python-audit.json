@@ -1,0 +1,1 @@
+{"dependencies": [{"name": "pyproj", "version": "3.7.2", "vulns": []}, {"name": "shapely", "version": "2.1.2", "vulns": []}, {"name": "pyshp", "version": "3.0.3", "vulns": []}, {"name": "numpy", "version": "2.5.4", "vulns": []}, {"name": "certifi", "version": "2026.10.19", "vulns": []}], "fixes": []}

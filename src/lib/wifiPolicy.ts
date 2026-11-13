@@ -2,12 +2,12 @@ import type { PolicyScenario, WifiPolicySnapshot } from '../types/wifiPolicy.js'
 
 export const POLICY_DISCLAIMER = 'Independent research POC. Investigation priority is not connectivity harm, RF coverage, digital exclusion, or approval to install, remove or relocate equipment.';
 
-export function isOfficialWifiSourceUrl(value: unknown): boolean {
+export function isOfficialWifiSourceUrl(value: unknown, requiredHost?: 'data.taipei'): boolean {
   if (typeof value !== 'string') return false;
   try {
     const url = new URL(value);
     return url.protocol === 'https:' && !url.username && !url.password && !url.port
-      && ['data.taipei', 'tsis.dbas.gov.taipei'].includes(url.hostname);
+      && (requiredHost ? url.hostname === requiredHost : ['data.taipei', 'tsis.dbas.gov.taipei'].includes(url.hostname));
   } catch {
     return false;
   }

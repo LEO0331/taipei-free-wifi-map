@@ -1,42 +1,67 @@
-import type { GeographicFacility, GeographicScenario, GeographicScenarioSettings, GeographicSelection, GeographicSnapshot } from '../types/wifiGeographicPolicy.js';
-const lexical = (a: string, b: string) => a < b ? -1 : a > b ? 1 : 0;
-export const DEFAULT_GEOGRAPHIC_SETTINGS: GeographicScenarioSettings = { evidence: 'verified-only', radiusMeters: 250, boundary: 'strict', boundaryToleranceMeters: 25, cohort: 'all', capacity: 5, strategy: 'marginal' };
+import type { GeographicScenario, GeographicSettings, GeographicSnapshot, GeographicSelection } from '../types/wifiGeographicPolicy.js';
 
-export function runWifiGeographicScenario(snapshot: GeographicSnapshot, settings: GeographicScenarioSettings): GeographicScenario {
-  if (!['verified-only','assumption-tested'].includes(settings.evidence) || ![100,250,500].includes(settings.radiusMeters) || !['strict','flagged'].includes(settings.boundary) || ![10,25,50].includes(settings.boundaryToleranceMeters) || !['B','C','D','all'].includes(settings.cohort) || ![5,10,'all'].includes(settings.capacity) || !['marginal','representation'].includes(settings.strategy)) throw new Error('Unsupported geographic scenario.');
-  const exclusionReasons: Record<string,number> = {};
-  const reason = (f: GeographicFacility) => settings.cohort !== 'all' && f.source !== settings.cohort ? 'source-cohort' : !f.identityQualified ? 'unqualified-identity' : f.evidenceTier === 'unresolved' ? 'unresolved-coordinate' : settings.evidence === 'verified-only' && f.evidenceTier !== 'verified' ? 'assumed-crs-excluded' : f.longitude === null || f.latitude === null ? 'invalid-coordinate' : !['interior','boundary'].includes(f.spatial.status) || !f.spatial.district ? 'unresolved-polygon-membership' : settings.boundary === 'strict' && (f.spatial.status !== 'interior' || f.spatial.distanceToBoundaryMeters === null || f.spatial.distanceToBoundaryMeters <= settings.boundaryToleranceMeters) ? 'boundary-uncertainty' : f.exclusionReasons.length ? f.exclusionReasons[0] : null;
-  const eligible = snapshot.facilities.filter(f => { const r = reason(f); if (r) exclusionReasons[r]=(exclusionReasons[r]??0)+1; return !r; }).sort((a,b)=>lexical(a.id,b.id));
-  const index = new Map(snapshot.distances.facilityIds.map((id,i)=>[id,i]));
-  const nearest = (id: string) => settings.boundary==='strict' ? snapshot.distances.nearestHotspot[id].strictByTolerance[String(settings.boundaryToleranceMeters) as '10'|'25'|'50'] : snapshot.distances.nearestHotspot[id].flagged;
-  const baseline = eligible.filter(f=>{const n=nearest(f.id);return n.distanceMeters!==null && n.distanceMeters <= settings.radiusMeters;}).map(f=>f.id);
-  const counted = new Set(baseline), selectedIds: string[] = [], selections: GeographicSelection[] = [], districtCounts = new Map<string,number>();
-  const associations = (f: GeographicFacility) => eligible.filter(r=>snapshot.distances.facilityMeters[index.get(f.id)!][index.get(r.id)!] <= settings.radiusMeters);
-  const gain = (f: GeographicFacility) => associations(f).filter(r=>!counted.has(r.id));
-  const hasAdditional = eligible.some(f=>gain(f).some(r=>r.id!==f.id));
-  const limit = settings.capacity === 'all' ? eligible.length : Math.min(settings.capacity,eligible.length);
-  const optimizationUnavailableReasons = !eligible.length ? ['empty-eligible-cohort'] : !hasAdditional ? ['no-additional-nonself-reference-gain'] : settings.capacity === 'all' || limit === eligible.length ? ['all-eligible-selection-has-no-capacity-tradeoff'] : [];
-  const optimizationAvailable = !optimizationUnavailableReasons.length;
-  while (selectedIds.length < limit) {
-    const remaining = eligible.filter(f=>!selectedIds.includes(f.id));
-    remaining.sort((a,b)=>{
-      if (settings.strategy==='representation') {const d=(districtCounts.get(a.spatial.district!)??0)-(districtCounts.get(b.spatial.district!)??0); if(d)return d;}
-      if (!optimizationAvailable) return lexical(a.id,b.id);
-      // Additional references are the objective. Own-record association is separately disclosed.
-      const additional=(f: GeographicFacility)=>gain(f).filter(r=>r.id!==f.id).length;
-      return additional(b)-additional(a)||lexical(a.id,b.id);
+export const defaultGeographicSettings: GeographicSettings = { capacity: 5, strategy: 'marginal', evidence: 'assumed', radius: 100, geography: 'strict', cohort: 'all' };
+const lexical = (a: string,b: string) => a < b ? -1 : a > b ? 1 : 0;
+
+export function runGeographicScenario(snapshot: GeographicSnapshot, versionId: string, settings: GeographicSettings): GeographicScenario {
+  if (snapshot.methodVersion !== 'wifi-geographic-proximity-experiment-v1' || snapshot.versionId !== versionId || !/^wifi-geo-[a-f0-9]{24}$/.test(versionId)) throw new Error('Geographic version mismatch');
+  if (![5,10,'all'].includes(settings.capacity) || ![100,250,500].includes(settings.radius) || !['marginal','representation'].includes(settings.strategy) || !['verified','assumed'].includes(settings.evidence) || !['strict','flagged'].includes(settings.geography) || !['all','B','C','D'].includes(settings.cohort)) throw new Error('Unsupported geographic scenario');
+  const excluded = snapshot.facilities.map(f => ({id:f.id,reasons:[
+    ...(!f.eligible || f.tier === 'unresolved' ? f.issues.length ? f.issues : ['unresolved'] : []),
+    ...(settings.evidence === 'verified' && f.tier !== 'verified' ? ['requires-verified'] : []),
+    ...(settings.cohort !== 'all' && settings.cohort !== f.source ? ['other-cohort'] : []),
+    ...(settings.geography === 'strict' && f.spatial.status !== 'interior' ? ['strict-interior-required'] : []),
+  ]})).filter(f => f.reasons.length).sort((a,b)=>lexical(a.id,b.id));
+  const rejected = new Set(excluded.map(f => f.id));
+  const population = snapshot.facilities.filter(f => !rejected.has(f.id)).sort((a,b) => lexical(a.id,b.id));
+  const referenceIds = new Set(population.map(f => f.id));
+  const baselineIds = population.filter(f => {
+    const d = f.nearestHotspotMeters[settings.geography];
+    return d !== null && d <= settings.radius;
+  }).map(f => f.id);
+  const counted = new Set(baselineIds);
+  const associations = new Map(population.map(f => [f.id, [...new Set(f.neighbors.filter(n => n.meters <= settings.radius && referenceIds.has(n.id)).map(n => n.id))]]));
+  // A self-only association can never establish a meaningful geographic gain.
+  const uncoveredNeighborhoods = population.map(f => (associations.get(f.id) ?? []).filter(id=>!counted.has(id)).sort(lexical));
+  const optimizationAvailable = new Set(uncoveredNeighborhoods.map(ids=>JSON.stringify(ids))).size>1 && population.some(f => (associations.get(f.id) ?? []).some(id => id !== f.id && !counted.has(id)));
+  const remaining = [...population], selected: GeographicSelection[] = [];
+  const groups = new Map<string,number>();
+  const limit = settings.capacity === 'all' ? remaining.length : Math.min(settings.capacity,remaining.length);
+  while (selected.length < limit) {
+    const gain = (id: string) => (associations.get(id) ?? []).filter(r => !counted.has(r));
+    remaining.sort((a,b) => {
+      if (settings.strategy === 'representation') {
+        const ga = `${a.spatial.district}|${a.source}`, gb = `${b.spatial.district}|${b.source}`;
+        const balance = (groups.get(ga) ?? 0) - (groups.get(gb) ?? 0);
+        if (balance) return balance;
+      }
+      return (optimizationAvailable ? gain(b.id).length - gain(a.id).length : 0) || lexical(a.id,b.id);
     });
-    const chosen=remaining[0], newly=gain(chosen), selfContribution=newly.some(r=>r.id===chosen.id)?1:0;
-    selections.push({id:chosen.id,order:selections.length+1,reason:settings.strategy==='representation'?'district-representation':optimizationAvailable&&newly.length>selfContribution?'marginal-additional-reference':'descriptive-stable-order',selfContribution,additionalContribution:newly.length-selfContribution,totalContribution:newly.length,newlyAssociatedReferenceIds:newly.map(r=>r.id),nearestHotspot:nearest(chosen.id)});
-    selectedIds.push(chosen.id); newly.forEach(r=>counted.add(r.id)); districtCounts.set(chosen.spatial.district!,(districtCounts.get(chosen.spatial.district!)??0)+1);
+    const candidate = remaining.shift()!;
+    const newReferenceIds = gain(candidate.id);
+    const ownReference = Number(newReferenceIds.includes(candidate.id));
+    selected.push({id:candidate.id, ownReference, additionalReferences:newReferenceIds.length-ownReference,
+      marginalReferences:newReferenceIds.length, newReferenceIds,
+      reason:settings.strategy === 'representation' ? 'representation' : optimizationAvailable ? 'marginal' : 'descriptive-only'});
+    for (const id of newReferenceIds) counted.add(id);
+    const group = `${candidate.spatial.district}|${candidate.source}`;
+    groups.set(group,(groups.get(group) ?? 0)+1);
   }
-  const selected=selectedIds.map(id=>eligible.find(f=>f.id===id)!);
-  const incrementalReferenceIds=eligible.filter(f=>counted.has(f.id)&&!baseline.includes(f.id)).map(f=>f.id);
-  return {snapshotId:snapshot.snapshotId,geometryVersion:snapshot.geometry.version,methodVersion:snapshot.methodVersion,settings:{...settings},candidatePopulation:snapshot.facilities.length,eligibleCount:eligible.length,excludedCount:snapshot.facilities.length-eligible.length,exclusionReasons,referenceDenominator:eligible.length,baselineProximateIds:baseline,baselineProximityCount:baseline.length,selectedIds,selected,selections,capacityUsed:selected.length,incrementalReferenceIds,incrementalReferenceCount:incrementalReferenceIds.length,additionalNonSelfCount:selections.reduce((s,c)=>s+c.additionalContribution,0),optimizationAvailable,optimizationUnavailableReasons,districts:[...new Set(selected.map(f=>f.spatial.district!))].sort(lexical),categories:[...new Set(selected.map(f=>f.source))].sort(lexical),assumptions:[...snapshot.assumptions,'Candidate and reference sets are the same within-edition facility-record cohort (C = R); own-record proximity is separately counted.','10/25/50 m boundary tolerances and 100/250/500 m distances are research parameters, not accuracy or radio coverage guarantees.'],unavailableMetrics:['Actual wireless coverage','Internet access or service improvement','Facility operation or installation suitability','Population demand or digital inclusion']};
+  return {versionId,methodVersion:snapshot.methodVersion,settings:{...settings},candidateCount:population.length,capacityUsed:selected.length,
+    referenceDenominator:population.length,excludedCount:excluded.length,baselineProximate:baselineIds.length,
+    newlyProximate:counted.size-baselineIds.length,ownContributions:selected.reduce((n,s)=>n+s.ownReference,0),
+    additionalContributions:selected.reduce((n,s)=>n+s.additionalReferences,0),optimizationAvailable,selfReferenceModel:true,
+    selected,selectedIds:selected.map(s=>s.id),districts:[...new Set(population.filter(f=>selected.some(s=>s.id===f.id)).map(f=>f.spatial.district!))].sort(lexical),
+    categories:[...new Set(population.filter(f=>selected.some(s=>s.id===f.id)).map(f=>f.source))].sort(lexical),baselineIds,excluded,
+    unavailableMetrics:['radio-coverage','connectivity','people-served','digital-inclusion','installation-suitability',...(!optimizationAvailable?['optimization-conclusion']:[])]};
 }
 
-export function compareWifiGeographicScenarios(a: GeographicScenario,b: GeographicScenario) {
-  if(a.snapshotId!==b.snapshotId||a.geometryVersion!==b.geometryVersion||a.methodVersion!==b.methodVersion)throw new Error('Geographic source/geometry version mismatch.');
-  const left=new Set(a.selectedIds),right=new Set(b.selectedIds);
-  return {added:b.selectedIds.filter(id=>!left.has(id)),removed:a.selectedIds.filter(id=>!right.has(id)),shared:a.selectedIds.filter(id=>right.has(id)),denominatorChange:b.referenceDenominator-a.referenceDenominator,baselineProximityChange:b.baselineProximityCount-a.baselineProximityCount,incrementalReferenceChange:b.incrementalReferenceCount-a.incrementalReferenceCount,districtChange:b.districts.length-a.districts.length,categoryChange:b.categories.length-a.categories.length,assumedCrsDependent:a.settings.evidence!==b.settings.evidence};
+export function compareGeographicScenarios(current: GeographicScenario, alternate: GeographicScenario) {
+  if (current.versionId !== alternate.versionId || current.methodVersion !== alternate.methodVersion) throw new Error('Scenario version mismatch');
+  const a = new Set(current.selectedIds), b = new Set(alternate.selectedIds);
+  return {added:alternate.selectedIds.filter(id=>!a.has(id)),removed:current.selectedIds.filter(id=>!b.has(id)),shared:current.selectedIds.filter(id=>b.has(id)),
+    denominatorChange:alternate.referenceDenominator-current.referenceDenominator,
+    baselineChange:alternate.baselineProximate-current.baselineProximate,incrementChange:alternate.newlyProximate-current.newlyProximate,
+    addedDistricts:alternate.districts.filter(d=>!current.districts.includes(d)),removedDistricts:current.districts.filter(d=>!alternate.districts.includes(d)),
+    addedCategories:alternate.categories.filter(d=>!current.categories.includes(d)),removedCategories:current.categories.filter(d=>!alternate.categories.includes(d))};
 }

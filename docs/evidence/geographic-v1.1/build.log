@@ -1,0 +1,6 @@
+
+> taipei-free-wifi-map@0.1.0 data:build:geographic
+> node --import tsx scripts/runWifiGeographic.ts build && node --import tsx scripts/buildWifiGeographicScenarios.ts
+
+{"versionId": "wifi-geo-da9f69f501af4d6e1d3f9122", "geometry": 12, "facilities": {"rows": 91, "tiers": {"assumption-tested": 87, "unresolved": 4}, "spatialStatuses": {"interior": 91}, "districtDisagreements": 3, "bySource": {"B": {"assumption-tested": 69, "unresolved": 1}, "C": {"assumption-tested": 9}, "D": {"assumption-tested": 9, "unresolved": 3}}, "identity": {"duplicateComposites": [], "sharedAddresses": [], "conflictingCompositeCoordinates": [], "crossSourceSharedAddresses": [], "publisherRowCollisions": [], "sharedCoordinateGroups": [], "longitudinalIdentityEstablished": false, "physicalSiteUniquenessEstablished": false}}, "hotspots": {"rows": 3305, "eligible": 3229, "spatialStatuses": {"interior": 3234, "boundary-adjacent": 59, "exterior": 12}, "districtDisagreements": 64, "duplicateCoordinateGroups": 200, "repeatedSiteIds": 0}}
+{"scenarios":288,"scenarioHash":"b3b7a6fb2f1b5d1067bb4eae10f3beb12ecf250b48e02cb0e4e42f6f004d22a0","versionId":"wifi-geo-da9f69f501af4d6e1d3f9122","defaultDenominator":87,"defaultBaseline":69,"optimizationAvailable":false}

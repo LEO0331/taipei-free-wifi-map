@@ -14,11 +14,12 @@
     "data:audit:wifi-policy": "node --import tsx scripts/auditWifiPolicySources.ts",
     "data:build:wifi-policy": "node --import tsx scripts/buildWifiPolicySnapshot.ts",
     "data:measure:wifi-policy": "node --import tsx scripts/measureWifiPolicy.ts",
-    "data:build:wifi-boundaries": "node --import tsx scripts/buildWifiDistrictBoundaries.ts",
-    "data:audit:wifi-facilities": "node --import tsx scripts/auditWifiFacilityCoordinates.ts",
-    "data:audit:wifi-hotspot-geography": "node --import tsx scripts/auditWifiHotspotGeometry.ts",
-    "data:measure:wifi-geographic": "node --import tsx scripts/measureWifiGeographic.ts",
-    "data:build:wifi-geographic": "npm run data:build:wifi-boundaries && npm run data:audit:wifi-hotspot-geography && npm run data:audit:wifi-facilities && node --import tsx scripts/buildWifiExperimentalAllocation.ts",
+    "data:setup:geographic": "node --import tsx scripts/runWifiGeographic.ts setup",
+    "data:audit:geographic": "node --import tsx scripts/runWifiGeographic.ts test",
+    "data:verify:geographic": "node --import tsx scripts/verifyWifiGeographic.ts",
+    "data:measure:geographic": "node --import tsx scripts/buildWifiGeographicScenarios.ts --measure",
+    "data:report:geographic": "node --import tsx scripts/runWifiGeographic.ts report",
+    "data:build:geographic": "node --import tsx scripts/runWifiGeographic.ts build && node --import tsx scripts/buildWifiGeographicScenarios.ts",
     "data:convert": "node --import tsx scripts/convertWifiHotspots.ts && node --import tsx scripts/buildWifiSummary.ts"
   },
   "repository": {

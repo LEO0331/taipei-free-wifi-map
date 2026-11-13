@@ -1,53 +1,45 @@
-import type { PolicySourceEdition } from './wifiPolicy.js';
-
-export type GeographicEvidenceTier = 'verified' | 'assumption-tested' | 'unresolved';
-export type GeographicSpatialValidation = {
-  status: 'interior' | 'boundary' | 'exterior' | 'ambiguous' | 'invalid';
-  district: string | null; matches: string[]; distanceToBoundaryMeters: number | null;
-  sourceDistrictAgrees: boolean | null; geometryVersion: string; transformationVersion: string;
+export type CoordinateTier = 'verified' | 'assumption-tested' | 'unresolved';
+export type GeographicSettings = {
+  capacity: 5 | 10 | 'all'; strategy: 'marginal' | 'representation';
+  evidence: 'verified' | 'assumed'; radius: 100 | 250 | 500;
+  geography: 'strict' | 'flagged'; cohort: 'all' | 'B' | 'C' | 'D';
 };
-export type GeographicFacility = {
-  id: string; source: 'B' | 'C' | 'D'; sourceEdition: string; sourceFilename: string; sourceSha256: string;
-  rowIdentity: string; name: string; address: string; sourceDistrict: string;
-  originalCoordinates: { x: string; y: string; xField: string; yField: string };
-  sourceCrs: string | null; assumedCrs: string | null; longitude: number | null; latitude: number | null;
-  evidenceTier: GeographicEvidenceTier; identityQualified: boolean; spatial: GeographicSpatialValidation;
-  warnings: string[]; exclusionReasons: string[]; rawRecord: Record<string, string>;
-  independentEvidence: string[];
-  sourceDistrictOrigin?: 'published-column' | 'address-derived' | 'missing';
-  coordinateChecks?: Record<string, unknown>;
-  identityDiagnostics?: string[];
-};
-export type GeographicHotspot = {
-  id: string; sourceIds: string[]; longitude: number; latitude: number; sourceDistrict: string;
-  sourceScope: 'taipei-source' | 'outside-source' | 'unresolved'; spatial: GeographicSpatialValidation;
+export type Facility = {
+  id: string; source: 'B' | 'C' | 'D'; sourceRow: number; sourceHash: string; sourceFile: string;
+  sourceEdition: string; sourceUrl: string; publisherRowId: string | null; name: string; address: string;
+  longitude: number | null; latitude: number | null; originalCoordinates: Record<string,string>;
+  declaredCRS: string | null; assumedCRS: string; sourceDistrict: string; tier: CoordinateTier;
+  confidence: CoordinateTier; eligible: boolean; identityQualification: string;
+  originalRecord: Record<string,string>; independentPositionEvidence: string[]; issues: string[];
+  spatial: { status: 'interior' | 'boundary-adjacent' | 'exterior' | 'ambiguous' | 'invalid';
+    matches: string[]; district: string | null; boundaryMeters: number | null; agrees: boolean | null;
+    multipleMatches: boolean; sharedBoundary: boolean; boundarySensitivityMeters?: Record<string,boolean> };
+  nearestHotspotMeters: { strict: number | null; flagged: number | null };
+  neighbors: { id: string; meters: number }[];
 };
 export type GeographicSnapshot = {
-  schemaVersion: 1; snapshotId: string; methodVersion: 'wifi-geographic-proximity-experiment-v1';
-  baseline: { snapshotId: string; sha256: string }; sourceEditions: PolicySourceEdition[];
-  geometry: { version: string; sha256: string; file: string; sourceSha256: string; transformationVersion: string; districtCount: number };
-  facilities: GeographicFacility[]; hotspots: GeographicHotspot[];
-  distances: { facilityIds: string[]; facilityMeters: number[][]; nearestHotspot: Record<string, { strict: GeographicNearest; flagged: GeographicNearest; strictByTolerance: Record<'10'|'25'|'50', GeographicNearest> }> };
-  summary: Record<string, number>; assumptions: string[]; limitations: string[];
-  referenceUnit: string; candidateEqualsReference: true; modeC: { available: false; requirements: string[] };
+  schemaVersion: '1.1'; versionId: string; methodVersion: 'wifi-geographic-proximity-experiment-v1';
+  baselineSnapshot: { id: string; sha256: string }; geometryEdition: string; referenceUnit: string;
+  sourceEditions: { id: string; sha256: string; publishedAt: string; path: string; catalogueUrl: string; license: string }[];
+  transform: { source: string; target: string; operation: string; operationAccuracyMeters: number; positionalAccuracy: null };
+  facilities: Facility[]; summary: {
+    districts: { district: string; valid: boolean; parts: number; holes: number; roundTripMaxMeters: number }[];
+    overlaps: unknown[]; repairs: unknown[];
+    hotspots: { rows: number; eligible: number; duplicateCoordinateGroups: number; districtDisagreements: number; spatialStatuses: Record<string,number> };
+    facilities: { rows: number; tiers: Record<string,number>; districtDisagreements: number; bySource: Record<string,Record<string,number>>; identity: unknown };
+  };
+  modeC: { available: false; requirements: string[] }; assumptions: string[];
 };
-export type GeographicNearest = { distanceMeters: number | null; hotspotIds: string[] };
-export type GeographicScenarioSettings = {
-  evidence: 'verified-only' | 'assumption-tested'; radiusMeters: 100 | 250 | 500;
-  boundary: 'strict' | 'flagged'; boundaryToleranceMeters: 10 | 25 | 50;
-  cohort: 'B' | 'C' | 'D' | 'all'; capacity: 5 | 10 | 'all'; strategy: 'marginal' | 'representation';
-};
-export type GeographicSelection = {
-  id: string; order: number; reason: 'marginal-additional-reference' | 'district-representation' | 'descriptive-stable-order';
-  selfContribution: number; additionalContribution: number; totalContribution: number;
-  newlyAssociatedReferenceIds: string[]; nearestHotspot: GeographicNearest;
-};
+export type GeographicManifest = { schemaVersion: '1.1'; versionId: string; methodVersion: string;
+  artifacts: Record<string,{path: string; sha256: string; bytes: number}>; tools: Record<string,string> };
+export type GeographicSelection = { id: string; ownReference: number; additionalReferences: number;
+  marginalReferences: number; newReferenceIds: string[]; reason: 'marginal' | 'representation' | 'descriptive-only' };
 export type GeographicScenario = {
-  snapshotId: string; geometryVersion: string; methodVersion: string; settings: GeographicScenarioSettings;
-  candidatePopulation: number; eligibleCount: number; excludedCount: number; exclusionReasons: Record<string, number>;
-  referenceDenominator: number; baselineProximateIds: string[]; baselineProximityCount: number;
-  selectedIds: string[]; selected: GeographicFacility[]; selections: GeographicSelection[]; capacityUsed: number;
-  incrementalReferenceIds: string[]; incrementalReferenceCount: number; additionalNonSelfCount: number;
-  optimizationAvailable: boolean; optimizationUnavailableReasons: string[]; districts: string[]; categories: string[];
-  assumptions: string[]; unavailableMetrics: string[];
+  versionId: string; methodVersion: string; settings: GeographicSettings; candidateCount: number;
+  capacityUsed: number;
+  excludedCount: number; referenceDenominator: number; baselineProximate: number;
+  newlyProximate: number; ownContributions: number; additionalContributions: number;
+  optimizationAvailable: boolean; selfReferenceModel: true; selected: GeographicSelection[];
+  selectedIds: string[]; districts: string[]; categories: string[]; baselineIds: string[];
+  excluded: {id: string; reasons: string[]}[]; unavailableMetrics: string[];
 };

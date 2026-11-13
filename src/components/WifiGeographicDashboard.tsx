@@ -1,126 +1,174 @@
-import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import L from 'leaflet';
+import type { GeoJsonObject } from 'geojson';
 import type { Language } from '../types';
-import type { GeographicFacility, GeographicScenarioSettings, GeographicSnapshot } from '../types/wifiGeographicPolicy';
-import { runWifiGeographicScenario } from '../lib/wifiGeographicScenarios';
-import { validateWifiGeographicSnapshot, createWifiGeographicJsonExport, createWifiGeographicCsvExport } from '../lib/wifiGeographicPolicy';
+import type { Facility, GeographicManifest, GeographicSettings, GeographicSnapshot } from '../types/wifiGeographicPolicy';
+import { checkedGeographicJson, geographicCsv, geographicExport, validateGeographicManifest, validateGeographicSnapshot } from '../lib/wifiGeographicPolicy';
+import { compareGeographicScenarios, defaultGeographicSettings, runGeographicScenario } from '../lib/wifiGeographicScenarios';
 import './WifiGeographicDashboard.css';
 
-const ResearchMap = lazy(() => import('./WifiGeographicMap'));
-const directory = `${import.meta.env.BASE_URL}data/wifi-policy/geographic-v1.1/`;
-const defaults: GeographicScenarioSettings = { evidence: 'verified-only', radiusMeters: 250, boundary: 'strict', boundaryToleranceMeters: 25, cohort: 'all', capacity: 5, strategy: 'marginal' };
-const districts: Record<string, string> = { '中正區': 'Zhongzheng', '大同區': 'Datong', '中山區': 'Zhongshan', '松山區': 'Songshan', '大安區': 'Daan', '萬華區': 'Wanhua', '信義區': 'Xinyi', '士林區': 'Shilin', '北投區': 'Beitou', '內湖區': 'Neihu', '南港區': 'Nangang', '文山區': 'Wenshan' };
+const copy = {
+  zh: {
+    title:'模式 B · 公共設施現勘規劃', intro:'距離與名單情境探索',
+    takeaway:'這個情境告訴你什麼？', nextStep:'現勘前先確認',
+    nextStepNote:'核對設施是否仍開放、位置是否正確、是否允許現勘；到場後再驗證連線與使用條件。距離較遠不等於需求較高，距離較近也不等於可以連線。',
+    noVerified:'選擇「僅官方 CRS 已驗證」時，目前沒有合格設施。這表示座標證據尚不足，不代表沒有公共設施或沒有 Wi-Fi。可切換「已驗證＋假設測試」探索假設情境。',
+    warning:'這是設施紀錄的幾何研究；不代表 Wi-Fi 訊號、連線、居民服務、數位近用、設置適宜性或設備設置授權。原始座標準確度與現行營運仍未知。',
+    loading:'載入獨立地理研究產物…',error:'地理產物載入或完整性驗證失敗。',retry:'重試',
+    evidence:'座標證據門檻',verified:'僅官方 CRS 已驗證',assumed:'已驗證＋假設測試',radius:'幾何距離參數',radiusNote:'100／250／500 公尺是分析參數，不是 Wi-Fi 訊號半徑。',
+    geography:'多邊形資格',strict:'嚴格內部（距邊界 > 10 公尺）',flagged:'內部＋標示邊界鄰近不確定性',cohort:'設施母體',all:'合併設施',B:'圖書館',C:'活動中心',D:'運動中心',
+    strategy:'研究策略',marginal:'邊際參照近鄰',representation:'行政區／設施類別輪替',capacity:'實地查核名額',allSlots:'全部符合資格',
+    eligible:'符合情境的設施紀錄',used:'名單筆數',excluded:'排除紀錄',baseline:'距離內有公布熱點的設施紀錄',increment:'假設加入候選後的新增近鄰紀錄',self:'其中：候選自身紀錄',additional:'其中：其他設施紀錄',
+    trivial:'此情境沒有足以支持最佳化的新增其他設施近鄰差異。名單供現勘查核；排序不代表增設效益或投資優先順序。',
+    selfNote:'候選與參照使用相同母體。自身零距離貢獻分開列示，不能視為投資效益；新增數量只計尚未近鄰的不同設施紀錄。輪替表示行政區／設施類別多樣性，不代表人口公平。',
+    geometry:'官方歷史邊界與座標證據',geometryNote:'2024-09-16 邊界版本，不證明現行行政界。轉換操作約 1 公尺精度不等於原始位置精度。10／25／50 公尺邊界敏感度是假設參數。原始細小重疊完整揭露，沒有靜默修補。',
+    polygons:'通過幾何檢查的行政區',tiers:'設施證據層級：已驗證／假設測試／未解決',hotspots:'可用發布熱點列／原始列',disagreements:'熱點／設施行政區不一致',
+    map:'調查候選地圖',boundaries:'顯示歷史官方邊界',circles:'顯示假設性幾何研究半徑',mapNote:'使用滑鼠滾輪或＋／－縮放，拖曳地圖移動。最多顯示 91 筆候選；點選標記或表格可檢視同一筆來源。半徑圓不代表無線電涵蓋。',
+    shortlist:'實際來源衍生名單',name:'來源設施（原文）',district:'來源／多邊形行政區',distance:'最近合格發布熱點距離',contribution:'自身／其他／合計新增',detail:'來源與證據詳情',
+    original:'原始座標',transformed:'轉換座標',assumption:'假設 CRS',status:'空間檢查',boundary:'距最近界線',tier:'證據層級',row:'來源列',unknown:'未知／未建立',
+    empty:'此設定沒有符合資格的候選。已驗證母體為空是有效研究結果。',selection:'選取原因',
+    sensitivity:'敏感度比較（相對目前名單）',setting:'替代情境',added:'新增 ID',removed:'移除 ID',shared:'共同 ID',denominator:'分母差',delta:'基線／新增差',representationChange:'行政區／類別變動',
+    sensitivityNote:'不同母體不代表相等需求。結果依賴未確認 CRS；名單穩定也不能確立政策優先順序。所有差異 ID 可展開查核。',
+    exclusions:'未解決與排除的設施',excludedBy:'排除條件',exports:'匯出目前研究紀錄',exportNote:'含有序 ID、來源列與雜湊、原始座標、假設、分母、排除原因及不可用指標。不是設備設置建議。',
+    source:'官方來源',audit:'完整座標稽核',hotspotAudit:'熱點空間稽核',identity:'身分與重疊診斷',identityNote:'研究單位為「同版來源名稱＋地址複合鍵」，不是已驗證獨立實體場址或跨版永久身分。不自動跨來源合併。',
+    fallback:'來源未提供官方英文設施名稱／地址，兩種語言均保留原文供追溯。',
+  },
+  en: {
+    title:'Mode B · Facility fieldwork planning',intro:'Distance and shortlist exploration',
+    takeaway:'What does this scenario tell you?',nextStep:'Before a site visit',
+    nextStepNote:'Confirm that the facility is still open, its location is correct and a visit is permitted. Verify connectivity and access conditions on site. Greater distance does not establish greater demand; proximity does not establish connectivity.',
+    noVerified:'The publisher-verified CRS setting currently has no eligible facilities. This means coordinate evidence is insufficient, not that facilities or Wi-Fi are absent. Choose verified + assumption-tested to explore hypothetical scenarios.',
+    warning:'Geometric research on facility records only. This does not establish Wi-Fi signal, connectivity, resident service, digital inclusion, installation suitability or authorization. Original positional accuracy and current operation remain unknown.',
+    loading:'Loading the independent geographic research artifacts…',error:'Geographic artifacts failed loading or integrity validation.',retry:'Retry',
+    evidence:'Coordinate evidence threshold',verified:'Publisher CRS verified only',assumed:'Verified + assumption-tested',radius:'Geometric distance parameter',radiusNote:'100 / 250 / 500 metres are analytical parameters, not Wi-Fi signal radii.',
+    geography:'Polygon eligibility',strict:'Strict interior (> 10 m from boundary)',flagged:'Interior + flagged boundary-adjacent uncertainty',cohort:'Facility population',all:'Combined facilities',B:'Libraries',C:'Activity centers',D:'Sports centers',
+    strategy:'Research strategy',marginal:'Marginal Reference Proximity',representation:'District / facility-category round-robin',capacity:'Field-review slots',allSlots:'All eligible',
+    eligible:'Eligible facility records',used:'Shortlisted records',excluded:'Excluded records',baseline:'Facility records near a published hotspot',increment:'Newly proximate records after hypothetical additions',self:'Of these: candidate itself',additional:'Of these: other facility records',
+    trivial:'No incremental differences for other facility records support optimization in this scenario. Use the shortlist for field verification; its order establishes neither installation benefit nor investment priority.',
+    selfNote:'Candidates and references use the same population. Own-reference zero-distance counts are separated and cannot establish investment benefit. Increments count distinct records not already proximate. Round-robin represents district / facility diversity, not demographic equity.',
+    geometry:'Official historical boundaries and coordinate evidence',geometryNote:'Boundary edition 2024-09-16 does not establish current administrative boundaries. The operation’s approximate 1 m accuracy does not establish original positional accuracy. Boundary tolerances 10 / 25 / 50 m are research parameters. Tiny original overlaps are disclosed without silent repair.',
+    polygons:'Districts passing geometry checks',tiers:'Facility tiers: verified / assumption-tested / unresolved',hotspots:'Eligible published hotspot rows / original rows',disagreements:'Hotspot / facility district disagreements',
+    map:'Investigation candidate map',boundaries:'Show historical official boundaries',circles:'Show hypothetical geometric research radius',mapNote:'Use the mouse wheel or + / − to zoom, and drag to pan. At most 91 candidate markers. Select a marker or table row to inspect its source record. Circles do not represent radio coverage.',
+    shortlist:'Actual source-derived shortlist',name:'Source facility (original wording)',district:'Source / polygon district',distance:'Nearest eligible published hotspot',contribution:'Own / other / total new references',detail:'Source and evidence details',
+    original:'Original coordinates',transformed:'Transformed coordinates',assumption:'Assumed CRS',status:'Spatial check',boundary:'Nearest boundary distance',tier:'Coordinate evidence',row:'Source row',unknown:'Unknown / not established',
+    empty:'No candidates qualify. An empty verified-only population is a valid research result.',selection:'Selection reason',
+    sensitivity:'Sensitivity comparison (relative to current shortlist)',setting:'Alternate scenario',added:'Added IDs',removed:'Removed IDs',shared:'Shared IDs',denominator:'Denominator change',delta:'Baseline / increment change',representationChange:'District / category changes',
+    sensitivityNote:'Different cohorts do not represent equal demand. Results depend on unconfirmed CRS; stable membership cannot establish policy priorities. Expand to inspect every differing ID.',
+    exclusions:'Unresolved and excluded facilities',excludedBy:'Exclusion conditions',exports:'Export the current research record',exportNote:'Includes ordered IDs, source rows and hashes, original coordinates, assumptions, denominators, exclusions and unavailable metrics. This is not an installation recommendation.',
+    source:'Official source',audit:'Complete coordinate audit',hotspotAudit:'Hotspot spatial audit',identity:'Identity and overlap diagnostics',identityNote:'The research unit is a within-edition name/address composite, not a verified distinct physical site or longitudinal identity. No automatic cross-source merging.',
+    fallback:'No official English facility names / addresses are supplied; original source wording is retained in both languages for traceability.',
+  },
+};
+const codes: Record<string,[string,string]> = {
+  verified:['已驗證','Verified'],'assumption-tested':['假設測試','Assumption-tested'],unresolved:['未解決','Unresolved'],
+  interior:['多邊形內部','Polygon interior'],'boundary-adjacent':['邊界鄰近','Boundary-adjacent'],exterior:['多邊形外部','Polygon exterior'],ambiguous:['歧義／多重匹配','Ambiguous / multiple matches'],invalid:['無效座標','Invalid coordinate'],
+  'district-discrepancy':['行政區不一致或來源未明示','District discrepancy or missing source label'],'invalid-coordinate':['無效座標','Invalid coordinate'],'unresolved-geography':['地理歸屬未解決','Unresolved geography'],'missing-identity':['缺少名稱／地址','Missing name / address'],'duplicate-composite':['重複複合身分','Duplicate composite'],
+  'requires-verified':['要求官方 CRS 證據','Publisher CRS evidence required'],'other-cohort':['其他設施母體','Other facility cohort'],'strict-interior-required':['要求嚴格多邊形內部','Strict polygon interior required'],
+  marginal:['重算尚未近鄰參照的邊際數，再以 ID 決定同分順序','Recomputed uncounted reference marginal, then ID tie-break'],representation:['優先尚未代表的行政區／類別組，再比邊際數與 ID','Least represented district/category group, then marginal and ID'], 'descriptive-only':['無非自身差異；依 ID 描述性排序','No non-self differences; descriptive ID order'],
+};
+const districtEn: Record<string,string> = {'北投區':'Beitou','士林區':'Shilin','內湖區':'Neihu','南港區':'Nangang','松山區':'Songshan','信義區':'Xinyi','中山區':'Zhongshan','大同區':'Datong','中正區':'Zhongzheng','萬華區':'Wanhua','大安區':'Daan','文山區':'Wenshan'};
+const root = `${import.meta.env.BASE_URL}data/wifi-policy/geographic-v1.1/`;
 
-function download(body: string, format: 'json' | 'csv', id: string) {
-  const url = URL.createObjectURL(new Blob([body], { type: format === 'json' ? 'application/json;charset=utf-8' : 'text/csv;charset=utf-8' }));
-  const link = document.createElement('a'); link.href = url; link.download = `${id}-decision.${format}`; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+function ResearchMap({facilities, geometry, radius, circles, language, onSelect}:{facilities:Facility[];geometry?:GeoJsonObject;radius:number;circles:boolean;language:Language;onSelect:(id:string)=>void}) {
+  const container = useRef<HTMLDivElement>(null);
+  const view = useRef<{center:L.LatLng;zoom:number}>(null);
+  useEffect(()=>{
+    if (!container.current) return;
+    const map=L.map(container.current).setView(view.current?.center??[25.065,121.54],view.current?.zoom??11);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors',maxZoom:19}).addTo(map);
+    if (geometry) L.geoJSON(geometry,{style:{color:'#617866',weight:1,fillOpacity:0.025}}).addTo(map);
+    for (const f of facilities.slice(0,91)) if (f.latitude!==null && f.longitude!==null) {
+      const label=document.createElement('span');label.textContent=f.name+(circles?' · '+(language==='zh'?'假設性幾何研究半徑':'Hypothetical geometric research radius'):'');
+      L.circleMarker([f.latitude,f.longitude],{radius:7,color:'#9b4b24',fillColor:'#d68a4b',fillOpacity:0.9}).bindTooltip(label).on('click',()=>onSelect(f.id)).addTo(map);
+      if (circles) L.circle([f.latitude,f.longitude],{radius,color:'#9b4b24',weight:1,fillOpacity:0.07,interactive:false}).addTo(map);
+    }
+    return ()=>{view.current={center:map.getCenter(),zoom:map.getZoom()};map.remove();};
+  },[facilities,geometry,radius,circles,language,onSelect]);
+  return <div ref={container} className="geographic-map" aria-label={copy[language].map} />;
 }
 
-export default function WifiGeographicDashboard({ language }: { language: Language }) {
-  const zh = language === 'zh';
-  const say = (chinese: string, english: string) => zh ? chinese : english;
-  const [snapshot, setSnapshot] = useState<GeographicSnapshot>();
-  const [error, setError] = useState(false);
-  const [attempt, setAttempt] = useState(0);
-  const [settings, setSettings] = useState(defaults);
-  const [page, setPage] = useState(0);
-  const [showMap, setShowMap] = useState(false);
-  const [showCircles, setShowCircles] = useState(false);
-  const [showBoundaries, setShowBoundaries] = useState(false);
-  const [boundaries, setBoundaries] = useState<GeoJSON.GeoJsonObject>();
-  const [geometryError, setGeometryError] = useState(false);
-  useEffect(() => {
-    const controller = new AbortController();
-    const read = async (path: string, expectedHash?: string) => {
-      const response = await fetch(directory + path, { signal: controller.signal, cache: 'no-cache' });
-      if (!response.ok) throw new Error('geographic-artifact');
-      const bytes = await response.arrayBuffer();
-      if (expectedHash) {
-        const digest = await crypto.subtle.digest('SHA-256', bytes);
-        const hash = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
-        if (hash !== expectedHash) throw new Error('geographic-integrity');
-      }
-      return JSON.parse(new TextDecoder().decode(bytes));
-    };
-    setError(false);
-    void read('manifest.json').then(manifest => {
-      if (typeof manifest.snapshotFile !== 'string' || !/^[a-zA-Z0-9._-]+\.json$/.test(manifest.snapshotFile) || !/^[a-f0-9]{64}$/.test(manifest.sha256)) throw new Error('manifest');
-      return read(manifest.snapshotFile, manifest.sha256);
-    }).then(value => { validateWifiGeographicSnapshot(value); setSnapshot(value); }).catch(() => { if (!controller.signal.aborted) setError(true); });
-    return () => controller.abort();
-  }, [attempt]);
-  useEffect(() => {
-    if (!snapshot || !showMap || !showBoundaries || boundaries) return;
-    const controller = new AbortController(); setGeometryError(false);
-    if (!/^[a-zA-Z0-9._-]+\.geojson$/.test(snapshot.geometry.file)) { setGeometryError(true); return; }
-    void fetch(directory + snapshot.geometry.file, { signal: controller.signal }).then(async response => {
-      if (!response.ok) throw new Error('geometry');
-      const bytes = await response.arrayBuffer();
-      const digest = await crypto.subtle.digest('SHA-256', bytes);
-      const hash = Array.from(new Uint8Array(digest), byte => byte.toString(16).padStart(2, '0')).join('');
-      if (hash !== snapshot.geometry.sha256) throw new Error('geometry-integrity');
-      return JSON.parse(new TextDecoder().decode(bytes));
-    }).then(setBoundaries).catch(() => { if (!controller.signal.aborted) setGeometryError(true); });
-    return () => controller.abort();
-  }, [snapshot, showMap, showBoundaries, boundaries]);
-  const scenario = useMemo(() => snapshot ? runWifiGeographicScenario(snapshot, settings) : undefined, [snapshot, settings]);
-  const variants = useMemo(() => {
-    if (!snapshot || !scenario) return [];
-    const changes: Array<{ dimension: string; change: Partial<GeographicScenarioSettings>; label: string }> = [
-      ...([5, 10, 'all'] as const).map(capacity => ({ dimension: 'capacity', change: { capacity }, label: `${say('名額', 'Slots')} ${capacity === 'all' ? say('全部', 'All') : capacity}` })),
-      ...([100, 250, 500] as const).map(radiusMeters => ({ dimension: 'radius', change: { radiusMeters }, label: `${radiusMeters} m` })),
-      ...(['verified-only', 'assumption-tested'] as const).map(evidence => ({ dimension: 'evidence', change: { evidence }, label: evidence === 'verified-only' ? say('僅已驗證', 'Verified only') : say('含假設測試', 'Include assumption-tested') })),
-      ...(['strict', 'flagged'] as const).map(boundary => ({ dimension: 'boundary', change: { boundary }, label: boundary === 'strict' ? say('嚴格內部', 'Strict interior') : say('邊界不確定另標', 'Boundary uncertainty flagged') })),
-      ...([10, 25, 50] as const).map(boundaryToleranceMeters => ({ dimension: 'tolerance', change: { boundaryToleranceMeters }, label: `${say('邊界容差', 'Boundary tolerance')} ${boundaryToleranceMeters} m` })),
-      ...(['B', 'D', 'C', 'all'] as const).map(cohort => ({ dimension: 'cohort', change: { cohort }, label: cohort === 'B' ? say('圖書館', 'Libraries') : cohort === 'D' ? say('運動中心', 'Sports centers') : cohort === 'C' ? say('活動中心', 'Activity centers') : say('合併設施', 'Combined facilities') })),
-      ...(['marginal', 'representation'] as const).map(strategy => ({ dimension: 'strategy', change: { strategy }, label: strategy === 'marginal' ? say('邊際參考近鄰', 'Marginal reference proximity') : say('地理／設施代表性', 'Geographic / facility representation') })),
+export default function WifiGeographicDashboard({language}:{language:Language}) {
+  const t=copy[language], local=(key:string)=>codes[key]?.[language==='zh'?0:1]??key;
+  const district=(name:string|null)=>name ? language==='en'?districtEn[name]??name:name : t.unknown;
+  const [data,setData]=useState<{manifest:GeographicManifest;snapshot:GeographicSnapshot}>();
+  const [error,setError]=useState(false),[attempt,setAttempt]=useState(0);
+  const [settings,setSettings]=useState<GeographicSettings>(defaultGeographicSettings);
+  const [geometry,setGeometry]=useState<GeoJsonObject>(),[showBoundary,setShowBoundary]=useState(false),[circles,setCircles]=useState(false);
+  const [boundaryError,setBoundaryError]=useState(false),[boundaryAttempt,setBoundaryAttempt]=useState(0);
+  const [focus,setFocus]=useState('');
+  useEffect(()=>{
+    const controller=new AbortController();setError(false);
+    (async()=>{
+      const response=await fetch(root+'manifest.json',{signal:controller.signal,cache:'no-cache'});
+      if (!response.ok) throw new Error('manifest');
+      const manifest:unknown=await response.json();validateGeographicManifest(manifest);
+      const descriptor=manifest.artifacts['snapshot.json'];
+      const snapshot=await checkedGeographicJson(await fetch(root+descriptor.path,{signal:controller.signal}),descriptor);
+      validateGeographicSnapshot(snapshot);if(snapshot.versionId!==manifest.versionId)throw new Error('version');if(!controller.signal.aborted)setData({manifest,snapshot});
+    })().catch(()=>{if(!controller.signal.aborted)setError(true);});
+    return ()=>controller.abort();
+  },[attempt]);
+  useEffect(()=>{
+    if(!showBoundary || geometry || !data)return;
+    setBoundaryError(false);
+    const controller=new AbortController();
+    const d=data.manifest.artifacts['boundaries.geojson'];
+    fetch(root+d.path,{signal:controller.signal}).then(r=>checkedGeographicJson(r,d)).then(value=>{if(!controller.signal.aborted)setGeometry(value as GeoJsonObject);}).catch(()=>{if(!controller.signal.aborted)setBoundaryError(true);});
+    return ()=>controller.abort();
+  },[showBoundary,geometry,data,boundaryAttempt]);
+  const scenario=useMemo(()=>data?runGeographicScenario(data.snapshot,data.manifest.versionId,settings):undefined,[data,settings]);
+  const selected=useMemo(()=>data&&scenario?scenario.selectedIds.map(id=>data.snapshot.facilities.find(f=>f.id===id)!):[],[data,scenario]);
+  const alternatives=useMemo(()=>{
+    if(!data||!scenario)return [];
+    const variants: {label:string;settings:GeographicSettings}[]=[
+      ...([5,10,'all'] as const).map(capacity=>({label:`${t.capacity}: ${capacity==='all'?t.allSlots:capacity}`,settings:{...settings,capacity}})),
+      ...(['marginal','representation'] as const).map(strategy=>({label:t[strategy],settings:{...settings,strategy}})),
+      ...(['verified','assumed'] as const).map(evidence=>({label:t[evidence],settings:{...settings,evidence}})),
+      ...([100,250,500] as const).map(radius=>({label:`${radius} m`,settings:{...settings,radius}})),
+      ...(['strict','flagged'] as const).map(geography=>({label:t[geography],settings:{...settings,geography}})),
+      ...(['all','B','C','D'] as const).map(cohort=>({label:t[cohort],settings:{...settings,cohort}})),
     ];
-    const base = new Set(scenario.selectedIds);
-    return changes.map((item, index) => { const result = runWifiGeographicScenario(snapshot, { ...settings, ...item.change }); const chosen = new Set(result.selectedIds); return { ...item, key: `${item.dimension}-${index}`, result, added: result.selectedIds.filter(id => !base.has(id)), removed: scenario.selectedIds.filter(id => !chosen.has(id)), shared: scenario.selectedIds.filter(id => chosen.has(id)) }; });
-  }, [snapshot, scenario, settings, language]);
-  const update = (change: Partial<GeographicScenarioSettings>) => { setSettings(current => ({ ...current, ...change })); setPage(0); };
-  const district = (value: string | null) => value ? (zh ? value : districts[value] || say('未確認', 'Unresolved')) : '—';
-  const category = (source: string) => source === 'B' ? say('圖書館', 'Library') : source === 'C' ? say('活動中心', 'Activity center') : say('運動中心', 'Sports center');
-  const tier = (value: string) => value === 'verified' ? say('已驗證', 'Verified') : value === 'assumption-tested' ? say('假設測試', 'Assumption-tested') : say('未解決', 'Unresolved');
-  const spatial = (value: string) => ({ interior: say('多邊形內部', 'Polygon interior'), boundary: say('邊界', 'Boundary'), exterior: say('多邊形外部', 'Polygon exterior'), ambiguous: say('多重／歧義', 'Multiple / ambiguous'), invalid: say('無效座標', 'Invalid coordinate') }[value] || '—');
-  const exclusion = (value: string) => ({
-    'source-cohort': say('不屬於目前設施母體', 'Outside the current facility cohort'),
-    'unqualified-identity': say('設施身分未通過資格查核', 'Facility identity is not qualified'),
-    'unresolved-coordinate': say('座標證據仍未解決', 'Coordinate evidence is unresolved'),
-    'assumed-crs-excluded': say('目前僅接受已驗證座標，排除座標假設', 'Verified-only setting excludes coordinate assumptions'),
-    'invalid-coordinate': say('座標無效', 'Invalid coordinate'),
-    'unresolved-polygon-membership': say('多邊形歸屬未確認', 'Polygon membership is unresolved'),
-    'boundary-uncertainty': say('位於研究容差內或多邊形邊界，嚴格模式排除', 'Within research boundary tolerance or on a polygon boundary; excluded in strict mode'),
-    'source-district-mismatch': say('來源行政區與幾何歸屬不一致，待查核', 'Source district and geometry disagree; investigation required'),
-  }[value] || say('來源特定查核未通過（原始理由可展開）', 'Source-specific validation did not pass (expand for original reason)'));
-  const facilityName = (facility: GeographicFacility) => <>{facility.name}{!zh && <small> ({say('來源原文', 'source original')})</small>}</>;
-  const raw = (values: string[]) => <details><summary>{say('機器可讀原始證據欄位', 'Machine-readable original evidence fields')}</summary><ul>{values.map((value, index) => <li key={index}><code>{value}</code></li>)}</ul></details>;
-  if (error) return <section className="policy-card"><p role="alert">{say('地理研究資料載入或完整性驗證失敗。請確認網路後重試；若持續失敗，請重新整理以取得相容的應用程式版本。', 'Geographic research data could not be loaded or failed integrity validation. Check your connection and retry; if the problem persists, refresh for a compatible application version.')}</p><button onClick={() => setAttempt(attempt + 1)}>{say('重試', 'Retry')}</button></section>;
-  if (!snapshot || !scenario) return <p role="status">{say('載入獨立版本地理研究資料…', 'Loading the independently versioned geographic research data…')}</p>;
-  const pageCount = Math.max(1, Math.ceil(scenario.selected.length / 20));
-  const visible = scenario.selected.slice(page * 20, (page + 1) * 20);
-  const mapPoints = visible.filter((f): f is GeographicFacility & { latitude: number; longitude: number } => f.latitude !== null && f.longitude !== null).map(f => ({ id: f.id, name: zh ? f.name : `${f.name} (source original)`, latitude: f.latitude, longitude: f.longitude }));
-  const nearby = snapshot.hotspots.filter(h => mapPoints.some(p => Math.abs(h.latitude - p.latitude) < 0.008 && Math.abs(h.longitude - p.longitude) < 0.008)).slice(0, 80).map(h => ({ ...h, name: h.id }));
-  return <section className="geo-dashboard">
-    <h3>{say('公共 Wi-Fi 地理證據驗證與實驗性配置研究', 'Public Wi-Fi Geographic Evidence Validation & Experimental Allocation')}</h3>
-    <p className="geo-note">{say('本研究只描述官方紀錄位置間的幾何近鄰。距離閾值不是無線訊號半徑，也不代表可連線、服務品質、設備設置可行性或人口受益。正確轉換不等於原始位置精確。', 'This research describes geometric proximity between official record locations. Distance thresholds are not Wi-Fi signal radii and do not establish connectivity, service quality, installation feasibility or population benefit. Correct transformation does not establish original location accuracy.')}</p>
-    <p className="policy-version"><b>{snapshot.snapshotId}</b> · {snapshot.methodVersion}</p>
-    <section className="policy-card"><h3>{say('模式 B：實驗性公共設施幾何近鄰研究', 'Mode B: Experimental Geographic Facility Proximity Review')}</h3><p>{say('哪些合格公共設施紀錄值得在有限現地查核名額下進一步調查？參考單位為同一來源版本內的設施組合鍵，未證明為互異實體場址。', 'Which eligible public-facility records warrant further investigation with limited field-review slots? References are within-edition facility composites, without proof that each is a distinct physical site.')}</p><div className="policy-controls">
-      <label>{say('調查名額', 'Investigation slots')}<select value={settings.capacity} onChange={e => update({ capacity: e.target.value === 'all' ? 'all' : Number(e.target.value) as 5 | 10 })}><option value="5">5</option><option value="10">10</option><option value="all">{say('全部合格紀錄', 'All eligible records')}</option></select></label>
-      <label>{say('研究距離閾值', 'Research distance threshold')}<select value={settings.radiusMeters} onChange={e => update({ radiusMeters: Number(e.target.value) as 100 | 250 | 500 })}>{[100,250,500].map(n => <option key={n} value={n}>{n} m</option>)}</select><span className="geo-controls-note">{say('分析參數；不是無線訊號半徑。', 'Analytical parameter; not a Wi-Fi signal radius.')}</span></label>
-      <label>{say('座標證據', 'Coordinate evidence')}<select value={settings.evidence} onChange={e => update({ evidence: e.target.value as GeographicScenarioSettings['evidence'] })}><option value="verified-only">{say('僅已驗證', 'Verified only')}</option><option value="assumption-tested">{say('已驗證＋假設測試', 'Verified + assumption-tested')}</option></select></label>
-      <label>{say('地理資格', 'Geographic eligibility')}<select value={settings.boundary} onChange={e => update({ boundary: e.target.value as 'strict' | 'flagged' })}><option value="strict">{say('嚴格多邊形內部', 'Strict polygon interior')}</option><option value="flagged">{say('納入並另標邊界不確定', 'Include and flag boundary uncertainty')}</option></select></label>
-      <label>{say('邊界研究容差', 'Boundary research tolerance')}<select value={settings.boundaryToleranceMeters} onChange={e => update({ boundaryToleranceMeters: Number(e.target.value) as 10 | 25 | 50 })}>{[10,25,50].map(n => <option key={n} value={n}>{n} m</option>)}</select><span>{say('不是量測精度保證。', 'Not a measured accuracy guarantee.')}</span></label>
-      <label>{say('設施母體', 'Facility cohort')}<select value={settings.cohort} onChange={e => update({ cohort: e.target.value as GeographicScenarioSettings['cohort'] })}><option value="all">{say('合併合格設施', 'Combined eligible facilities')}</option><option value="B">{say('僅圖書館', 'Libraries only')}</option><option value="D">{say('僅運動中心', 'Sports centers only')}</option><option value="C">{say('僅活動中心', 'Activity centers only')}</option></select></label>
-      <label>{say('確定性選取策略', 'Deterministic selection strategy')}<select value={settings.strategy} onChange={e => update({ strategy: e.target.value as GeographicScenarioSettings['strategy'] })}><option value="marginal">{say('邊際參考近鄰', 'Marginal reference proximity')}</option><option value="representation">{say('地理／設施代表性', 'Geographic / facility representation')}</option></select></label>
-    </div><p>{say('邊際策略每次排除已計入參考點後重算；代表性策略分散查核名額，不能解讀為人口公平。不同設施母體並非相等需求分母。', 'The marginal strategy recalculates after excluding already counted references. Representation spreads review slots and does not measure demographic equity. Different facility cohorts are not equal demand denominators.')}</p></section>
-    <div className="summary-grid policy-summary">{[[say('候選母體', 'Candidate population'), scenario.candidatePopulation], [say('合格／排除', 'Eligible / excluded'), `${scenario.eligibleCount} / ${scenario.excludedCount}`], [say('實際使用名額', 'Slots used'), scenario.capacityUsed], [say('參考分母', 'Reference denominator'), scenario.referenceDenominator], [say('基準幾何近鄰', 'Baseline geometric proximity'), scenario.baselineProximityCount], [say('新增幾何近鄰', 'New geometric proximity'), scenario.incrementalReferenceCount], [say('非自身新增參考', 'Additional non-self references'), scenario.additionalNonSelfCount], [say('行政區／設施類別', 'Districts / facility categories'), `${scenario.districts.length} / ${scenario.categories.length}`]].map(([label,value]) => <article key={label}><span>{label}</span><strong>{value}</strong></article>)}</div>
-    <p className="geo-note" role="status">{scenario.optimizationAvailable ? say('存在非自身的幾何近鄰差異，可比較研究策略；這仍不是設備投資優先順序。', 'Non-self geometric differences support a research strategy comparison; this is still not an equipment investment priority.') : say('最佳化結論不可用：目前母體為空、已選全部合格紀錄而無名額取捨，或增益只有自身／不足以支持差異。以下保留描述性名單，不把自身零距離計數當作投資效益。', 'Optimization conclusions are unavailable: the cohort is empty, all eligible records are selected without a capacity tradeoff, or gains are self-only or insufficiently differentiated. Any shortlist below is descriptive; zero-distance self-counts are not investment benefits.')}</p>
-    <section className="policy-card"><h3>{say('實際選取紀錄與可解釋貢獻', 'Actual selected records and explained contributions')}</h3><p>{say('候選與參考設施使用相同母體；自身貢獻、其他參考設施貢獻分開呈現。表格每頁最多 20 筆。', 'Candidates and references use the same cohort; self and additional reference contributions are shown separately. Each table page contains at most 20 records.')}</p><div className="geo-inline"><label><input type="checkbox" checked={showMap} onChange={e => setShowMap(e.target.checked)} />{say('顯示研究地圖', 'Show research map')}</label>{showMap && <><label title={say('假設性幾何研究半徑；不是無線訊號涵蓋，也不是位置精度。', 'Hypothetical geometric research radius; not wireless coverage or positional accuracy.')}><input type="checkbox" checked={showCircles} onChange={e => setShowCircles(e.target.checked)} />{say('假設性幾何研究半徑', 'Hypothetical geometric research radius')}</label><label><input type="checkbox" checked={showBoundaries} onChange={e => setShowBoundaries(e.target.checked)} />{say('顯示歷史官方邊界', 'Show historical official boundaries')}</label></>}</div>
-    {showMap && <><p>{say('紅點：本頁候選（最多 20）；灰點：附近已公布熱點（最多 80）。圈僅表示研究距離，不能解讀為訊號。縮放不隨情境重設。', 'Red: candidates on this page (maximum 20). Gray: nearby published hotspots (maximum 80). Circles show research distance, not signal. Scenario changes preserve zoom.')}</p>{geometryError && <p role="alert">{say('邊界圖層載入失敗；仍可使用表格。', 'Boundary layer could not load; the table remains available.')}</p>}<Suspense fallback={<p role="status">{say('載入研究地圖…', 'Loading research map…')}</p>}><ResearchMap points={mapPoints} hotspots={nearby} distance={settings.radiusMeters} language={language} showCircles={showCircles} boundaries={showBoundaries ? boundaries : undefined} /></Suspense></>}
-    <div className="policy-table-scroll"><table><thead><tr><th>#</th><th>{say('設施／來源識別', 'Facility / source identity')}</th><th>{say('地理與證據', 'Geography and evidence')}</th><th>{say('自身／其他／合計新增參考', 'Self / additional / total new references')}</th><th>{say('選取理由／最近熱點', 'Selection reason / nearest hotspot')}</th></tr></thead><tbody>{visible.map((f,index) => { const selection = scenario.selections.find(s => s.id === f.id); return <tr key={f.id}><td>{page * 20 + index + 1}</td><td><b>{facilityName(f)}</b><code>{f.id}</code>{category(f.source)}<code>{f.sourceEdition} · {f.rowIdentity}</code></td><td>{district(f.spatial.district)}<br />{spatial(f.spatial.status)}{(f.spatial.status === 'boundary' || (f.spatial.distanceToBoundaryMeters !== null && f.spatial.distanceToBoundaryMeters <= settings.boundaryToleranceMeters)) && <p className="geo-status">{say('邊界不確定：位於所選研究容差內；未認證行政歸屬。', 'Boundary uncertainty: within the selected research tolerance; administrative membership is not certified.')}</p>}<br />{tier(f.evidenceTier)}<br />{say('距邊界', 'Boundary distance')}: {f.spatial.distanceToBoundaryMeters?.toFixed(1) ?? '—'} m{f.spatial.sourceDistrictAgrees === false && <p>{say('來源行政區與幾何歸屬不一致；待查核。', 'Source district and geometry disagree; investigate.')}</p>}</td><td>{selection ? `${selection.selfContribution} / ${selection.additionalContribution} / ${selection.totalContribution}` : '—'}{selection && <details><summary>{say('新增參考識別碼', 'New reference IDs')}</summary>{selection.newlyAssociatedReferenceIds.map(id => <code key={id}>{id}</code>)}</details>}</td><td>{selection?.reason === 'marginal-additional-reference' ? say('排除已計入參考後的邊際貢獻', 'Marginal contribution after excluding counted references') : selection?.reason === 'district-representation' ? say('行政區／設施組別代表性', 'District / facility group representation') : say('描述性穩定順序', 'Descriptive stable order')}<br />{selection?.nearestHotspot.distanceMeters?.toFixed(1) ?? '—'} m{selection?.nearestHotspot.hotspotIds.map(id => <code key={id}>{id}</code>)}</td></tr>; })}</tbody></table></div>{!scenario.selected.length && <p className="empty-state">{say('目前設定沒有合格設施。僅已驗證母體為零是有效研究結果；可明確切換「已驗證＋假設測試」進行實驗。', 'No facilities qualify for this configuration. An empty verified-only cohort is a valid finding; explicitly choose “Verified + assumption-tested” to explore the experiment.')}</p>}<div className="policy-pagination"><button disabled={!page} onClick={() => setPage(page - 1)}>{say('上一頁', 'Previous')}</button><span>{page + 1} / {pageCount}</span><button disabled={page + 1 >= pageCount} onClick={() => setPage(page + 1)}>{say('下一頁', 'Next')}</button></div><details><summary>{say('全部選取識別碼', 'All selected IDs')}</summary><div className="geo-ids">{scenario.selectedIds.map(id => <code key={id}>{id}</code>)}</div></details></section>
-    <section className="policy-card"><h3>{say('敏感度：實際成員與分母變化', 'Sensitivity: actual membership and denominator changes')}</h3><p>{say('每列只改一個參數，與目前情境比較；Δ 為相對目前設定的變化。假設測試結果仍依賴未獲來源確認的座標假設，不代表已確認的政策優先序。', 'Each row changes one parameter; Δ shows its difference from the current scenario. Stable assumption-tested results still depend on unconfirmed coordinate assumptions and do not establish policy priorities.')}</p><div className="policy-table-scroll"><table><thead><tr><th>{say('情境', 'Scenario')}</th><th>{say('分母／基準／新增', 'Denominator / baseline / increment')}</th><th>{say('行政區／類別', 'Districts / categories')}</th><th>{say('新增／移除／共同識別碼', 'Added / removed / shared IDs')}</th></tr></thead><tbody>{variants.map(v => <tr key={v.key}><td>{v.label}</td><td>{v.result.referenceDenominator} / {v.result.baselineProximityCount} / {v.result.incrementalReferenceCount}<p>Δ {v.result.referenceDenominator - scenario.referenceDenominator} / {v.result.baselineProximityCount - scenario.baselineProximityCount} / {v.result.incrementalReferenceCount - scenario.incrementalReferenceCount}</p></td><td>{v.result.districts.length} / {v.result.categories.length}</td><td>{v.added.length} / {v.removed.length} / {v.shared.length}{v.added.length + v.removed.length === 0 && <p>{say('選取成員未改變。', 'Selected membership unchanged.')}</p>}<details><summary>{say('檢視實際識別碼', 'Inspect actual IDs')}</summary><b>{say('新增', 'Added')}</b>{v.added.map(id => <code key={id}>{id}</code>)}<b>{say('移除', 'Removed')}</b>{v.removed.map(id => <code key={id}>{id}</code>)}<b>{say('共同', 'Shared')}</b>{v.shared.map(id => <code key={id}>{id}</code>)}</details></td></tr>)}</tbody></table></div></section>
-    <section className="policy-card"><h3>{say('資料健康與邊界證據矩陣', 'Source health and boundary evidence matrix')}</h3><p>{say('座標轉換、空間歸屬、來源基準宣告與位置精度是分開的證據；落在臺北市內不能升級為已驗證座標。', 'Transformation, spatial attribution, source datum declarations and positional accuracy are separate evidence. Falling inside Taipei cannot upgrade a coordinate to verified.')}</p><div className="policy-table-scroll"><table><thead><tr><th>{say('來源', 'Source')}</th><th>{say('紀錄／已驗證／假設測試／未解決', 'Records / verified / assumption-tested / unresolved')}</th><th>{say('內部／邊界／外部／歧義／無效', 'Interior / boundary / exterior / ambiguous / invalid')}</th><th>{say('行政區不一致', 'District discrepancies')}</th></tr></thead><tbody>{(['B','C','D'] as const).map(source => { const fs = snapshot.facilities.filter(f => f.source === source); return <tr key={source}><td>{source} · {category(source)}</td><td>{fs.length} / {['verified','assumption-tested','unresolved'].map(value => fs.filter(f => f.evidenceTier === value).length).join(' / ')}</td><td>{['interior','boundary','exterior','ambiguous','invalid'].map(value => fs.filter(f => f.spatial.status === value).length).join(' / ')}</td><td>{fs.filter(f => f.spatial.sourceDistrictAgrees === false).length}</td></tr>; })}</tbody></table></div><dl className="policy-source"><dt>{say('官方邊界行政區數', 'Official boundary district count')}</dt><dd>{snapshot.geometry.districtCount}</dd><dt>{say('幾何／轉換版本', 'Geometry / transformation version')}</dt><dd><code>{snapshot.geometry.version}<br />{snapshot.geometry.transformationVersion}</code></dd><dt>{say('衍生幾何／原始來源雜湊', 'Derived geometry / original source hashes')}</dt><dd><code>{snapshot.geometry.sha256}<br />{snapshot.geometry.sourceSha256}</code></dd></dl><p>{say('歷史邊界版本不保證現行邊界；研究容差不是位置精度。完整控制點、拓樸、軸序與轉換證據見隨附稽核紀錄。', 'Historical geometry does not guarantee current boundaries; research tolerances are not positional accuracy. Control-point, topology, axis-order and transformation evidence are retained in the audit artifacts.')}</p><details><summary>{say('設施完整稽核與排除紀錄', 'Complete facility audit and exclusion records')}</summary><div className="geo-audit">{snapshot.facilities.map(f => <article className="policy-source" key={f.id}><h4>{facilityName(f)}</h4><code>{f.id}</code><p>{tier(f.evidenceTier)} · {spatial(f.spatial.status)} · {district(f.spatial.district)}</p><p>{say('原始欄位／值', 'Original fields / values')}: <code>{f.originalCoordinates.xField}: {f.originalCoordinates.x} · {f.originalCoordinates.yField}: {f.originalCoordinates.y}</code>{say('來源宣告／研究假設', 'Source declaration / research assumption')}: <code>{f.sourceCrs || '—'} / {f.assumedCrs || '—'}</code></p><p>{say('警示／排除／獨立證據筆數', 'Warnings / exclusions / independent evidence entries')}: {f.warnings.length} / {f.exclusionReasons.length} / {f.independentEvidence.length}</p>{raw([...f.warnings, ...f.exclusionReasons, ...f.independentEvidence])}<code>{f.sourceFilename}<br />{f.sourceSha256}</code></article>)}</div></details><h4>{say('目前情境的排除理由', 'Current scenario exclusion reasons')}</h4><ul>{Object.entries(scenario.exclusionReasons).map(([reason,count]) => <li key={reason}>{exclusion(reason)}: {count}</li>)}</ul><p><a href={directory + 'boundary-validation.json'} target="_blank" rel="noreferrer">{say('完整邊界轉換查核（原始證據）', 'Complete boundary transformation audit (original evidence)')}</a> · <a href={directory + 'facilities-audit.json'} target="_blank" rel="noreferrer">{say('完整設施證據查核（原始證據）', 'Complete facility evidence audit (original evidence)')}</a> · <a href={directory + 'hotspots-audit.json'} target="_blank" rel="noreferrer">{say('熱點歸屬查核（原始證據）', 'Hotspot attribution audit (original evidence)')}</a></p><details><summary>{say('目前排除理由與最佳化限制原始碼', 'Current exclusion and optimization reason codes')}</summary>{raw([...Object.entries(scenario.exclusionReasons).map(([reason,count]) => `${reason}: ${count}`), ...scenario.optimizationUnavailableReasons])}</details></section>
-    <section className="policy-card"><h3>{say('來源追溯與實際匯出', 'Source lineage and actual exports')}</h3><p>{say('匯出目前設定、實際選取識別碼、分母、貢獻、排除理由、來源版本與限制。原始證據欄位保留出版語言及機器識別碼。匯出不代表設備設置建議。', 'Exports contain the current settings, actual selected IDs, denominator, contributions, exclusions, editions and limitations. Original evidence fields retain publisher language and machine identifiers. Exports are not installation recommendations.')}</p><div className="policy-actions"><button onClick={() => download(createWifiGeographicJsonExport(snapshot, scenario), 'json', snapshot.snapshotId)}>JSON</button><button onClick={() => download(createWifiGeographicCsvExport(snapshot, scenario), 'csv', snapshot.snapshotId)}>CSV</button></div>{snapshot.sourceEditions.map(source => <article className="policy-source" key={source.id}><h4>{source.id}</h4><p>{say('發布／取得日期', 'Publication / retrieval date')}: {source.publishedAt || '—'} / {source.retrievedAt || source.retrievalDate || '—'}</p><code>{source.file}<br />{source.sha256}</code><p><a href={source.catalogueUrl} target="_blank" rel="noreferrer">{say('官方資料目錄', 'Official catalogue')}</a> · <a href={source.url} target="_blank" rel="noreferrer">{say('官方資源', 'Official resource')}</a></p></article>)}<p>{say('保留的 v1.0 不可變基準', 'Retained immutable v1.0 baseline')}</p><code>{snapshot.baseline.snapshotId}<br />{snapshot.baseline.sha256}</code></section>
-    <section className="policy-card"><h3>{say('假設與科學限制', 'Assumptions and scientific limitations')}</h3><ul><li>{say('B／D 的地理度數及 C 的 EPSG:3826 均須依各來源契約判定；數值合理、同源欄位一致與正確轉換不能獨立證明基準或位置精度。', 'B/D geographic degrees and the C EPSG:3826 hypothesis depend on source contracts. Numerical plausibility, agreement among same-source fields and correct transformation do not independently establish datum or positional accuracy.')}</li><li>{say('本模型量測設施紀錄的幾何近鄰，未量測訊號、運作、流量、人口需求、無障礙近用、數位排除或設備部署成本。', 'The model measures facility-record geometric proximity, not signal, operation, usage, population demand, accessibility, digital exclusion or deployment cost.')}</li><li>{say('不以名稱相似度跨來源合併；同址、同名及重複來源可能仍對應同一實體，不能推定獨立服務據點。', 'No cross-source name-similarity merging is used. Colocated, same-name or repeated-source records may represent one physical site and are not proven distinct service locations.')}</li></ul>{raw([...snapshot.assumptions, ...snapshot.limitations, ...scenario.assumptions, ...scenario.unavailableMetrics])}<h4>{say('模式 C 仍不可用', 'Mode C remains unavailable')}</h4><p>{say('缺少可對應站點與期間的營運、連線品質、使用量與需求分母，不能建立數位近用成效排名。', 'Site-linked operations, connection quality, usage and demand denominators remain missing; digital-inclusion outcome rankings are unavailable.')}</p></section>
-  </section>;
+    return variants.map(v=>{const result=runGeographicScenario(data.snapshot,data.manifest.versionId,v.settings);return {...v,result,diff:compareGeographicScenarios(scenario,result)};});
+  },[data,scenario,settings,t]);
+  const update=(change:Partial<GeographicSettings>)=>setSettings({...settings,...change});
+  const download=(format:'json'|'csv')=>{
+    if(!data||!scenario)return;
+    const body=format==='json'?JSON.stringify(geographicExport(data.snapshot,data.manifest,scenario),null,2):geographicCsv(data.snapshot,data.manifest,scenario);
+    const url=URL.createObjectURL(new Blob([body],{type:format==='json'?'application/json;charset=utf-8':'text/csv;charset=utf-8'}));
+    const link=document.createElement('a');link.href=url;link.download=`${data.manifest.versionId}-${settings.strategy}-${settings.radius}.${format}`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  };
+  if(error)return <section className="policy-card"><p role="alert">{t.error}</p><button onClick={()=>{setShowBoundary(false);setAttempt(attempt+1);}}>{t.retry}</button></section>;
+  if(!data||!scenario)return <p role="status">{t.loading}</p>;
+  const {snapshot,manifest}=data,summary=snapshot.summary;
+  const focused=snapshot.facilities.find(f=>f.id===focus);
+  return <div className="geographic-dashboard">
+    <section className="policy-card geographic-intro"><span className="eyebrow">Policy #8 v1.1 · {t.intro}</span><h3>{t.title}</h3><p>{t.warning}</p><code>{manifest.versionId}</code></section>
+    <section className="policy-card"><h3>{t.geometry}</h3><p>{t.geometryNote}</p><dl className="geographic-metrics">
+      <dt>{t.polygons}</dt><dd>{summary.districts.length}</dd><dt>{t.tiers}</dt><dd>{summary.facilities.tiers.verified??0} / {summary.facilities.tiers['assumption-tested']??0} / {summary.facilities.tiers.unresolved??0}</dd>
+      <dt>{t.hotspots}</dt><dd>{summary.hotspots.eligible} / {summary.hotspots.rows}</dd><dt>{t.disagreements}</dt><dd>{summary.hotspots.districtDisagreements} / {summary.facilities.districtDisagreements}</dd>
+    </dl><p>EPSG:3826 → EPSG:4326 · PROJ · {snapshot.geometryEdition}</p><p>{t.identityNote}</p><details><summary>{t.identity}</summary><pre>{JSON.stringify({identity:summary.facilities.identity,overlaps:summary.overlaps,repairs:summary.repairs},null,2)}</pre></details></section>
+    <section className="policy-card"><div className="policy-controls">
+      <label>{t.evidence}<select value={settings.evidence} onChange={e=>update({evidence:e.target.value as GeographicSettings['evidence']})}><option value="verified">{t.verified}</option><option value="assumed">{t.assumed}</option></select></label>
+      <label>{t.radius}<select value={settings.radius} onChange={e=>update({radius:Number(e.target.value) as GeographicSettings['radius']})}>{[100,250,500].map(r=><option key={r} value={r}>{r} m</option>)}</select></label>
+      <label>{t.geography}<select value={settings.geography} onChange={e=>update({geography:e.target.value as GeographicSettings['geography']})}><option value="strict">{t.strict}</option><option value="flagged">{t.flagged}</option></select></label>
+      <label>{t.cohort}<select value={settings.cohort} onChange={e=>update({cohort:e.target.value as GeographicSettings['cohort']})}>{(['all','B','C','D'] as const).map(c=><option key={c} value={c}>{t[c]}</option>)}</select></label>
+      <label>{t.capacity}<select value={settings.capacity} onChange={e=>update({capacity:e.target.value==='all'?'all':Number(e.target.value) as 5|10})}><option value="5">5</option><option value="10">10</option><option value="all">{t.allSlots}</option></select></label>
+      <label>{t.strategy}<select value={settings.strategy} onChange={e=>update({strategy:e.target.value as GeographicSettings['strategy']})}><option value="marginal">{t.marginal}</option><option value="representation">{t.representation}</option></select></label>
+    </div><p>{t.radiusNote}</p></section>
+    <div className="summary-grid policy-summary">{[[t.used,scenario.capacityUsed],[t.eligible,scenario.referenceDenominator],[t.excluded,scenario.excludedCount],[t.baseline,scenario.baselineProximate],[t.increment,scenario.newlyProximate],[t.self,scenario.ownContributions],[t.additional,scenario.additionalContributions]].map(([label,value])=><article key={label}><span>{label}</span><strong>{value}</strong></article>)}</div>
+    <section className="policy-card"><h3>{t.takeaway}</h3>
+      <p>{language === 'zh'
+        ? `在目前假設與篩選下，${scenario.referenceDenominator} 筆設施紀錄中有 ${scenario.baselineProximate} 筆，在 ${settings.radius} 公尺直線距離內有已公布熱點；其餘 ${scenario.referenceDenominator - scenario.baselineProximate} 筆在此距離內未找到合格公布熱點。這不是訊號涵蓋或實際服務缺口。`
+        : `Under the current assumptions and filters, ${scenario.baselineProximate} of ${scenario.referenceDenominator} facility records have an eligible published hotspot within ${settings.radius} metres in a straight line. The remaining ${scenario.referenceDenominator - scenario.baselineProximate} have no eligible published hotspot within that distance. This does not measure signal coverage or an actual service gap.`}</p>
+      {settings.evidence === 'verified' && scenario.referenceDenominator === 0 && <p>{t.noVerified}</p>}
+      <h4>{t.nextStep}</h4><p>{t.nextStepNote}</p>
+    </section>
+    <p>{t.selfNote}</p>{!scenario.optimizationAvailable&&<p className="geographic-notice" role="status">{t.trivial}</p>}
+    <section className="policy-card"><h3>{t.map}</h3><div className="geographic-options"><label><input type="checkbox" checked={showBoundary} onChange={e=>setShowBoundary(e.target.checked)}/>{t.boundaries}</label><label><input type="checkbox" checked={circles} onChange={e=>setCircles(e.target.checked)}/>{t.circles}</label></div><p>{t.mapNote}</p>{boundaryError&&<p role="alert">{t.boundaries}: {t.error} <button onClick={()=>setBoundaryAttempt(boundaryAttempt+1)}>{t.retry}</button></p>}<ResearchMap facilities={selected} geometry={showBoundary?geometry:undefined} radius={settings.radius} circles={circles} language={language} onSelect={setFocus}/></section>
+    <section className="policy-card"><h3>{t.shortlist}</h3><p>{t.fallback}</p>{!selected.length?<p>{t.empty}</p>:<div className="policy-table-scroll"><table><thead><tr><th>{t.name}</th><th>{t.district}</th><th>{t.distance}</th><th>{t.contribution}</th></tr></thead><tbody>{selected.map((f,i)=><tr key={f.id}><td><button className="geographic-facility" onClick={()=>setFocus(f.id)}>{f.name}</button><code>{f.id}</code><span>{t[f.source]} · {local(f.tier)}</span></td><td>{district(f.sourceDistrict)} / {district(f.spatial.district)}</td><td>{f.nearestHotspotMeters[settings.geography]?.toFixed(1)??t.unknown} m</td><td>{scenario.selected[i].ownReference} / {scenario.selected[i].additionalReferences} / {scenario.selected[i].marginalReferences}<p>{local(scenario.selected[i].reason)}</p></td></tr>)}</tbody></table></div>}</section>
+    {focused&&<section className="policy-card" aria-live="polite"><h3>{t.detail} · {focused.name}</h3><p>{focused.address}</p><dl className="geographic-metrics"><dt>{t.row}</dt><dd>{focused.sourceFile} · {focused.sourceRow}</dd><dt>{t.tier}</dt><dd>{local(focused.tier)}</dd><dt>{t.original}</dt><dd>{JSON.stringify(focused.originalCoordinates)}</dd><dt>{t.assumption}</dt><dd>{focused.assumedCRS}</dd><dt>{t.transformed}</dt><dd>{focused.longitude}, {focused.latitude}</dd><dt>{t.status}</dt><dd>{local(focused.spatial.status)}</dd><dt>{t.boundary}</dt><dd>{focused.spatial.boundaryMeters?.toFixed(2)} m</dd></dl><code>{focused.sourceHash}</code><a href={focused.sourceUrl} target="_blank" rel="noreferrer">{t.source}</a><p>{t.warning}</p></section>}
+    <section className="policy-card"><h3>{t.sensitivity}</h3><p>{t.sensitivityNote}</p><div className="policy-table-scroll"><table><thead><tr><th>{t.setting}</th><th>{t.added} / {t.removed} / {t.shared}</th><th>{t.denominator}</th><th>{t.delta}</th></tr></thead><tbody>{alternatives.map((a,i)=><tr key={i}><td>{a.label}</td><td><details><summary>{a.diff.added.length} / {a.diff.removed.length} / {a.diff.shared.length}</summary><pre>{JSON.stringify(a.diff,null,2)}</pre></details></td><td>{a.diff.denominatorChange}</td><td>{a.diff.baselineChange} / {a.diff.incrementChange}</td></tr>)}</tbody></table></div></section>
+    <section className="policy-card"><h3>{t.exclusions}</h3><div className="policy-table-scroll"><table><thead><tr><th>{t.name}</th><th>{t.excludedBy}</th></tr></thead><tbody>{scenario.excluded.map(e=><tr key={e.id}><td><button className="geographic-facility" onClick={()=>setFocus(e.id)}>{snapshot.facilities.find(f=>f.id===e.id)?.name}</button><code>{e.id}</code></td><td>{e.reasons.map(local).join(' · ')}</td></tr>)}</tbody></table></div></section>
+    <section className="policy-card"><h3>{t.exports}</h3><p>{t.exportNote}</p><div className="policy-actions"><button onClick={()=>download('json')}>JSON</button><button onClick={()=>download('csv')}>CSV</button></div><p><a href={root+manifest.artifacts['coordinate-audit.json'].path}>{t.audit}</a> · <a href={root+manifest.artifacts['hotspot-audit.json'].path}>{t.hotspotAudit}</a></p>{snapshot.sourceEditions.map(s=><p key={s.id}><a href={s.catalogueUrl} target="_blank" rel="noreferrer">{t.source} {s.id}</a> · {s.publishedAt}<code>{s.sha256}</code></p>)}</section>
+  </div>;
 }

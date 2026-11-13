@@ -9,7 +9,12 @@ npm ci
 echo "=== npm run data:convert ==="
 npm run data:convert
 
-echo "=== npm test ==="
+echo "=== Offline geographic tooling, audit and build ==="
+npm run data:setup:geographic
+npm run data:audit:geographic
+npm run data:verify:geographic
+
+echo "=== npm test (including rebuilt artifact hashes) ==="
 npm test
 
 echo "=== npm run build ==="

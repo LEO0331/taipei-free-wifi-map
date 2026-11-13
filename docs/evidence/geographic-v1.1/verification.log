@@ -1,0 +1,312 @@
+=== Harness Initialization ===
+=== npm ci ===
+
+added 33 packages, and audited 34 packages in 2s
+
+8 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+=== npm run data:convert ===
+
+> taipei-free-wifi-map@0.1.0 data:convert
+> node --import tsx scripts/convertWifiHotspots.ts && node --import tsx scripts/buildWifiSummary.ts
+
+Converted 3297 records (3297 valid coordinates, 12 outside Taipei).
+Built summary for 3297 hotspots.
+=== Offline geographic tooling, audit and build ===
+
+> taipei-free-wifi-map@0.1.0 data:setup:geographic
+> node --import tsx scripts/runWifiGeographic.ts setup
+
+Requirement already satisfied: pyproj==3.7.2 in c:\users\leoli\.codex\worktrees\wifi-geographic-v1-1\taipei-free-wifi-map\.venv-gis\lib\site-packages (from -r scripts/requirements-geographic.txt (line 1)) (3.7.2)
+Requirement already satisfied: shapely==2.1.2 in c:\users\leoli\.codex\worktrees\wifi-geographic-v1-1\taipei-free-wifi-map\.venv-gis\lib\site-packages (from -r scripts/requirements-geographic.txt (line 2)) (2.1.2)
+Requirement already satisfied: pyshp==3.0.3 in c:\users\leoli\.codex\worktrees\wifi-geographic-v1-1\taipei-free-wifi-map\.venv-gis\lib\site-packages (from -r scripts/requirements-geographic.txt (line 3)) (3.0.3)
+Requirement already satisfied: numpy==2.5.4 in c:\users\leoli\.codex\worktrees\wifi-geographic-v1-1\taipei-free-wifi-map\.venv-gis\lib\site-packages (from -r scripts/requirements-geographic.txt (line 4)) (2.5.4)
+Requirement already satisfied: certifi==2026.10.19 in c:\users\leoli\.codex\worktrees\wifi-geographic-v1-1\taipei-free-wifi-map\.venv-gis\lib\site-packages (from -r scripts/requirements-geographic.txt (line 5)) (2026.10.19)
+
+[notice] A new release of pip is available: 25.3 -> 26.2.2
+[notice] To update, run: C:\Users\LeoLi\.codex\worktrees\wifi-geographic-v1-1\taipei-free-wifi-map\.venv-gis\Scripts\python.exe -m pip install --upgrade pip
+
+> taipei-free-wifi-map@0.1.0 data:audit:geographic
+> node --import tsx scripts/runWifiGeographic.ts test
+
+test_actual_generated_nearest_hotspots_and_baseline (geographic_test.GeographicTests.test_actual_generated_nearest_hotspots_and_baseline) ... ok
+test_archive_path_and_xml_contract (geographic_test.GeographicTests.test_archive_path_and_xml_contract) ... ok
+test_failed_build_preserves_last_good_pointer (geographic_test.GeographicTests.test_failed_build_preserves_last_good_pointer) ... ok
+test_haversine_threshold_and_colocation (geographic_test.GeographicTests.test_haversine_threshold_and_colocation) ... ok
+test_holes_multipart_shared_boundary_and_uncertainty (geographic_test.GeographicTests.test_holes_multipart_shared_boundary_and_uncertainty) ... ok
+test_projection_axes_roundtrip_and_rejection (geographic_test.GeographicTests.test_projection_axes_roundtrip_and_rejection) ... ok
+test_retained_sources_geometry_and_ods (geographic_test.GeographicTests.test_retained_sources_geometry_and_ods) ... ok
+test_shp_ingestion_preserves_holes_and_multipart (geographic_test.GeographicTests.test_shp_ingestion_preserves_holes_and_multipart) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 1.625s
+
+OK
+
+> taipei-free-wifi-map@0.1.0 data:verify:geographic
+> node --import tsx scripts/verifyWifiGeographic.ts
+
+{"versionId": "wifi-geo-da9f69f501af4d6e1d3f9122", "geometry": 12, "facilities": {"rows": 91, "tiers": {"assumption-tested": 87, "unresolved": 4}, "spatialStatuses": {"interior": 91}, "districtDisagreements": 3, "bySource": {"B": {"assumption-tested": 69, "unresolved": 1}, "C": {"assumption-tested": 9}, "D": {"assumption-tested": 9, "unresolved": 3}}, "identity": {"duplicateComposites": [], "sharedAddresses": [], "conflictingCompositeCoordinates": [], "crossSourceSharedAddresses": [], "publisherRowCollisions": [], "sharedCoordinateGroups": [], "longitudinalIdentityEstablished": false, "physicalSiteUniquenessEstablished": false}}, "hotspots": {"rows": 3305, "eligible": 3229, "spatialStatuses": {"interior": 3234, "boundary-adjacent": 59, "exterior": 12}, "districtDisagreements": 64, "duplicateCoordinateGroups": 200, "repeatedSiteIds": 0}}
+{"scenarios":288,"scenarioHash":"b3b7a6fb2f1b5d1067bb4eae10f3beb12ecf250b48e02cb0e4e42f6f004d22a0","versionId":"wifi-geo-da9f69f501af4d6e1d3f9122","defaultDenominator":87,"defaultBaseline":69,"optimizationAvailable":false}
+Geographic generation and scenario pointers reproduced byte-for-byte.
+=== npm test (including rebuilt artifact hashes) ===
+
+> taipei-free-wifi-map@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ convertWifiRow keeps outside-Taipei records and maps bilingual fields (1.0149ms)
+✔ convertWifiRow reports missing and outlier coordinates without throwing (0.3139ms)
+✔ parseCsv removes a UTF-8 BOM and preserves quoted commas (1.1518ms)
+✔ parseCsv handles escaped quotes and line breaks inside fields (0.1803ms)
+✔ parseCsv rejects an unclosed quoted field (0.3155ms)
+✔ getHotspotText uses English fields and falls back to Chinese (1.2867ms)
+✔ getNearbyHotspots excludes invalid coordinates and sorts within radius (0.3865ms)
+✔ buildFilterOptions shows English labels while preserving Chinese filter values (0.3786ms)
+✔ normalization trims column names, coordinates, and district suffixes (0.7148ms)
+✔ coordinate validation distinguishes valid, missing, and outlier values (0.1533ms)
+✔ category mapping follows the requested Chinese hotspot types (0.1122ms)
+✔ filters search bilingual fields and respect Taipei City only (0.1782ms)
+✔ distance helpers calculate, format, and link coordinates (0.2015ms)
+✔ summary counts valid, Taipei, outside, area, type, category, and agency totals (0.6318ms)
+✔ geographic manifest, immutable baseline, original source hashes and all portable artifact hashes (32.7625ms)
+✔ all actual facility cohorts, empty verified-only, capacities and deterministic source IDs (11.4339ms)
+✔ marginal recalculation excludes counted references, explicit zero-distance self and exact threshold (4.2406ms)
+✔ colocated distinct reference records retain identity; self-only outcome disables optimization (2.2417ms)
+✔ round-robin prioritizes unrepresented validated district/category groups deterministically (0.99ms)
+✔ tier, unresolved, strict boundary and cohort eligibility never manufactures a verified population (2.1169ms)
+✔ sensitivity reports added/removed/shared identities, denominator and modeled count changes (1.0553ms)
+✔ exports retain source lineage, assumptions and ordered IDs and prevent CSV formula injection (2.1108ms)
+✔ nested evidence and unsafe manifest paths reject schema/source-version mismatches (4.0864ms)
+✔ browser artifact reader rejects failed fetches, stale mixed bytes and corrupted output (18.0461ms)
+✔ strict CSV handles BOM/reordered columns and rejects malformed, empty, missing, duplicate and bad encoding (1.9051ms)
+✔ WGS84 contract rejects projected CRS and nonnumeric values; scope uses published labels, never broad bounds (0.4767ms)
+✔ identity collisions preserve rows, tier precedence, numeric coordinate reconciliation and stable reorder (1.5104ms)
+✔ capacity, empty populations, category balance, strict/broader/stale sensitivity and comparisons (1.0795ms)
+✔ removed legacy rows retain duplicate diagnostics from their own edition (0.287ms)
+✔ exports preserve governance and neutralize formula injection without quadratic metadata (10.9231ms)
+✔ allowlist and bounded failed fetch reject redirects, oversized, empty and failed resources (17.1982ms)
+✔ atomic snapshot validation protects last-good artifacts; immutable hash and nested schema checked (16.2958ms)
+✔ production manifest hashes and deterministic real snapshot are independently verified (40.6521ms)
+✔ all current policy explanations, gates and source metadata have display translations (2.3154ms)
+✔ English labels come from the candidate’s own retained source edition, including legacy-only records (208.6811ms)
+✔ changing display language preserves selected identities and canonical filter values (1.4647ms)
+✔ adding official display fields leaves every investigation selection unchanged (79.729ms)
+ℹ tests 37
+ℹ suites 0
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 510.9507
+=== npm run build ===
+
+> taipei-free-wifi-map@0.1.0 build
+> tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 39 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                     0.82 kB │ gzip:   0.48 kB
+dist/assets/WifiGeographicDashboard-D91FlHnW.css    1.07 kB │ gzip:   0.48 kB
+dist/assets/WifiPolicyDashboard-CHle-YTj.css        3.51 kB │ gzip:   1.09 kB
+dist/assets/index-j8Kob2Tu.css                     27.80 kB │ gzip:   9.66 kB
+dist/assets/WifiGeographicDashboard-CZMhUcxm.js    31.81 kB │ gzip:  11.45 kB
+dist/assets/WifiPolicyDashboard-6gxA38pp.js        37.55 kB │ gzip:  13.31 kB
+dist/assets/index-Wc0cRaWX.js                     399.21 kB │ gzip: 120.45 kB
+
+✓ built in 221ms
+=== Verification Complete ===
+
+Next steps:
+1. Read feature_list.json to see current feature state
+2. Pick ONE unfinished feature to work on
+3. Implement only that feature
+4. Re-run verification before claiming done
+
+> taipei-free-wifi-map@0.1.0 data:fetch:wifi-policy
+> node --import tsx scripts/fetchWifiPolicySources.ts
+
+Validated retained sources; no network refresh. Use --refresh to retain new original-byte editions for separate audit acceptance.
+
+> taipei-free-wifi-map@0.1.0 data:audit:wifi-policy
+> node --import tsx scripts/auditWifiPolicySources.ts
+
+{
+  "rows": 3305,
+  "uniqueSiteIds": 3305,
+  "uniqueHotspotIds": 3305,
+  "duplicateSiteIds": 0,
+  "duplicateHotspotIds": 0,
+  "missingSiteIds": 0,
+  "missingHotspotIds": 0,
+  "invalidCoordinates": 0,
+  "taipeiSourceRows": 3293,
+  "outsideSourceRows": 12,
+  "byDistrict": {
+    "中山區": 271,
+    "中正區": 428,
+    "信義區": 482,
+    "內湖區": 192,
+    "北投區": 186,
+    "南港區": 198,
+    "士林區": 340,
+    "大同區": 206,
+    "大安區": 343,
+    "文山區": 295,
+    "新店區": 12,
+    "松山區": 126,
+    "萬華區": 226
+  },
+  "byCategory": {
+    "公園": 88,
+    "公眾服務": 148,
+    "公車站": 887,
+    "商圈市集": 309,
+    "圖書館": 268,
+    "大眾運輸": 12,
+    "社區中心": 203,
+    "藝文場館": 181,
+    "行政機關": 696,
+    "觀光名勝": 12,
+    "遊客中心": 2,
+    "運動場館": 96,
+    "醫院": 403
+  },
+  "byAgency": {
+    "臺北市中山區健康服務中心|TAIFO": 2,
+    "臺北市中山區公所|TAIFO": 28,
+    "臺北市中山區戶政事務所|TAIFO": 2,
+    "臺北市中山地政事務所|TAIFO": 10,
+    "臺北市中山堂管理所|TAIFO": 8,
+    "臺北市中正區健康服務中心|TAIFO": 4,
+    "臺北市中正區公所|TAIFO": 16,
+    "臺北市中正區戶政事務所|TAIFO": 4,
+    "臺北市交通事件裁決所|TAIFO": 3,
+    "臺北市交通管制工程處|TAIFO": 6,
+    "臺北市住宅及都市更新中心|TAIFO": 7,
+    "臺北市信義區健康服務中心|TAIFO": 3,
+    "臺北市信義區公所|TAIFO": 25,
+    "臺北市信義區戶政事務所|TAIFO": 1,
+    "臺北市停車管理工程處|TAIFO": 7,
+    "臺北市內湖區健康服務中心|TAIFO": 1,
+    "臺北市內湖區公所|TAIFO": 26,
+    "臺北市內湖區戶政事務所|TAIFO": 3,
+    "臺北市公共運輸處|TAIFO": 899,
+    "臺北市動產質借處|TAIFO": 6,
+    "臺北市勞動力重建運用處|TAIFO": 1,
+    "臺北市北投區健康服務中心|TAIFO": 2,
+    "臺北市北投區公所|TAIFO": 18,
+    "臺北市北投區戶政事務所|TAIFO": 1,
+    "臺北市南港區健康服務中心|TAIFO": 4,
+    "臺北市南港區公所|TAIFO": 14,
+    "臺北市南港區戶政事務所|TAIFO": 1,
+    "臺北市古亭地政事務所|TAIFO": 5,
+    "臺北市士林區健康服務中心|TAIFO": 4,
+    "臺北市士林區公所|TAIFO": 25,
+    "臺北市士林區戶政事務所|TAIFO": 4,
+    "臺北市士林地政事務所|TAIFO": 5,
+    "臺北市大同區健康服務中心|TAIFO": 5,
+    "臺北市大同區公所|TAIFO": 16,
+    "臺北市大同區戶政事務所|TAIFO": 2,
+    "臺北市大安區健康服務中心|TAIFO": 3,
+    "臺北市大安區公所|TAIFO": 18,
+    "臺北市大安區戶政事務所|TAIFO": 4,
+    "臺北市大安地政事務所|TAIFO": 7,
+    "臺北市孔廟管理委員會|TAIFO": 2,
+    "臺北市家庭暴力暨性侵害防治中心|TAIFO": 2,
+    "臺北市就業服務處|TAIFO": 2,
+    "臺北市市場處|TAIFO": 314,
+    "臺北市建成地政事務所|TAIFO": 7,
+    "臺北市政府主計處|TAIFO": 5,
+    "臺北市政府交通局|TAIFO": 8,
+    "臺北市政府人事處|TAIFO": 3,
+    "臺北市政府公務人員訓練中心|TAIFO": 18,
+    "臺北市政府兵役局|TAIFO": 1,
+    "臺北市政府勞動局|TAIFO": 7,
+    "臺北市政府原住民族事務委員會|TAIFO": 2,
+    "臺北市政府地政局|TAIFO": 8,
+    "臺北市政府地政局土地開發總隊|TAIFO": 6,
+    "臺北市政府客家事務委員會|TAIFO": 4,
+    "臺北市政府工務局|TAIFO": 12,
+    "臺北市政府工務局公園路燈工程管理處|TAIFO": 159,
+    "臺北市政府工務局大地工程處|TAIFO": 3,
+    "臺北市政府工務局建築管理工程處|TAIFO": 9,
+    "臺北市政府工務局新建工程處|TAIFO": 9,
+    "臺北市政府工務局水利工程處|TAIFO": 10,
+    "臺北市政府工務局衛生下水道工程處|TAIFO": 12,
+    "臺北市政府捷運工程局|TAIFO": 2,
+    "臺北市政府政風處|TAIFO": 2,
+    "臺北市政府教育局|TAIFO": 7,
+    "臺北市政府文化局|TAIFO": 80,
+    "臺北市政府民政局|TAIFO": 25,
+    "臺北市政府法務局|TAIFO": 5,
+    "臺北市政府消防局|TAIFO": 27,
+    "臺北市政府環境保護局|TAIFO": 15,
+    "臺北市政府環境保護局北投垃圾焚化廠|TAIFO": 2,
+    "臺北市政府產業發展局|TAIFO": 14,
+    "臺北市政府產業發展局商業處|TAIFO": 2,
+    "臺北市政府研究發展考核委員會|TAIFO": 3,
+    "臺北市政府社會局|TAIFO": 61,
+    "臺北市政府秘書處|TAIFO": 80,
+    "臺北市政府衛生局|TAIFO": 25,
+    "臺北市政府觀光傳播局|TAIFO": 14,
+    "臺北市政府警察局|TAIFO": 28,
+    "臺北市政府警察局交通警察大隊|TAIFO": 12,
+    "臺北市政府警察局少年警察隊|TAIFO": 3,
+    "臺北市政府財政局|TAIFO": 6,
+    "臺北市政府資訊局|TAIFO": 16,
+    "臺北市政府都市發展局|TAIFO": 43,
+    "臺北市政府青年局|TAIFO": 7,
+    "臺北市政府體育局|TAIFO": 96,
+    "臺北市教師研習中心|TAIFO": 3,
+    "臺北市文山區健康服務中心|TAIFO": 1,
+    "臺北市文山區公所|TAIFO": 26,
+    "臺北市文山區戶政事務所|TAIFO": 6,
+    "臺北市松山區健康服務中心|TAIFO": 3,
+    "臺北市松山區公所|TAIFO": 21,
+    "臺北市松山區戶政事務所|TAIFO": 5,
+    "臺北市松山地政事務所|TAIFO": 7,
+    "臺北市殯葬管理處|TAIFO": 8,
+    "臺北市稅捐稽徵處|TAIFO": 34,
+    "臺北市立動物園|TAIFO": 56,
+    "臺北市立圖書館|TAIFO": 269,
+    "臺北市立天文科學教育館|TAIFO": 6,
+    "臺北市立文獻館|TAIFO": 4,
+    "臺北市立浩然敬老院|TAIFO": 5,
+    "臺北市立聯合醫院|TAIFO": 14,
+    "臺北市立聯合醫院中興院區|TAIFO": 63,
+    "臺北市立聯合醫院仁愛院區|TAIFO": 84,
+    "臺北市立聯合醫院和平院區|TAIFO": 50,
+    "臺北市立聯合醫院婦幼院區|TAIFO": 27,
+    "臺北市立聯合醫院忠孝院區|TAIFO": 51,
+    "臺北市立聯合醫院昆明院區|TAIFO": 17,
+    "臺北市立聯合醫院松德院區|TAIFO": 34,
+    "臺北市立聯合醫院林森院區|TAIFO": 15,
+    "臺北市立聯合醫院陽明院區|TAIFO": 32,
+    "臺北市立陽明教養院|TAIFO": 3,
+    "臺北市萬華區健康服務中心|TAIFO": 6,
+    "臺北市萬華區公所|TAIFO": 22,
+    "臺北市萬華區戶政事務所|TAIFO": 3,
+    "臺北市藝文推廣處|TAIFO": 22,
+    "臺北市議會|TAIFO": 12,
+    "臺北翡翠水庫管理局|TAIFO": 12,
+    "臺北自來水事業處|TAIFO": 6
+  }
+}
+
+> taipei-free-wifi-map@0.1.0 data:build:wifi-policy
+> node --import tsx scripts/buildWifiPolicySnapshot.ts
+
+{"snapshotId":"wifi-policy-e08d28277549c88787dea209","sha256":"cd675db75af4b65220692dc59916c7e5b88920b42613d4b82c7affcb43e0dfaa","bytes":2154132}
+
+> taipei-free-wifi-map@0.1.0 data:verify:geographic
+> node --import tsx scripts/verifyWifiGeographic.ts
+
+{"versionId": "wifi-geo-da9f69f501af4d6e1d3f9122", "geometry": 12, "facilities": {"rows": 91, "tiers": {"assumption-tested": 87, "unresolved": 4}, "spatialStatuses": {"interior": 91}, "districtDisagreements": 3, "bySource": {"B": {"assumption-tested": 69, "unresolved": 1}, "C": {"assumption-tested": 9}, "D": {"assumption-tested": 9, "unresolved": 3}}, "identity": {"duplicateComposites": [], "sharedAddresses": [], "conflictingCompositeCoordinates": [], "crossSourceSharedAddresses": [], "publisherRowCollisions": [], "sharedCoordinateGroups": [], "longitudinalIdentityEstablished": false, "physicalSiteUniquenessEstablished": false}}, "hotspots": {"rows": 3305, "eligible": 3229, "spatialStatuses": {"interior": 3234, "boundary-adjacent": 59, "exterior": 12}, "districtDisagreements": 64, "duplicateCoordinateGroups": 200, "repeatedSiteIds": 0}}
+{"scenarios":288,"scenarioHash":"b3b7a6fb2f1b5d1067bb4eae10f3beb12ecf250b48e02cb0e4e42f6f004d22a0","versionId":"wifi-geo-da9f69f501af4d6e1d3f9122","defaultDenominator":87,"defaultBaseline":69,"optimizationAvailable":false}
+Geographic generation and scenario pointers reproduced byte-for-byte.

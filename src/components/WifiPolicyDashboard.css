@@ -2,6 +2,17 @@
 .policy-dashboard .section-heading h2 { font-size: clamp(23px, 3vw, 34px); line-height: 1.25; }
 .policy-question { margin-bottom: 8px; font-size: clamp(19px, 2.3vw, 26px); }
 .policy-intro { max-width: 950px; line-height: 1.75; }
+.policy-mode-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.policy-mode-button { display: flex; flex-direction: column; gap: 10px; min-width: 0; padding: 16px; text-align: left; font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--line); cursor: pointer; }
+.policy-mode-button[aria-pressed="true"] { border-color: var(--blue); background: #e8edf4; }
+.policy-mode-button:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.policy-mode-button strong { font-size: 16px; }
+.policy-mode-button span { font-size: 13px; line-height: 1.6; }
+.policy-mode-status { color: var(--blue); font-weight: 600; }
+.policy-guide-details { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 10px 16px; font-size: 13px; line-height: 1.7; }
+.policy-guide-details dt { font-weight: 600; }
+.policy-guide-details dd { margin: 0; }
+.policy-field-steps { padding-left: 24px; }
 .policy-version { font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
 .policy-card { margin: 16px 0; padding: 20px; background: var(--surface); border: 1px solid var(--line); min-width: 0; }
 .policy-card h3 { margin: 0 0 14px; font-size: 20px; }
@@ -44,6 +55,7 @@
 .policy-id-list { max-height: 300px; overflow-y: auto; }
 @media (max-width: 800px) { .policy-controls { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 520px) {
+  .policy-mode-grid, .policy-guide-details { grid-template-columns: 1fr; }
   .policy-card { padding: 14px; }
   .policy-controls, .policy-quality { grid-template-columns: 1fr; }
   .policy-source dl { grid-template-columns: 1fr; gap: 4px; }

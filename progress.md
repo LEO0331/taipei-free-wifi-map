@@ -1,11 +1,38 @@
+## 2026-11-13 — PR #8 conflict resolution
+
+- Adopted the geographic v1.1 release already merged in PR #6, with PR #7's bilingual guidance and map wheel zoom. Kept the deployment permissions and SHA pins, bilingual location notice, and official HTTPS link validation from the security follow-up.
+- Full `./init.sh` passed with 38 Node tests, eight GIS tests and the production build. The retained v1.1 data and all 288 scenarios rebuilt byte for byte.
+
+## 2026-10-23 — Investigation map mouse-wheel zoom (feat-009)
+
+- `src/components/WifiGeographicDashboard.tsx`: removed the explicit wheel-zoom disable, using Leaflet's existing enabled default; added Chinese/English wheel, +/− and drag instructions. No dependencies or map abstractions added.
+- Full init.sh passed 37 Node tests, 8 GIS tests, identical geographic/288-scenario rebuild and TypeScript/Vite build. Preview was stopped before npm ci to resolve its Windows native-module lock.
+- Actual production browser: + zoom 11→12, wheel-up 12→13, wheel-down 13→12, drag changed map-pane translation, − zoom 12→11. Evidence: `docs/evidence/policy-guidance/mouse-wheel-zoom.png`.
+- Updated feature tracker. No analytical/data changes. Mouse wheel now zooms while the pointer is over the map; page scrolling remains available outside it. Touch-device gestures were not re-tested. No lint script is configured.
+
+## 2026-10-23 — Customer-facing policy workflows (feat-008)
+
+- Updated the clean local checkout to already-merged origin/main (8e01a2b); work is on `codex/wifi-policy-customer-guidance`.
+- Removed the stale v1.0 Mode B unavailable panel. Added bilingual question-led A/B/C navigation with explicit availability, output, next step and interpretation limits.
+- B explains live scenario counts in plain language and makes verified-only emptiness actionable. C provides a three-step field-verification plan; outcomes remain unmeasured.
+- Original A assumptions remain in a disclosure. Retained v1.0 source audit is labelled separately from current B evidence; source IDs, review tiers and analytical modes are distinguished.
+- Verification: full init.sh passes 37 Node tests, 8 GIS tests, identical GIS and 288-scenario hashes, TypeScript/Vite build; final text changes also passed build. Browser checked both languages, dynamic 100/250m results, empty verified-only case, C guidance and A capacity retention. Visual review: 94/100 at observed 714px viewport. No new device-emulated mobile run; no lint script is configured.
+- No dependencies, source data, scenario calculations, exports or evidence contracts changed. Remaining evidence gaps are unchanged; this is guidance, not a service-outcome data collection tool. See `docs/wifi-policy-customer-guidance.md`.
+
 # Session Progress Log
 
-## 2026-11-13 — Geographic v1.1 security follow-up
+## 2026-10-22 — Policy #8 v1.1 geographic research
 
-- Limited Pages write and OIDC permissions to the deploy job, pinned Actions to official commit SHAs, and disabled checkout credential persistence.
-- Added a bilingual notice beside the location control. Mode A and experimental Mode B share an HTTPS allowlist for official source links. The geographic link validation runs on the lazy policy tab.
-- Baseline `./init.sh` passed. After the fixes, all 41 tests and `npm run build` passed. The explorer conversion retained 3,297 rows. Mode A and geographic artifacts rebuilt byte for byte.
-- Browser timing and GitHub runner verification remain pending. See [v1.1 delivery](docs/wifi-allocation-v1.1-delivery.md) for the artifact and measurement evidence.
+- Implemented feat-007 in isolated branch `codex/wifi-allocation-geographic-v1-1`, based on fetched main `b6422424c3d8e6b98a3aaa13701f0d0c1e517c14`; PR4/5 merged. Human-review PR creation is the remaining delivery step; never auto-merge.
+- Original raw bytes and v1.0 snapshot SHA256 `91b28d7b375e7fb14ee42bfbe179d792c9e0ed0992f273582dd1e03e6bac8a82` preserved; original explorer3297 and Mode A3316/tier63-57-3196 unchanged.
+- Twelve official historical polygons validated via pinned offline PROJ/GEOS/pyshp. Facility tiers0 verified /87 assumption-tested /4 unresolved; B69 C9 D9 admitted,3 district disagreements plus1 missing district excluded.
+- Geographic generation `wifi-geo-da9f69f501af4d6e1d3f9122`; snapshot SHA256 `0f6a44f9df4139b060fa2b6d906380c0600e1d95aaa72cd4da03aed2926b3d8f`; boundary SHA256 `de9fcacdd831d0d5c608bf3f8e5de2559c0a03cffa2014faf94bf92617899a1c`.
+- All288 scenarios published; combined baseline69/85/87 at100/250/500m. No non-self increment: optimization unavailable. All87 produces only18/2/0 self contributions; capacity5/10 descriptive lists produce0. Verified-only denominator0 is intentional.
+- Final init.sh passes npm ci, explorer conversion,8 Python GIS tests, byte-identical geographic/scenario rebuild,37 Node tests and TypeScript/Vite build. Required retained policy fetch/audit/build also pass. No configured lint command; no invented lint result.
+- Final production desktop1280x900/mobile390x844 bilingual checks, source/detail/map overlays/marker clicks, empty cohort, Mode C gate, actual JSON/CSV downloads and optional boundary404/retry pass. No page overflow or console warnings/errors. Existing light-only theme retained.
+- No new npm dependency; Python3.14 GIS tools exactly pinned, npm/Python audits zero known vulnerabilities. Full docs, actual IDs/counts/lineage, local measurements and five bounded native reviews in `docs/wifi-allocation-v1.1-delivery.md` and `docs/evidence/geographic-v1.1/`.
+- Remaining limits: unconfirmed facility datum/accuracy, no independent surveyed controls/current operation/access/demand/cost evidence; historical overlaps disclosed. No Wi-Fi service or installation benefit claimed. No portfolio changes.
+
 
 ## 2026-10-22 — Policy tab language consistency
 

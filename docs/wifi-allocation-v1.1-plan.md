@@ -1,14 +1,11 @@
 # Policy #8 v1.1 implementation plan
 
-Base: `b6422424c3d8e6b98a3aaa13701f0d0c1e517c14`, fetched 2026-10-22. PRs #4 and #5 are merged. Baseline Git Bash `./init.sh`: 27 tests pass, original 3,297-row explorer conversion and TypeScript/Vite build pass. Feature `feat-007` is scoped to v1.1; `feat-006` is already used by localization.
+Base: b6422424c3d8e6b98a3aaa13701f0d0c1e517c14. PR #4 and #5 merged. Baseline init.sh: 27 tests and production build pass.
 
-1. Preserve raw A–G source bytes, immutable v1.0 snapshots and the active localized Mode A pointer. Pin Python 3.12 build-time GIS tools (PROJ/pyproj, GEOS/Shapely, pyshp), document licenses and reproducible local/CI setup. No browser GIS dependency.
-2. Read original ZIP components safely, verify PRJ and source IDs, transform EPSG:3826 to longitude/latitude with `always_xy`, validate topology/rings/holes/multipart and round-trip/control evidence. Reject errors; record any explicit repair instead of silently changing geometry.
-3. Audit every B/C/D facility row under explicit CRS hypotheses, source-edition composite identity and polygon checks. Keep source district, geometric assignment, boundary distance, mismatches and independent evidence distinct. Unknown datum is not upgraded by plausible coordinates. Classify Verified / Assumption-tested / Unresolved per record.
-4. Publish independent versioned geographic artifacts and lineage atomically. Precompute eligible published hotspot locations, nearest distances and facility relationships offline. Never change v1.0 results or the explorer edition.
-5. Implement deterministic experimental scenarios: verified-only versus assumption-tested, 100/250/500 m research thresholds, boundary assumptions, facility cohorts, capacity 5/10/all, marginal-reference and representation strategies. Separate guaranteed self-contribution from additional references; mark optimization conclusions unavailable for trivial populations.
-6. Add an independently lazy Mode B view and bounded Leaflet map, complete Chinese/English explanations, sensitivity membership comparisons, source/audit tables and safe lineage-rich exports. Preserve Mode A and keep Mode C gated.
-7. Run meaningful Node-driven geometry/parser/model/regression tests, all documented audit/build commands and repeated deterministic builds. Check original hashes, initial/Mode A/Mode B request isolation, production desktop/mobile languages, map alignment, controls, actual exports, empty states and console errors.
-8. Record actual calculated findings, payload/timing evidence and limitations in five v1.1 documents and continuity ledgers. Commit with Lore trailers and open exactly one review PR; do not merge.
-
-Parallel ownership: geometry engine and tests; facility audit and coordinate/source contracts; scenario contracts/model/tests; experimental UI/map; root integrates dependencies, CI, verification, methodology/results and delivery. Shared contracts are coordinated before dependent implementation.
+1. Preserve all raw hashes and both v1.0 immutable snapshots; add feat-007.
+2. Pin offline Python GIS dependencies (PROJ/GEOS/pyshp), verify archives/CRS/DBF and topology without silent repair. Emit versioned geographic geometry and point audits.
+3. Audit all B/C/D rows with edition-specific composite identity and explicit CRS assumptions. Reject unresolved rows individually, retain all audit records. Precompute hotspot/facility spatial joins and distances offline.
+4. Implement typed deterministic Mode B scenarios, marginal and district/category representation, capacity/evidence/radius/interior/cohort sensitivity, self-count separation and source-backed exports.
+5. Lazy-load bilingual Mode B within existing dashboard; Leaflet map and accessible table. Preserve Mode A and Mode C gate.
+6. Test geometry/parser/model/lineage/failure contracts, deterministic rebuilds, baseline regressions and browser desktop/mobile/languages. Record actual outputs and local measurements.
+7. Document requirement-to-evidence matrix, reproduction and limitations; commit logical slices, open exactly one PR to main, review CI, never merge.
